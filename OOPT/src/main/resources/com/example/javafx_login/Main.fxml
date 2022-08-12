@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="borderpane" onMouseDragged="#borderpaneOnDrag" onMousePressed="#borderpaneOnPress" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_login.MainController">
+   <top>
+      <AnchorPane prefHeight="80.0" prefWidth="600.0" styleClass="themeColor" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="desktopImageView" fitHeight="41.0" fitWidth="43.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../image/desktop.png" />
+               </image></ImageView>
+            <ImageView fx:id="laptopImageView" fitHeight="88.0" fitWidth="79.0" layoutX="97.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../image/laptop.png" />
+               </image></ImageView>
+            <ImageView fx:id="mobileImageView" fitHeight="41.0" fitWidth="43.0" layoutX="195.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../image/mobile.png" />
+               </image></ImageView>
+            <ImageView fx:id="accessoryImageView" fitHeight="41.0" fitWidth="43.0" layoutX="275.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../image/accessory.png" />
+               </image></ImageView>
+            <ImageView fx:id="settingsImageView" fitHeight="41.0" fitWidth="43.0" layoutX="656.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../image/settings.png" />
+               </image></ImageView>
+            <Label layoutX="35.0" layoutY="55.0" text="Desktop" textFill="WHITE" />
+            <Label layoutX="118.0" layoutY="55.0" text="Laptop" textFill="WHITE" />
+            <Label layoutX="196.0" layoutY="55.0" text="Mobile" textFill="WHITE" />
+            <Label layoutX="270.0" layoutY="55.0" text="Accessory" textFill="WHITE" />
+            <Label layoutX="656.0" layoutY="55.0" text="Options" textFill="WHITE" />
+         </children></AnchorPane>
+   </top>
+   <right>
+      <AnchorPane prefHeight="400.0" prefWidth="225.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER" />
+   </right>
+   <center>
+      <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

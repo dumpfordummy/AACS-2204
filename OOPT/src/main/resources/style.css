@@ -1,0 +1,17 @@
+.backgroundColor{
+    -fx-background-color: linear-gradient(to bottom, #6031A1, #60D1D5);
+}
+
+.semiTransparent{
+    -fx-background-color: rgba(74,74,74,0.3);
+}
+
+.text-field {
+    -fx-border-color: grey;
+    -fx-border-width: 0 0 1 0; // top, right, bottom, left
+    -fx-background-color: transparent;
+}
+
+.themeColor {
+    -fx-background-color: #333333;
+}
