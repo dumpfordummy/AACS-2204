@@ -5,7 +5,7 @@
     <content url="file://$MODULE_DIR$" />
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx-swt.jar!/" />
@@ -14,7 +14,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.base.jar!/" />
@@ -23,7 +23,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.controls.jar!/" />
@@ -32,7 +32,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.fxml.jar!/" />
@@ -41,7 +41,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.graphics.jar!/" />
@@ -50,7 +50,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.media.jar!/" />
@@ -59,7 +59,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.swing.jar!/" />
@@ -68,7 +68,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/javafx-sdk-18.0.2/lib/javafx.web.jar!/" />
@@ -77,7 +77,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/json-20220320.jar!/" />
@@ -86,7 +86,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/OOPT/Java/assert jar/assertj-core-3.23.1.jar!/" />
