@@ -10,37 +10,100 @@
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" styleClass="themeColor" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="desktopImageView" fitHeight="41.0" fitWidth="43.0" layoutX="35.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../image/desktop.png" />
-               </image></ImageView>
-            <ImageView fx:id="laptopImageView" fitHeight="88.0" fitWidth="79.0" layoutX="97.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../image/laptop.png" />
-               </image></ImageView>
-            <ImageView fx:id="mobileImageView" fitHeight="41.0" fitWidth="43.0" layoutX="195.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../image/mobile.png" />
-               </image></ImageView>
-            <ImageView fx:id="accessoryImageView" fitHeight="41.0" fitWidth="43.0" layoutX="275.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../image/accessory.png" />
-               </image></ImageView>
-            <ImageView fx:id="settingsImageView" fitHeight="41.0" fitWidth="43.0" layoutX="656.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../../image/settings.png" />
-               </image></ImageView>
-            <Label layoutX="35.0" layoutY="55.0" text="Desktop" textFill="WHITE" />
-            <Label layoutX="118.0" layoutY="55.0" text="Laptop" textFill="WHITE" />
-            <Label layoutX="196.0" layoutY="55.0" text="Mobile" textFill="WHITE" />
-            <Label layoutX="270.0" layoutY="55.0" text="Accessory" textFill="WHITE" />
-            <Label layoutX="656.0" layoutY="55.0" text="Options" textFill="WHITE" />
+            <AnchorPane fx:id="d" minHeight="80.0" minWidth="100.0">
+               <children>
+                  <ImageView fx:id="desktopImageView" fitHeight="41.0" fitWidth="43.0" layoutX="10.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" x="20.0">
+                     <image>
+                        <Image url="@../../../../../../image/desktop.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="28.0" layoutY="65.0" text="Desktop" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="100.0" minHeight="80.0" minWidth="100.0">
+               <children>
+                  <ImageView fx:id="laptopImageView" fitHeight="80.0" fitWidth="79.0" layoutX="13.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/laptop.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="32.0" layoutY="65.0" text="Laptop" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="200.0" minHeight="80.0" minWidth="100.0">
+               <children>
+                  <ImageView fx:id="mobileImageView" fitHeight="41.0" fitWidth="43.0" layoutX="31.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/mobile.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="32.0" layoutY="65.0" text="Mobile" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="300.0" minHeight="80.0" minWidth="100.0">
+               <children>
+                  <ImageView fx:id="accessoryImageView" fitHeight="41.0" fitWidth="43.0" layoutX="30.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/accessory.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="24.0" layoutY="66.0" text="Accessory" textFill="WHITE" />
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="669.0" layoutY="13.0">
+               <children>
+                  <ImageView fx:id="settingsImageView" fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/settings.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutY="44.0" text="Options" textFill="WHITE" />
+               </children>
+            </AnchorPane>
          </children></AnchorPane>
    </top>
    <right>
       <AnchorPane prefHeight="400.0" prefWidth="225.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER" />
    </right>
    <center>
-      <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="desktopPage" prefHeight="400.0" prefWidth="500.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Aspire_XC_Seires.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="laptopPage" prefHeight="400.0" prefWidth="500.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Nitro_5.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="mobilePage" prefHeight="400.0" prefWidth="500.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Oppo_Find_X3_Pro_5G.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="accessoryPage" prefHeight="400.0" prefWidth="500.0">
+               <children>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Apple_iPad_2020.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </children></AnchorPane>
    </center>
 </BorderPane>
