@@ -1,10 +1,12 @@
 package com.example.javafx_login;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.File;
@@ -24,6 +26,16 @@ public class MainController extends Draggable implements Initializable {
     private ImageView accessoryImageView;
     @FXML
     private ImageView settingsImageView;
+    @FXML
+    private AnchorPane desktopAnchorPane;
+    @FXML
+    private AnchorPane laptopAnchorPane;
+    @FXML
+    private AnchorPane mobileAnchorPane;
+    @FXML
+    private AnchorPane accessoryAnchorPane;
+    @FXML
+    private AnchorPane settingsAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -56,5 +68,40 @@ public class MainController extends Draggable implements Initializable {
     @Override
     public void borderpaneOnPress(MouseEvent event) {
         Draggable.Press(event);
+    }
+
+    public void DesktopSectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(true);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(false);
+    }
+
+    public void LaptopSectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(true);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(false);
+    }
+
+    public void MobileSectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(true);
+        accessoryAnchorPane.setVisible(false);
+    }
+
+    public void AccessorySectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(true);
+    }
+
+    public void SettingsSectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(false);
     }
 }
