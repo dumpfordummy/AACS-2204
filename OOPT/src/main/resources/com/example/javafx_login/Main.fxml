@@ -68,38 +68,43 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0">
+            <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="desktopImageView_1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../image/Acer_Aspire_XC_Seires.png" />
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Aspire_XC_Seires.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
+            <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="laptopImageView_1" fitHeight="200.0" fitWidth="199.0">
                      <image>
-                        <Image url="@../../../../../../image/Acer_Nitro_5.png" />
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Nitro_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="laptopImageView_2" fitHeight="200.0" fitWidth="200.0" layoutX="199.0">
+                     <image>
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Swift_3X.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="mobileAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="mobileImageView_1" fitHeight="200.0" fitWidth="200.0">
                      <image>
-                        <Image url="@../../../../../../image/Oppo_Find_X3_Pro_5G.png" />
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Vivo_iQOO_Neo_5.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="accessoryAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="accessoryImageView_1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../image/Apple_iPad_2020.png" />
+                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Apple_iPad_2020.png" />
                      </image>
                   </ImageView>
                </children>
