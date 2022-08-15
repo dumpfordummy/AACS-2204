@@ -25,6 +25,14 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView accessoryImageView;
     @FXML
+    private ImageView desktopImageView_1;
+    @FXML
+    private ImageView laptopImageView_1;
+    @FXML
+    private ImageView mobileImageView_1;
+    @FXML
+    private ImageView accessoryImageView_1;
+    @FXML
     private ImageView settingsImageView;
     @FXML
     private AnchorPane desktopAnchorPane;
@@ -58,6 +66,22 @@ public class MainController extends Draggable implements Initializable {
         File settingsFile = new File("image/settings.png");
         Image settingsImage = new Image(settingsFile.toURI().toString());
         settingsImageView.setImage(settingsImage);
+
+        File desktopFile_1 = new File("image/Acer_Aspire_XC_Seires.png");
+        Image desktopImage_1 = new Image(desktopFile_1.toURI().toString());
+        desktopImageView_1.setImage(desktopImage_1);
+
+        File laptopFile_1 = new File("image/Acer_Nitro_5.png");
+        Image laptopImage_1 = new Image(laptopFile_1.toURI().toString());
+        laptopImageView_1.setImage(laptopImage_1);
+
+        File mobileFile_1 = new File("image/Oppo_Find_X3_Pro_5G.png");
+        Image mobileImage_1 = new Image(mobileFile_1.toURI().toString());
+        mobileImageView_1.setImage(mobileImage_1);
+
+        File accessoryFile_1 = new File("image/Apple_iPad_2020.png");
+        Image accessoryImage_1 = new Image(accessoryFile_1.toURI().toString());
+        accessoryImageView_1.setImage(accessoryImage_1);
     }
 
     @Override

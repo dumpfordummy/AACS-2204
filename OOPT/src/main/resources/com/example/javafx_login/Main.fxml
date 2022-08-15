@@ -72,7 +72,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Aspire_XC_Seires.png" />
+                        <Image url="@../../../../../../image/Acer_Aspire_XC_Seires.png" />
                      </image>
                   </ImageView>
                </children>
@@ -81,7 +81,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Acer_Nitro_5.png" />
+                        <Image url="@../../../../../../image/Acer_Nitro_5.png" />
                      </image>
                   </ImageView>
                </children>
@@ -90,7 +90,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Oppo_Find_X3_Pro_5G.png" />
+                        <Image url="@../../../../../../image/Oppo_Find_X3_Pro_5G.png" />
                      </image>
                   </ImageView>
                </children>
@@ -99,7 +99,7 @@
                <children>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../../../../../../PEN%20DRIVE/WebDesignAssignment/img/store/Apple_iPad_2020.png" />
+                        <Image url="@../../../../../../image/Apple_iPad_2020.png" />
                      </image>
                   </ImageView>
                </children>
