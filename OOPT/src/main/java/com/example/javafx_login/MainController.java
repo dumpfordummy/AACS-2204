@@ -36,6 +36,8 @@ public class MainController extends Draggable implements Initializable {
     private AnchorPane mobileAnchorPane;
     @FXML
     private AnchorPane accessoryAnchorPane;
+    @FXML
+    private AnchorPane settingsAnchorPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
