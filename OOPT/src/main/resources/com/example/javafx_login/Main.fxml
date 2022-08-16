@@ -75,36 +75,126 @@
                         <Image url="@../../../../../../image/Acer_Aspire_XC_Seires.png" />
                      </image>
                   </ImageView>
+                  <ImageView fx:id="desktopImageView_2" fitHeight="150.0" fitWidth="200.0" layoutX="157.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Asus_S500SA.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="desktopImageView_3" fitHeight="150.0" fitWidth="200.0" layoutX="329.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Dell_Inspiron_Compact_Desktop.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="desktopImageView_4" fitHeight="150.0" fitWidth="200.0" layoutX="7.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/HP_ProDesk_400_G7.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="desktopImageView_5" fitHeight="150.0" fitWidth="200.0" layoutX="157.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Lenovo_ThinkCentre_M80t.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="desktopImageView_6" fitHeight="150.0" fitWidth="200.0" layoutX="329.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Apple_iMac_24-Inch.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fx:id="laptopImageView_1" fitHeight="200.0" fitWidth="199.0">
+                  <ImageView fx:id="laptopImageView_1" fitHeight="160.0" fitWidth="149.0" layoutX="14.0">
                      <image>
                         <Image url="@../../../../../../image/Acer_Nitro_5.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="laptopImageView_2" fitHeight="200.0" fitWidth="200.0" layoutX="199.0">
+                  <ImageView fx:id="laptopImageView_2" fitHeight="175.0" fitWidth="150.0" layoutX="181.0" layoutY="-15.0">
                      <image>
                         <Image url="@../../../../../../image/Acer_Swift_3X.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="laptopImageView_3" fitHeight="175.0" fitWidth="150.0" layoutX="343.0" layoutY="-15.0">
+                     <image>
+                        <Image url="@../../../../../../image/Asus_ROG_Strix_G15.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="laptopImageView_4" fitHeight="175.0" fitWidth="150.0" layoutX="14.0" layoutY="160.0">
+                     <image>
+                        <Image url="@../../../../../../image/Asus_TUF_Dash_F15.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="laptopImageView_5" fitHeight="175.0" fitWidth="150.0" layoutX="181.0" layoutY="160.0">
+                     <image>
+                        <Image url="@../../../../../../image/Lenove_Legion_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="laptopImageView_6" fitHeight="175.0" fitWidth="150.0" layoutX="343.0" layoutY="160.0">
+                     <image>
+                        <Image url="@../../../../../../image/Lenovo_IdeaPad_5_Pro.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="mobileAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fx:id="mobileImageView_1" fitHeight="200.0" fitWidth="200.0">
+                  <ImageView fx:id="mobileImageView_1" fitHeight="117.0" fitWidth="128.0" layoutX="14.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../../../../image/Oppo_Find_X3_Pro_5G.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mobileImageView_2" fitHeight="117.0" fitWidth="128.0" layoutX="186.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../../../../image/Oppo_Realme_GT.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mobileImageView_3" fitHeight="117.0" fitWidth="128.0" layoutX="347.0" layoutY="14.0">
+                     <image>
+                        <Image url="@../../../../../../image/Vivo_iQOO_8_Pro.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mobileImageView_4" fitHeight="117.0" fitWidth="128.0" layoutX="14.0" layoutY="158.0">
                      <image>
                         <Image url="@../../../../../../image/Vivo_iQOO_Neo_5.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mobileImageView_5" fitHeight="117.0" fitWidth="128.0" layoutX="186.0" layoutY="158.0">
+                     <image>
+                        <Image url="@../../../../../../image/Xiaomi_Mi_11_Pro.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="mobileImageView_6" fitHeight="117.0" fitWidth="128.0" layoutX="347.0" layoutY="158.0">
+                     <image>
+                        <Image url="@../../../../../../image/Xiaomi_Poco_F3.png" />
                      </image>
                   </ImageView>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="accessoryAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                <children>
-                  <ImageView fx:id="accessoryImageView_1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="accessoryImageView_1" fitHeight="137.0" fitWidth="136.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../../../../../image/Apple_iPad_2020.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="accessoryImageView_2" fitHeight="137.0" fitWidth="136.0" layoutX="182.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Apple_iPad_Pro_2021.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="accessoryImageView_3" fitHeight="137.0" fitWidth="136.0" layoutX="344.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Huawei_MatePad_11.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="accessoryImageView_4" fitHeight="137.0" fitWidth="136.0" layoutX="14.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Lenovo_Pad_Pro.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="accessoryImageView_5" fitHeight="137.0" fitWidth="136.0" layoutX="182.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../image/Samsung_Galaxy_Tab_S7.png" />
                      </image>
                   </ImageView>
                </children>
