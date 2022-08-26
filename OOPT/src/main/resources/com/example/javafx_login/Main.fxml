@@ -63,7 +63,10 @@
          </children></AnchorPane>
    </top>
    <right>
-      <AnchorPane prefHeight="400.0" prefWidth="225.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER" />
+      <AnchorPane prefHeight="400.0" prefWidth="225.0" style="-fx-background-color: #E9E9E9;" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="cartInfo" prefHeight="200.0" prefWidth="200.0" />
+         </children></AnchorPane>
    </right>
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER">
