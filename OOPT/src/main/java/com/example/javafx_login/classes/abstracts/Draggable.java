@@ -1,4 +1,4 @@
-package com.example.javafx_login.interfaces;
+package com.example.javafx_login.classes.abstracts;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;

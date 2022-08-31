@@ -1,8 +1,15 @@
 package com.example.javafx_login.controller;
 
-import com.example.javafx_login.interfaces.Draggable;
+import com.example.javafx_login.classes.Desktop;
+import com.example.javafx_login.classes.Item;
+import com.example.javafx_login.classes.ShoppingCart;
+import com.example.javafx_login.classes.abstracts.Draggable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -10,6 +17,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class MainController extends Draggable implements Initializable {
@@ -23,25 +32,19 @@ public class MainController extends Draggable implements Initializable {
     private ImageView mobileImageView, mobileImageView_1, mobileImageView_2, mobileImageView_3, mobileImageView_4, mobileImageView_5, mobileImageView_6;
     @FXML
     private ImageView accessoryImageView, accessoryImageView_1, accessoryImageView_2, accessoryImageView_3, accessoryImageView_4, accessoryImageView_5;
-
     @FXML
     private ImageView settingsImageView;
     @FXML
-    private AnchorPane desktopAnchorPane;
+    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane;
     @FXML
-    private AnchorPane laptopAnchorPane;
+    private AnchorPane rightAnchorPane, rightAnchorPaneContent;
     @FXML
-    private AnchorPane mobileAnchorPane;
+    private Button addToCart;
     @FXML
-    private AnchorPane accessoryAnchorPane;
+    private Label addToCartError;
     @FXML
-    private AnchorPane settingsAnchorPane;
-    @FXML
-    private AnchorPane rightAnchorPane;
-    @FXML
-    private AnchorPane rightAnchorPaneContent;
-
-
+    private AnchorPane cartItem1, cartItem2, cartItem3, cartItem4, cartItem5;
+    private String currentSelectedItemName;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -217,5 +220,44 @@ public class MainController extends Draggable implements Initializable {
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
+    }
+
+    public void ItemImageAddToCartOnClick(MouseEvent event) {
+
+        //event.getPickResult().getIntersectedNode().getId().equals()
+        for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
+            if (node instanceof Label) {
+                currentSelectedItemName = ((Label)node).getText();
+            }
+        }
+    }
+
+    public void DesktopAddToCartOnAction(ActionEvent event) {
+        List<Item> itemList = ShoppingCart.getCart();
+        boolean isItemContainedInList = false;
+
+        if(currentSelectedItemName == null) {
+            addToCartError.setText("Please select an item!");
+            return;
+        }
+
+        for(int i = 0; i < itemList.size(); i++) {
+            if(itemList.get(i).getName().equals(currentSelectedItemName)) {
+                isItemContainedInList = true;
+                itemList.get(i).addQuantity();
+                ShoppingCart.setCart(itemList);
+                break;
+            }
+        }
+        if(!isItemContainedInList) {
+            ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
+        }
+        updateUICart();
+    }
+
+    private void updateUICart() {
+        if(ShoppingCart.getCart() != null) {
+
+        }
     }
 }

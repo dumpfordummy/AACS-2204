@@ -1,7 +1,7 @@
 package com.example.javafx_login.controller;
 
 import com.example.javafx_login.api.LoginApi;
-import com.example.javafx_login.interfaces.Draggable;
+import com.example.javafx_login.classes.abstracts.Draggable;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
