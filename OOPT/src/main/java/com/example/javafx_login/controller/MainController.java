@@ -1,6 +1,6 @@
-package com.example.javafx_login;
+package com.example.javafx_login.controller;
 
-import javafx.event.ActionEvent;
+import com.example.javafx_login.interfaces.Draggable;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
@@ -8,7 +8,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +15,6 @@ import java.util.ResourceBundle;
 public class MainController extends Draggable implements Initializable {
     @FXML
     private BorderPane borderpane;
-
     @FXML
     private ImageView desktopImageView, desktopImageView_1, desktopImageView_2, desktopImageView_3, desktopImageView_4, desktopImageView_5, desktopImageView_6;
     @FXML
@@ -38,6 +36,12 @@ public class MainController extends Draggable implements Initializable {
     private AnchorPane accessoryAnchorPane;
     @FXML
     private AnchorPane settingsAnchorPane;
+    @FXML
+    private AnchorPane rightAnchorPane;
+    @FXML
+    private AnchorPane rightAnchorPaneContent;
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

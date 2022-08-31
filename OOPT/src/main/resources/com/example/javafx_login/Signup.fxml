@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderpane" onMouseDragged="#borderpaneOnDrag" onMousePressed="#borderpaneOnPress" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_login.SignupController">
+<BorderPane fx:id="borderpane" onMouseDragged="#borderpaneOnDrag" onMousePressed="#borderpaneOnPress" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_login.controller.SignupController">
    <center>
       <AnchorPane prefHeight="535.0" prefWidth="472.0" styleClass="backgroundColor" stylesheets="@../../../style.css">
          <children>

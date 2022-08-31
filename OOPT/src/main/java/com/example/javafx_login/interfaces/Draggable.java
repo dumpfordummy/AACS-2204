@@ -1,10 +1,10 @@
-package com.example.javafx_login;
+package com.example.javafx_login.interfaces;
 
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
-abstract class Draggable {
+public abstract class Draggable {
     static double xOffset = 0;
     static double yOffset = 0;
     public abstract void borderpaneOnDrag(MouseEvent event);

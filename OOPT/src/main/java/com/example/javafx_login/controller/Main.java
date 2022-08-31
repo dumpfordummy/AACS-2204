@@ -1,4 +1,4 @@
-package com.example.javafx_login;
+package com.example.javafx_login.controller;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -10,7 +10,7 @@ import javafx.application.Application;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        loadStage(stage, "Login.fxml", 520, 400);
+        loadStage(stage, "/com/example/javafx_login/Login.fxml", 520, 400);
     }
 
     public static void loadStage(String fxmlName, int width, int height) throws IOException {
@@ -33,4 +33,6 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
+
+ }
+

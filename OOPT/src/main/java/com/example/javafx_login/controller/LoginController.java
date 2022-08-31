@@ -1,5 +1,7 @@
-package com.example.javafx_login;
+package com.example.javafx_login.controller;
 
+import com.example.javafx_login.api.LoginApi;
+import com.example.javafx_login.interfaces.Draggable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -60,7 +62,7 @@ public class LoginController extends Draggable implements Initializable {
                 loginMessageLabel.setText("Logged in");
                 Stage stage = (Stage) signupButton.getScene().getWindow();
                 stage.close();
-                Main.loadStage("Main.fxml", 725, 480);
+                Main.loadStage("/com/example/javafx_login/Main.fxml", 745, 484);
             }else {
                 loginMessageLabel.setText("Invalid username or password");
             }
@@ -96,7 +98,7 @@ public class LoginController extends Draggable implements Initializable {
         try {
             Stage stage = (Stage) signupButton.getScene().getWindow();
             stage.close();
-            Main.loadStage("Signup.fxml", 472, 535);
+            Main.loadStage("/com/example/javafx_login/Signup.fxml", 472, 535);
 
         } catch(Exception ex) {
             ex.printStackTrace();

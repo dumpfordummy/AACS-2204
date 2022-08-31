@@ -1,5 +1,7 @@
-package com.example.javafx_login;
+package com.example.javafx_login.controller;
 
+import com.example.javafx_login.api.LoginApi;
+import com.example.javafx_login.interfaces.Draggable;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -57,7 +59,7 @@ public class SignupController extends Draggable {
         try {
             Stage stage = (Stage) backButton.getScene().getWindow();
             stage.close();
-            Main.loadStage("Login.fxml", 520, 400);
+            Main.loadStage("/com/example/javafx_login/Login.fxml", 520, 400);
         } catch(Exception ex) {
             ex.printStackTrace();
             ex.getCause();
