@@ -32,7 +32,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView settingsImageView;
     @FXML
-    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane;
+    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane;
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
@@ -221,14 +221,12 @@ public class MainController extends Draggable implements Initializable {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
                 currentSelectedItemParentId = node.getParent().getParent().getId();
-                System.out.println("Selected item: " + currentSelectedItemName);
                 message.setText("Current selected:" + currentSelectedItemName);
             }
         }
     }
 
     public void clearCurrentSelectedItemName(MouseEvent event) {
-        System.out.println("Removed " + currentSelectedItemName);
         currentSelectedItemName = null;
         message.setText("");
     }
@@ -269,6 +267,10 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void popCart(ActionEvent event) {
+        if(ShoppingCart.getCart().size() == 0) {
+            message.setText("Your cart is empty!");
+            return;
+        }
         ShoppingCart.popCart(ShoppingCart.getCart().size() - 1);
         resetUICart();
         updateUICart();
