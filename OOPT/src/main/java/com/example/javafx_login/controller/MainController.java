@@ -271,7 +271,7 @@ public class MainController extends Draggable implements Initializable {
 
                 name.setText(items.get(i).getName());
                 qty.setText(((Integer)items.get(i).getQuantity()).toString());
-                subtotal.setText(((Double)items.get(i).getPrice()).toString());
+                subtotal.setText(((Double)(items.get(i).getPrice() * items.get(i).getQuantity())).toString());
             }
         }
     }
