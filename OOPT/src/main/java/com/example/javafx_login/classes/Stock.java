@@ -1,18 +1,106 @@
 package com.example.javafx_login.classes;
 
+import java.io.*;
 public class Stock {
-    static Item[] itemList;
+    //Variables
+    private static int totalProducts;
 
-    public static void addStock(Item item) {
-        //add itemList;
+    //Getters
+    public static int getTotalProducts() {
+        return totalProducts;
     }
 
-    public static void deleteStock(Item item) {
-        //delete itemList;
+    //Methods
+    //create file(used for one time)
+    public static void createStockFile(){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt"));
+            writer.write("Product Name | Serial Number | Stock Quantity | Price (RM)\n");
+            writer.write("==========================================================\n");
+            writer.close();
+        }
+
+        catch (IOException e) {
+            System.out.println("Unable to create file!");
+            e.printStackTrace();
+        }
     }
 
-    public static boolean isParticularStockAvailable (Item item) {
-        // return true or false;
-        return false;
+    //appending/add file data
+    public static void addStock(String name, String serialNum, int quantity, double price){
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt", true));
+            writer.write(name + " | "  + serialNum + " | " + quantity  + " | " +  price + "\n");
+            writer.close();
+        }
+
+        catch (IOException e) {
+            System.out.println("Unable to open file!");
+            e.printStackTrace();
+        }
+
+        finally {
+            totalProducts++;
+        }
+    }
+
+    //display all products(regardless availability)
+    public static void getAllProducts(){
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                //while condition will reinitiate reader.readLine() to read next line
+                System.out.println(line);
+            }
+            reader.close();
+        }
+
+        catch (IOException e){
+            System.out.println("Unable to read file!");
+            e.printStackTrace();
+        }
+    }
+
+    //check product availability
+    public static boolean isProductAvailable (String itemName){
+        String[] selectedProductDetails = new String[4];
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                if(line.contains(itemName)) {
+                    selectedProductDetails = line.split(" \\| ", 0);
+                }
+            }
+            reader.close();
+
+        }
+
+        catch (IOException e){
+            System.out.println("Unable to read file!");
+            e.printStackTrace();
+        }
+
+        return !selectedProductDetails[2].equals("0");
+    }
+
+    //display the details of the selected product
+    public static void displayProductDetails (String itemName) {
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if(line.contains(itemName))
+                    System.out.println(line);
+            }
+            reader.close();
+        }
+
+        catch (IOException e){
+            System.out.println("Unable to read file!");
+            e.printStackTrace();
+        }
     }
 }

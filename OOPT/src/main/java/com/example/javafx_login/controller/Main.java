@@ -7,6 +7,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 import javafx.application.Application;
  // This is starter java class
+// test
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
