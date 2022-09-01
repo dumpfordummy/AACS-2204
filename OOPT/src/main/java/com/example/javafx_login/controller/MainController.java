@@ -265,8 +265,8 @@ public class MainController extends Draggable implements Initializable {
         if(items != null) {
             for (int i = 0; i < items.size(); i++) {
                 AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
-                Label name = ((Label) anchorPane.getChildren().get(1));
-                Label qty = ((Label) anchorPane.getChildren().get(0));
+                Label name = ((Label) anchorPane.getChildren().get(0));
+                Label qty = ((Label) anchorPane.getChildren().get(1));
                 Label subtotal = ((Label) anchorPane.getChildren().get(2));
 
                 name.setText(items.get(i).getName());

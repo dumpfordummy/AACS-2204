@@ -80,12 +80,12 @@
                <children>
                   <AnchorPane fx:id="cartItem1" prefHeight="45.0" prefWidth="245.0">
                      <children>
-                        <Label fx:id="name" layoutX="140.0" layoutY="12.0" textAlignment="JUSTIFY">
+                        <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefHeight="20.0" prefWidth="109.0" textAlignment="JUSTIFY">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="qty" layoutX="18.0" layoutY="12.0">
+                        <Label fx:id="qty" layoutX="142.0" layoutY="12.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -100,12 +100,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="cartItem2" layoutY="50.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
-                        <Label fx:id="name" layoutX="140.0" layoutY="12.0" textAlignment="JUSTIFY">
+                        <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="qty" layoutX="18.0" layoutY="12.0">
+                        <Label fx:id="qty" layoutX="142.0" layoutY="12.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -120,12 +120,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="cartItem3" layoutY="100.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
-                        <Label fx:id="name" layoutX="140.0" layoutY="12.0" textAlignment="JUSTIFY">
+                        <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="qty" layoutX="18.0" layoutY="12.0">
+                        <Label fx:id="qty" layoutX="142.0" layoutY="12.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -140,12 +140,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="cartItem4" layoutY="150.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
-                        <Label fx:id="name" layoutX="140.0" layoutY="12.0" textAlignment="JUSTIFY">
+                        <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="qty" layoutX="18.0" layoutY="12.0">
+                        <Label fx:id="qty" layoutX="142.0" layoutY="12.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
@@ -160,12 +160,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="cartItem5" layoutY="200.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
-                        <Label fx:id="name" layoutX="140.0" layoutY="12.0" textAlignment="JUSTIFY">
+                        <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
                         </Label>
-                        <Label fx:id="qty" layoutX="18.0" layoutY="12.0">
+                        <Label fx:id="qty" layoutX="142.0" layoutY="12.0">
                            <font>
                               <Font name="System Bold" size="14.0" />
                            </font>
