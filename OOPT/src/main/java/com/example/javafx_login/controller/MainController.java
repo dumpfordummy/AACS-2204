@@ -40,7 +40,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Button addToCart;
     @FXML
-    private Label addToCartError;
+    private Label message;
     @FXML
     private AnchorPane cartItem1, cartItem2, cartItem3, cartItem4, cartItem5;
     private String currentSelectedItemName;
@@ -222,12 +222,12 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void ItemImageAddToCartOnClick(MouseEvent event) {
-
         // event.getPickResult().getIntersectedNode().getId().equals()
         for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
-                System.out.println("Added " + currentSelectedItemName);
+                System.out.println("Selected item: " + currentSelectedItemName);
+                message.setText("Current selected:" + currentSelectedItemName);
             }
         }
     }
@@ -235,6 +235,7 @@ public class MainController extends Draggable implements Initializable {
     public void clearCurrentSelectedItemName(MouseEvent event) {
         System.out.println("Removed " + currentSelectedItemName);
         currentSelectedItemName = null;
+        message.setText("");
     }
 
     public void DesktopAddToCartOnAction(ActionEvent event) {
@@ -242,9 +243,11 @@ public class MainController extends Draggable implements Initializable {
         boolean isItemContainedInList = false;
 
         if(currentSelectedItemName == null) {
-            addToCartError.setText("Please select an item!");
+            message.setText("Please select an item!");
             return;
         }
+
+        message.setText("");
 
         for(int i = 0; i < itemList.size(); i++) {
             if(itemList.get(i).getName().equals(currentSelectedItemName)) {
@@ -253,6 +256,10 @@ public class MainController extends Draggable implements Initializable {
                 ShoppingCart.setCart(itemList);
                 break;
             }
+        }
+        if(itemList.size() == 5) {
+            message.setText("You can only add up to 5 items to the cart.");
+            return;
         }
         if(!isItemContainedInList) {
             ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
