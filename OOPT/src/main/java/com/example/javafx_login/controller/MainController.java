@@ -216,7 +216,6 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void itemImageAddToSelectedOnClick(MouseEvent event) {
-        // event.getPickResult().getIntersectedNode().getId().equals()
         for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
