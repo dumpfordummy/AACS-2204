@@ -67,7 +67,7 @@
          </children></AnchorPane>
    </top>
    <right>
-      <AnchorPane fx:id="rightAnchorPane" prefHeight="400.0" prefWidth="225.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="400.0" prefWidth="225.0" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane prefHeight="47.0" prefWidth="245.0">
                <children>
@@ -78,7 +78,7 @@
                </children></AnchorPane>
             <AnchorPane fx:id="rightAnchorPaneContent" layoutY="59.0" prefHeight="341.0" prefWidth="245.0">
                <children>
-                  <AnchorPane fx:id="cartItem1" prefHeight="45.0" prefWidth="245.0">
+                  <AnchorPane prefHeight="45.0" prefWidth="245.0">
                      <children>
                         <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefHeight="20.0" prefWidth="109.0" textAlignment="JUSTIFY">
                            <font>
@@ -98,7 +98,7 @@
                         <Separator layoutX="12.0" layoutY="46.0" prefHeight="0.0" prefWidth="220.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cartItem2" layoutY="50.0" prefHeight="45.0" prefWidth="245.0">
+                  <AnchorPane layoutY="50.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
                         <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
@@ -118,7 +118,7 @@
                         <Separator layoutX="12.0" layoutY="44.0" prefHeight="0.0" prefWidth="220.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cartItem3" layoutY="100.0" prefHeight="45.0" prefWidth="245.0">
+                  <AnchorPane layoutY="100.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
                         <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
@@ -138,7 +138,7 @@
                         <Separator layoutX="12.0" layoutY="44.0" prefHeight="0.0" prefWidth="220.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cartItem4" layoutY="150.0" prefHeight="45.0" prefWidth="245.0">
+                  <AnchorPane layoutY="150.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
                         <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
@@ -158,7 +158,7 @@
                         <Separator layoutX="12.0" layoutY="44.0" prefHeight="0.0" prefWidth="220.0" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="cartItem5" layoutY="200.0" prefHeight="45.0" prefWidth="245.0">
+                  <AnchorPane layoutY="200.0" prefHeight="45.0" prefWidth="245.0">
                      <children>
                         <Label fx:id="name" layoutX="14.0" layoutY="12.0" maxWidth="110.0" prefWidth="110.0" textAlignment="JUSTIFY">
                            <font>
@@ -178,7 +178,8 @@
                         <Separator layoutX="12.0" layoutY="44.0" prefHeight="0.0" prefWidth="220.0" />
                      </children>
                   </AnchorPane>
-                  <Button fx:id="checkoutButton" layoutX="97.0" layoutY="293.0" mnemonicParsing="false" text="Checkout" />
+                  <Button fx:id="checkoutButton" layoutX="145.0" layoutY="293.0" mnemonicParsing="false" text="Checkout" />
+                  <Button layoutX="49.0" layoutY="293.0" mnemonicParsing="false" onAction="#popCart" text="Pop cart" />
                </children>
             </AnchorPane>
          </children></AnchorPane>
@@ -432,7 +433,7 @@
                   </Pane>
                </children>
             </AnchorPane>
-            <Button fx:id="addToCart" layoutX="384.0" layoutY="361.0" mnemonicParsing="false" onAction="#addToCartOnAction" text="Add To Cart" />
+            <Button layoutX="384.0" layoutY="361.0" mnemonicParsing="false" onAction="#addToCartOnAction" text="Add To Cart" />
             <Button layoutX="210.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#clearCurrentSelectedItemName" text="Remove current selected" />
             <Label fx:id="message" layoutX="15.0" layoutY="342.0" prefHeight="47.0" prefWidth="177.0" textFill="RED" textOverrun="CLIP" wrapText="true" />
          </children></AnchorPane>

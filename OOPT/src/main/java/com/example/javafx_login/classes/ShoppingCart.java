@@ -22,7 +22,9 @@ public class ShoppingCart {
         cart.add(items);
     }
 
-
+    public static void popCart(int index) {
+        cart.remove(index);
+    }
     public List<Item> getItem() {
         return cart;
     }

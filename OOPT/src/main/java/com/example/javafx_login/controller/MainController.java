@@ -34,13 +34,9 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane;
     @FXML
-    private AnchorPane rightAnchorPane, rightAnchorPaneContent;
-    @FXML
-    private Button addToCart;
+    private AnchorPane rightAnchorPaneContent;
     @FXML
     private Label message;
-    @FXML
-    private AnchorPane cartItem1, cartItem2, cartItem3, cartItem4, cartItem5;
     private String currentSelectedItemName, currentSelectedItemParentId;
 
     @Override
@@ -272,9 +268,28 @@ public class MainController extends Draggable implements Initializable {
         updateUICart();
     }
 
+    public void popCart(ActionEvent event) {
+        ShoppingCart.popCart(ShoppingCart.getCart().size() - 1);
+        resetUICart();
+        updateUICart();
+    }
+
+    public void resetUICart() {
+        for (int i = 0; i < 5; i++) {
+            AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
+            Label name = ((Label) anchorPane.getChildren().get(0));
+            Label qty = ((Label) anchorPane.getChildren().get(1));
+            Label subtotal = ((Label) anchorPane.getChildren().get(2));
+
+            name.setText("");
+            qty.setText("");
+            subtotal.setText("");
+        }
+    }
+
     private void updateUICart() {
         List<Item> items = ShoppingCart.getCart();
-        if(items != null) {
+        if(items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
                 AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
                 Label name = ((Label) anchorPane.getChildren().get(0));
