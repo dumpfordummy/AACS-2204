@@ -1,8 +1,6 @@
 package com.example.javafx_login.controller;
 
-import com.example.javafx_login.classes.Desktop;
-import com.example.javafx_login.classes.Item;
-import com.example.javafx_login.classes.ShoppingCart;
+import com.example.javafx_login.classes.*;
 import com.example.javafx_login.classes.abstracts.Draggable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -43,7 +41,7 @@ public class MainController extends Draggable implements Initializable {
     private Label message;
     @FXML
     private AnchorPane cartItem1, cartItem2, cartItem3, cartItem4, cartItem5;
-    private String currentSelectedItemName;
+    private String currentSelectedItemName, currentSelectedItemParentId;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -186,46 +184,47 @@ public class MainController extends Draggable implements Initializable {
         settingsImageView.setImage(settingsImage);
     }
 
-    public void DesktopSectionOnAction(MouseEvent event) {
+    public void desktopSectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(true);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
     }
 
-    public void LaptopSectionOnAction(MouseEvent event) {
+    public void laptopSectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(true);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
     }
 
-    public void MobileSectionOnAction(MouseEvent event) {
+    public void mobileSectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(true);
         accessoryAnchorPane.setVisible(false);
     }
 
-    public void AccessorySectionOnAction(MouseEvent event) {
+    public void accessorySectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(true);
     }
 
-    public void SettingsSectionOnAction(MouseEvent event) {
+    public void settingsSectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
     }
 
-    public void ItemImageAddToCartOnClick(MouseEvent event) {
+    public void itemImageAddToSelectedOnClick(MouseEvent event) {
         // event.getPickResult().getIntersectedNode().getId().equals()
         for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
+                currentSelectedItemParentId = node.getParent().getParent().getId();
                 System.out.println("Selected item: " + currentSelectedItemName);
                 message.setText("Current selected:" + currentSelectedItemName);
             }
@@ -238,7 +237,7 @@ public class MainController extends Draggable implements Initializable {
         message.setText("");
     }
 
-    public void DesktopAddToCartOnAction(ActionEvent event) {
+    public void addToCartOnAction(ActionEvent event) {
         List<Item> itemList = ShoppingCart.getCart();
         boolean isItemContainedInList = false;
 
@@ -261,8 +260,14 @@ public class MainController extends Draggable implements Initializable {
             message.setText("You can only add up to 5 items to the cart.");
             return;
         }
+
         if(!isItemContainedInList) {
-            ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
+            switch (currentSelectedItemParentId) {
+                case "desktopAnchorPane" -> ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
+                case "laptopAnchorPane" -> ShoppingCart.addToCart(new Laptop(currentSelectedItemName));
+                case "mobileAnchorPane" -> ShoppingCart.addToCart(new Mobile(currentSelectedItemName));
+                case "accessoryAnchorPane" -> ShoppingCart.addToCart(new Accessory(currentSelectedItemName));
+            }
         }
         updateUICart();
     }

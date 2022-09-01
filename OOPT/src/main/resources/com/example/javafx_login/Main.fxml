@@ -14,7 +14,7 @@
    <top>
       <AnchorPane prefHeight="80.0" prefWidth="600.0" styleClass="themeColor" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane minHeight="80.0" minWidth="100.0" onMouseClicked="#DesktopSectionOnAction">
+            <AnchorPane minHeight="80.0" minWidth="100.0" onMouseClicked="#desktopSectionOnAction">
                <children>
                   <ImageView fx:id="desktopImageView" fitHeight="41.0" fitWidth="43.0" layoutX="10.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true" x="20.0">
                      <image>
@@ -24,7 +24,7 @@
                   <Label layoutX="28.0" layoutY="65.0" text="Desktop" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="100.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#LaptopSectionOnAction">
+            <AnchorPane layoutX="100.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#laptopSectionOnAction">
                <children>
                   <ImageView fx:id="laptopImageView" fitHeight="80.0" fitWidth="79.0" layoutX="13.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -34,7 +34,7 @@
                   <Label layoutX="32.0" layoutY="65.0" text="Laptop" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="200.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#MobileSectionOnAction">
+            <AnchorPane layoutX="200.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#mobileSectionOnAction">
                <children>
                   <ImageView fx:id="mobileImageView" fitHeight="41.0" fitWidth="43.0" layoutX="31.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -44,7 +44,7 @@
                   <Label layoutX="32.0" layoutY="65.0" text="Mobile" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="300.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#AccessorySectionOnAction">
+            <AnchorPane layoutX="300.0" minHeight="80.0" minWidth="100.0" onMouseClicked="#accessorySectionOnAction">
                <children>
                   <ImageView fx:id="accessoryImageView" fitHeight="41.0" fitWidth="43.0" layoutX="30.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -54,7 +54,7 @@
                   <Label layoutX="24.0" layoutY="66.0" text="Accessory" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <AnchorPane layoutX="669.0" layoutY="13.0" onMouseClicked="#SettingsSectionOnAction">
+            <AnchorPane layoutX="669.0" layoutY="13.0" onMouseClicked="#settingsSectionOnAction">
                <children>
                   <ImageView fx:id="settingsImageView" fitHeight="41.0" fitWidth="43.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -186,11 +186,11 @@
    <center>
       <AnchorPane prefHeight="400.0" prefWidth="500.0" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #E9E9E9;">
+            <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #E9E9E9;" visible="false">
                <children>
                   <Pane>
                      <children>
-                        <ImageView fx:id="desktopImageView_1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/Acer_Aspire_XC_Seires.png" />
                            </image>
@@ -200,7 +200,7 @@
                   </Pane>
                   <Pane layoutX="157.0">
                      <children>
-                        <ImageView fx:id="desktopImageView_2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_2" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/Asus_S500SA.png" />
                            </image>
@@ -210,7 +210,7 @@
                   </Pane>
                   <Pane layoutX="329.0">
                      <children>
-                        <ImageView fx:id="desktopImageView_3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_3" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/Dell_Inspiron_Compact_Desktop.png" />
                            </image>
@@ -220,71 +220,98 @@
                   </Pane>
                   <Pane layoutX="14.0" layoutY="185.0">
                      <children>
-                        <ImageView fx:id="desktopImageView_4" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_4" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/HP_ProDesk_400_G7.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="41.0" layoutY="151.0" text="HP ProDesk" />
+                        <Label layoutX="43.0" layoutY="151.0" text="HP ProDesk" />
                      </children>
                   </Pane>
                   <Pane layoutX="157.0" layoutY="172.0">
                      <children>
-                        <ImageView fx:id="desktopImageView_5" fitHeight="150.0" fitWidth="200.0" layoutY="14.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_5" fitHeight="150.0" fitWidth="200.0" layoutY="14.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/Lenovo_ThinkCentre_M80t.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="24.0" layoutY="163.0" text="Lenovo ThinkCentre" />
+                        <Label layoutX="28.0" layoutY="163.0" text="Lenovo ThinkCentre" />
                      </children>
                   </Pane>
                   <Pane layoutX="329.0" layoutY="172.0">
                      <children>
-                        <ImageView fx:id="desktopImageView_6" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#ItemImageAddToCartOnClick" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="desktopImageView_6" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../../../image/Apple_iMac_24-Inch.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="42.0" layoutY="159.0" text="Apple iMac" />
+                        <Label layoutX="46.0" layoutY="159.0" text="Apple iMac" />
                      </children>
                   </Pane>
-                  <Button fx:id="addToCart" layoutX="384.0" layoutY="361.0" mnemonicParsing="false" onAction="#DesktopAddToCartOnAction" text="Add To Cart" />
-                  <Button layoutX="210.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#clearCurrentSelectedItemName" text="Remove current selected" />
-                  <Label fx:id="message" layoutX="20.0" layoutY="352.0" prefHeight="47.0" prefWidth="177.0" textFill="RED" textOverrun="CLIP" wrapText="true" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
+            <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0">
                <children>
-                  <ImageView fx:id="laptopImageView_1" fitHeight="160.0" fitWidth="149.0" layoutX="14.0">
-                     <image>
-                        <Image url="@../../../../../../image/Acer_Nitro_5.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="laptopImageView_2" fitHeight="175.0" fitWidth="150.0" layoutX="181.0" layoutY="-15.0">
-                     <image>
-                        <Image url="@../../../../../../image/Acer_Swift_3X.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="laptopImageView_3" fitHeight="175.0" fitWidth="150.0" layoutX="343.0" layoutY="-15.0">
-                     <image>
-                        <Image url="@../../../../../../image/Asus_ROG_Strix_G15.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="laptopImageView_4" fitHeight="175.0" fitWidth="150.0" layoutX="14.0" layoutY="160.0">
-                     <image>
-                        <Image url="@../../../../../../image/Asus_TUF_Dash_F15.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="laptopImageView_5" fitHeight="175.0" fitWidth="150.0" layoutX="181.0" layoutY="160.0">
-                     <image>
-                        <Image url="@../../../../../../image/Lenove_Legion_5.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="laptopImageView_6" fitHeight="175.0" fitWidth="150.0" layoutX="343.0" layoutY="160.0">
-                     <image>
-                        <Image url="@../../../../../../image/Lenovo_IdeaPad_5_Pro.png" />
-                     </image>
-                  </ImageView>
+                  <Pane layoutX="15.0" layoutY="-23.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_1" fitHeight="160.0" fitWidth="149.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Acer_Nitro_5.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="45.0" layoutY="164.0" text="Acer Nitro 5" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="181.0" layoutY="-38.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_2" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Acer_Swift_3X.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="40.0" layoutY="179.0" text="Acer Swift 3X" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="343.0" layoutY="-38.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_3" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Asus_ROG_Strix_G15.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="25.0" layoutY="177.0" text="Asus ROG Strix G15" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="15.0" layoutY="137.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_4" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Asus_TUF_Dash_F15.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="25.0" layoutY="177.0" text="Asus TUF Dash F15" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="181.0" layoutY="137.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_5" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Lenove_Legion_5.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="35.0" layoutY="180.0" text="Lenove Legion 5" />
+                     </children>
+                  </Pane>
+                  <Pane layoutX="343.0" layoutY="146.0">
+                     <children>
+                        <ImageView fx:id="laptopImageView_6" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
+                           <image>
+                              <Image url="@../../../../../../image/Lenovo_IdeaPad_5_Pro.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="20.0" layoutY="179.0" text="Lenovo IdeaPad 5 Pro" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="mobileAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
@@ -350,6 +377,9 @@
                   </ImageView>
                </children>
             </AnchorPane>
+            <Button fx:id="addToCart" layoutX="384.0" layoutY="361.0" mnemonicParsing="false" onAction="#addToCartOnAction" text="Add To Cart" />
+            <Button layoutX="210.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#clearCurrentSelectedItemName" text="Remove current selected" />
+            <Label fx:id="message" layoutX="15.0" layoutY="342.0" prefHeight="47.0" prefWidth="177.0" textFill="RED" textOverrun="CLIP" wrapText="true" />
          </children></AnchorPane>
    </center>
 </BorderPane>
