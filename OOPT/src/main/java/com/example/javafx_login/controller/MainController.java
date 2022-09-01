@@ -17,7 +17,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -224,12 +223,18 @@ public class MainController extends Draggable implements Initializable {
 
     public void ItemImageAddToCartOnClick(MouseEvent event) {
 
-        //event.getPickResult().getIntersectedNode().getId().equals()
+        // event.getPickResult().getIntersectedNode().getId().equals()
         for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
+                System.out.println("Added " + currentSelectedItemName);
             }
         }
+    }
+
+    public void clearCurrentSelectedItemName(MouseEvent event) {
+        System.out.println("Removed " + currentSelectedItemName);
+        currentSelectedItemName = null;
     }
 
     public void DesktopAddToCartOnAction(ActionEvent event) {
@@ -256,8 +261,18 @@ public class MainController extends Draggable implements Initializable {
     }
 
     private void updateUICart() {
-        if(ShoppingCart.getCart() != null) {
+        List<Item> items = ShoppingCart.getCart();
+        if(items != null) {
+            for (int i = 0; i < items.size(); i++) {
+                AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
+                Label name = ((Label) anchorPane.getChildren().get(1));
+                Label qty = ((Label) anchorPane.getChildren().get(0));
+                Label subtotal = ((Label) anchorPane.getChildren().get(2));
 
+                name.setText(items.get(i).getName());
+                qty.setText(((Integer)items.get(i).getQuantity()).toString());
+                subtotal.setText(((Double)items.get(i).getPrice()).toString());
+            }
         }
     }
 }

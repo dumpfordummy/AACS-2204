@@ -13,3 +13,4 @@
 2022/08/31 23:33:33 - Location is not set.
 2022/08/31 23:33:50 - Location is not set.
 2022/08/31 23:34:10 - Location is not set.
+2022/09/01 10:03:10 - java.net.ConnectException: No route to host: no further information

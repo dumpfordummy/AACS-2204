@@ -6,7 +6,7 @@ import java.util.Map;
 public class Item {
     private String name;
     private double price;
-    private int quantity;
+    private int quantity = 1;
 
     public Item(String name) {
         this.name = name;

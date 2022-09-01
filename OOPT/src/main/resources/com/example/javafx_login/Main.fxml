@@ -249,7 +249,8 @@
                      </children>
                   </Pane>
                   <Button fx:id="addToCart" layoutX="384.0" layoutY="361.0" mnemonicParsing="false" onAction="#DesktopAddToCartOnAction" text="Add To Cart" />
-                  <Label fx:id="addToCartError" layoutX="122.0" layoutY="365.0" textFill="RED" />
+                  <Label fx:id="addToCartError" layoutX="80.0" layoutY="365.0" textFill="RED" />
+                  <Button layoutX="210.0" layoutY="361.0" mnemonicParsing="false" onMouseClicked="#clearCurrentSelectedItemName" text="Remove current selected" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="laptopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
