@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -36,7 +35,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
-    private Label message;
+    private Label messageLabel, subtotalLabel;
     private String currentSelectedItemName, currentSelectedItemParentId;
 
     @Override
@@ -220,14 +219,14 @@ public class MainController extends Draggable implements Initializable {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label)node).getText();
                 currentSelectedItemParentId = node.getParent().getParent().getId();
-                message.setText("Current selected:" + currentSelectedItemName);
+                messageLabel.setText("Current selected:" + currentSelectedItemName);
             }
         }
     }
 
     public void clearCurrentSelectedItemName(MouseEvent event) {
         currentSelectedItemName = null;
-        message.setText("");
+        messageLabel.setText("");
     }
 
     public void addToCartOnAction(ActionEvent event) {
@@ -235,11 +234,11 @@ public class MainController extends Draggable implements Initializable {
         boolean isItemContainedInList = false;
 
         if(currentSelectedItemName == null) {
-            message.setText("Please select an item!");
+            messageLabel.setText("Please select an item!");
             return;
         }
 
-        message.setText("");
+        messageLabel.setText("");
 
         for(int i = 0; i < itemList.size(); i++) {
             if(itemList.get(i).getName().equals(currentSelectedItemName)) {
@@ -250,7 +249,7 @@ public class MainController extends Draggable implements Initializable {
             }
         }
         if(itemList.size() == 5) {
-            message.setText("You can only add up to 5 items to the cart.");
+            messageLabel.setText("You can only add up to 5 items to the cart.");
             return;
         }
 
@@ -267,7 +266,7 @@ public class MainController extends Draggable implements Initializable {
 
     public void popCart(ActionEvent event) {
         if(ShoppingCart.getCart().size() == 0) {
-            message.setText("Your cart is empty!");
+            messageLabel.setText("Your cart is empty!");
             return;
         }
         ShoppingCart.popCart(ShoppingCart.getCart().size() - 1);
@@ -280,27 +279,35 @@ public class MainController extends Draggable implements Initializable {
             AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
             Label name = ((Label) anchorPane.getChildren().get(0));
             Label qty = ((Label) anchorPane.getChildren().get(1));
-            Label subtotal = ((Label) anchorPane.getChildren().get(2));
+            Label total = ((Label) anchorPane.getChildren().get(2));
 
             name.setText("");
             qty.setText("");
-            subtotal.setText("");
+            total.setText("");
         }
     }
 
     private void updateUICart() {
         List<Item> items = ShoppingCart.getCart();
+        double subtotal = 0;
+
         if(items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
                 AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
                 Label name = ((Label) anchorPane.getChildren().get(0));
                 Label qty = ((Label) anchorPane.getChildren().get(1));
-                Label subtotal = ((Label) anchorPane.getChildren().get(2));
+                Label total = ((Label) anchorPane.getChildren().get(2));
 
                 name.setText(items.get(i).getName());
                 qty.setText(((Integer)items.get(i).getQuantity()).toString());
-                subtotal.setText(((Double)(items.get(i).getPrice() * items.get(i).getQuantity())).toString());
+                total.setText(((Double)(items.get(i).getPrice() * items.get(i).getQuantity())).toString());
+
+                subtotal += items.get(i).getQuantity() * items.get(i).getPrice();
+                subtotalLabel.setText(((Double)subtotal).toString());
             }
+        }
+        else {
+            subtotalLabel.setText("");
         }
     }
 }
