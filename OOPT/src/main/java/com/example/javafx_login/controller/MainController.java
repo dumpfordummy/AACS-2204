@@ -310,4 +310,6 @@ public class MainController extends Draggable implements Initializable {
             subtotalLabel.setText("");
         }
     }
+
+
 }

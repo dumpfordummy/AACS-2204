@@ -75,7 +75,6 @@ public class Stock {
                 }
             }
             reader.close();
-
         }
 
         catch (IOException e){
