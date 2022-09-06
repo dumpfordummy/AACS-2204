@@ -205,7 +205,7 @@
             <AnchorPane fx:id="checkoutAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false" />
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E9E9E9;">
                <children>
-                  <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0">
+                  <AnchorPane fx:id="desktopAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                      <children>
                         <Pane>
                            <children>
@@ -318,7 +318,7 @@
                                     <Image url="@../../../../../../image/Lenove_Legion_5.png" />
                                  </image>
                               </ImageView>
-                              <Label layoutX="35.0" layoutY="180.0" text="Lenove Legion 5" />
+                              <Label layoutX="35.0" layoutY="180.0" text="Lenovo Legion 5" />
                            </children>
                         </Pane>
                         <Pane layoutX="343.0" layoutY="146.0">
@@ -397,7 +397,7 @@
                         </Pane>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="accessoryAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
+                  <AnchorPane fx:id="accessoryAnchorPane" prefHeight="400.0" prefWidth="500.0">
                      <children>
                         <Pane layoutX="14.0" layoutY="14.0">
                            <children>
