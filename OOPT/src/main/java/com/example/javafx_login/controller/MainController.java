@@ -12,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -207,6 +208,13 @@ public class MainController extends Draggable implements Initializable {
         accessoryAnchorPane.setVisible(true);
     }
 
+    public void userSectionOnAction(MouseEvent event) {
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(false);
+    }
+
     public void settingsSectionOnAction(MouseEvent event) {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
@@ -215,9 +223,9 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void itemImageAddToSelectedOnClick(MouseEvent event) {
-        for(Node node : ((ImageView)event.getSource()).getParent().getChildrenUnmodifiable()) {
+        for (Node node : ((ImageView) event.getSource()).getParent().getChildrenUnmodifiable()) {
             if (node instanceof Label) {
-                currentSelectedItemName = ((Label)node).getText();
+                currentSelectedItemName = ((Label) node).getText();
                 currentSelectedItemParentId = node.getParent().getParent().getId();
                 messageLabel.setText("Current selected:" + currentSelectedItemName);
             }
@@ -233,27 +241,27 @@ public class MainController extends Draggable implements Initializable {
         List<Item> itemList = ShoppingCart.getCart();
         boolean isItemContainedInList = false;
 
-        if(currentSelectedItemName == null) {
+        if (currentSelectedItemName == null) {
             messageLabel.setText("Please select an item!");
             return;
         }
 
         messageLabel.setText("");
 
-        for(int i = 0; i < itemList.size(); i++) {
-            if(itemList.get(i).getName().equals(currentSelectedItemName)) {
+        for (int i = 0; i < itemList.size(); i++) {
+            if (itemList.get(i).getName().equals(currentSelectedItemName)) {
                 isItemContainedInList = true;
                 itemList.get(i).addQuantity();
                 ShoppingCart.setCart(itemList);
                 break;
             }
         }
-        if(itemList.size() == 5) {
+        if (itemList.size() == 5) {
             messageLabel.setText("You can only add up to 5 items to the cart.");
             return;
         }
 
-        if(!isItemContainedInList) {
+        if (!isItemContainedInList) {
             switch (currentSelectedItemParentId) {
                 case "desktopAnchorPane" -> ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
                 case "laptopAnchorPane" -> ShoppingCart.addToCart(new Laptop(currentSelectedItemName));
@@ -265,7 +273,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void popCart(ActionEvent event) {
-        if(ShoppingCart.getCart().size() == 0) {
+        if (ShoppingCart.getCart().size() == 0) {
             messageLabel.setText("Your cart is empty!");
             return;
         }
@@ -291,7 +299,7 @@ public class MainController extends Draggable implements Initializable {
         List<Item> items = ShoppingCart.getCart();
         double subtotal = 0;
 
-        if(items.size() > 0) {
+        if (items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
                 AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
                 Label name = ((Label) anchorPane.getChildren().get(0));
@@ -299,14 +307,13 @@ public class MainController extends Draggable implements Initializable {
                 Label total = ((Label) anchorPane.getChildren().get(2));
 
                 name.setText(items.get(i).getName());
-                qty.setText(((Integer)items.get(i).getQuantity()).toString());
-                total.setText(((Double)(items.get(i).getPrice() * items.get(i).getQuantity())).toString());
+                qty.setText(((Integer) items.get(i).getQuantity()).toString());
+                total.setText(((Double) (items.get(i).getPrice() * items.get(i).getQuantity())).toString());
 
                 subtotal += items.get(i).getQuantity() * items.get(i).getPrice();
-                subtotalLabel.setText(((Double)subtotal).toString());
+                subtotalLabel.setText(((Double) subtotal).toString());
             }
-        }
-        else {
+        } else {
             subtotalLabel.setText("");
         }
     }
