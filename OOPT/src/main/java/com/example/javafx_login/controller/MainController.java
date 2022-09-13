@@ -46,6 +46,7 @@ public class MainController extends Draggable implements Initializable {
         MobileImageViewRenderer();
         AccessoryImageViewRenderer();
         SettingsImageViewRenderer();
+        // code
     }
 
     @Override
