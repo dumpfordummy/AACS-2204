@@ -474,7 +474,6 @@
                         <Label fx:id="messageLabel" layoutX="20.0" layoutY="380.0" prefHeight="47.0" prefWidth="177.0" textFill="RED" textOverrun="CLIP" wrapText="true" />
                         <Button layoutX="340.0" layoutY="400.0" mnemonicParsing="false" onMouseClicked="#clearCurrentSelectedItemName" text="Remove current selected" />
                         <Button layoutX="250.0" layoutY="400.0" mnemonicParsing="false" onAction="#addToCartOnAction" text="Add To Cart" />
-                        <Label layoutX="157.0" layoutY="404.0" text="Label" />
                      </children>
                   </AnchorPane>
                </children>
