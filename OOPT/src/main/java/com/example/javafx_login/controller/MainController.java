@@ -319,5 +319,8 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
+    public void checkOutOnAction(ActionEvent event){
+        List<Item> itemList = ShoppingCart.getCart();
 
+    }
 }
