@@ -30,9 +30,9 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView accessoryImageView, accessoryImageView_1, accessoryImageView_2, accessoryImageView_3, accessoryImageView_4, accessoryImageView_5;
     @FXML
-    private ImageView settingsImageView;
+    private ImageView settingsImageView, userIconImageView;
     @FXML
-    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane;
+    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
@@ -46,7 +46,7 @@ public class MainController extends Draggable implements Initializable {
         MobileImageViewRenderer();
         AccessoryImageViewRenderer();
         SettingsImageViewRenderer();
-        // code
+        userImageViewRenderer();
     }
 
     @Override
@@ -175,6 +175,12 @@ public class MainController extends Draggable implements Initializable {
         accessoryImageView_5.setImage(accessoryImage_5);
     }
 
+    public void userImageViewRenderer() {
+        File userIconFile = new File("image/userIcon.png");
+        Image userIconImage = new Image(userIconFile.toURI().toString());
+        userIconImageView.setImage(userIconImage);
+    }
+
     public void SettingsImageViewRenderer() {
         File settingsFile = new File("image/settings.png");
         Image settingsImage = new Image(settingsFile.toURI().toString());
@@ -182,45 +188,59 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void desktopSectionOnAction(MouseEvent event) {
+        contentAnchorPane.setVisible(true);
         desktopAnchorPane.setVisible(true);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
+        userAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
     }
 
     public void laptopSectionOnAction(MouseEvent event) {
+        contentAnchorPane.setVisible(true);
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(true);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(false);
+        userAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
     }
 
     public void mobileSectionOnAction(MouseEvent event) {
+        contentAnchorPane.setVisible(true);
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(true);
         accessoryAnchorPane.setVisible(false);
+        userAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
     }
 
     public void accessorySectionOnAction(MouseEvent event) {
+        contentAnchorPane.setVisible(true);
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
         accessoryAnchorPane.setVisible(true);
+        userAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
     }
 
     public void userSectionOnAction(MouseEvent event) {
-        desktopAnchorPane.setVisible(false);
-        laptopAnchorPane.setVisible(false);
-        mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(false);
+        userAnchorPane.setVisible(true);
+        contentAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
+    }
+
+    public void checkoutSectionOnAction() {
+        userAnchorPane.setVisible(false);
+        contentAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(true);
     }
 
     public void settingsSectionOnAction(MouseEvent event) {
-        desktopAnchorPane.setVisible(false);
-        laptopAnchorPane.setVisible(false);
-        mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(false);
+
     }
 
     public void itemImageAddToSelectedOnClick(MouseEvent event) {
@@ -320,6 +340,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void checkOutOnAction(ActionEvent event){
+        checkoutSectionOnAction();
         List<Item> itemList = ShoppingCart.getCart();
 
     }
