@@ -36,7 +36,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
-    private Label messageLabel, subtotalLabel;
+    private Label messageLabel, subtotalLabel, userName, userDate, userID;
     private String currentSelectedItemName, currentSelectedItemParentId;
 
     @Override
@@ -47,6 +47,7 @@ public class MainController extends Draggable implements Initializable {
         AccessoryImageViewRenderer();
         SettingsImageViewRenderer();
         userImageViewRenderer();
+        initUser();
     }
 
     @Override
@@ -342,6 +343,12 @@ public class MainController extends Draggable implements Initializable {
     public void checkOutOnAction(ActionEvent event){
         checkoutSectionOnAction();
         List<Item> itemList = ShoppingCart.getCart();
+        List<Item> totalSold = SalesPerson.getTotalSold();
+    }
 
+    public void initUser(){
+        userName.setText(SalesPerson.getLoginUserName());
+        userID.setText(String.valueOf(SalesPerson.getID()));
+        userDate.setText(String.valueOf(SalesPerson.getYearJoined()));
     }
 }
