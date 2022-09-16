@@ -38,7 +38,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
-    private Label messageLabel, subtotalLabel, userName, userDate, userID;
+    private Label messageLabel, subtotalLabel, userName, userDate, userID, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     private String currentSelectedItemName, currentSelectedItemParentId;
     @FXML
     private TextField voucherCode, paymentFromUser;
@@ -352,8 +352,13 @@ public class MainController extends Draggable implements Initializable {
         List<Item> totalSold = SalesPerson.getTotalSold();
 
 
-        paymentFromUser.getText();
+
         voucherCode.getText();
+    }
+
+    public void makePaymentOnAction(ActionEvent event){
+        paymentFromUser.getText();
+
     }
 
     public void initUser(){
