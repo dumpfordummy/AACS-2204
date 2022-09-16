@@ -357,6 +357,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void makePaymentOnAction(ActionEvent event){
+        voucherCode.getText();
         paymentFromUser.getText();
 
     }
