@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -38,6 +40,10 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label messageLabel, subtotalLabel, userName, userDate, userID;
     private String currentSelectedItemName, currentSelectedItemParentId;
+    @FXML
+    private TextField voucherCode, paymentFromUser;
+    @FXML
+    private CheckBox paymentMethodCash, paymentMethodCard, paymentMethodQR;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -344,6 +350,10 @@ public class MainController extends Draggable implements Initializable {
         checkoutSectionOnAction();
         List<Item> itemList = ShoppingCart.getCart();
         List<Item> totalSold = SalesPerson.getTotalSold();
+
+
+        paymentFromUser.getText();
+        voucherCode.getText();
     }
 
     public void initUser(){
@@ -351,4 +361,6 @@ public class MainController extends Draggable implements Initializable {
         userID.setText(String.valueOf(SalesPerson.getID()));
         userDate.setText(String.valueOf(SalesPerson.getYearJoined()));
     }
+
+
 }
