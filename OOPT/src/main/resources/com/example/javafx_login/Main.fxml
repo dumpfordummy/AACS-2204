@@ -549,6 +549,15 @@
                         <Button layoutX="292.0" layoutY="64.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
                      </children>
                   </AnchorPane>
+                  <AnchorPane fx:id="settingsAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
+                     <children>
+                        <Button fx:id="quitButton" layoutX="150.0" layoutY="165.0" mnemonicParsing="false" onAction="#Quit" opacity="0.85" prefHeight="70.0" prefWidth="201.0" style="-fx-background-color: #CD001A; -fx-background-radius: 20;" text="Quit" textAlignment="CENTER" textFill="WHITE" AnchorPane.rightAnchor="149.0">
+                           <font>
+                              <Font name="Arial" size="32.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
             </AnchorPane>
          </children></AnchorPane>

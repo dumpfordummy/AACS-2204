@@ -6,18 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController extends Draggable implements Initializable {
@@ -44,6 +44,7 @@ public class MainController extends Draggable implements Initializable {
     private TextField voucherCode, paymentFromUser;
     @FXML
     private CheckBox paymentMethodCash, paymentMethodCard, paymentMethodQR;
+    private Stage stage;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -202,6 +203,7 @@ public class MainController extends Draggable implements Initializable {
         accessoryAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void laptopSectionOnAction(MouseEvent event) {
@@ -212,6 +214,7 @@ public class MainController extends Draggable implements Initializable {
         accessoryAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void mobileSectionOnAction(MouseEvent event) {
@@ -222,6 +225,7 @@ public class MainController extends Draggable implements Initializable {
         accessoryAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void accessorySectionOnAction(MouseEvent event) {
@@ -232,22 +236,32 @@ public class MainController extends Draggable implements Initializable {
         accessoryAnchorPane.setVisible(true);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void userSectionOnAction(MouseEvent event) {
         userAnchorPane.setVisible(true);
         contentAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void checkoutSectionOnAction() {
         userAnchorPane.setVisible(false);
         contentAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(true);
+        settingsAnchorPane.setVisible(false);
     }
 
     public void settingsSectionOnAction(MouseEvent event) {
-
+        contentAnchorPane.setVisible(false);
+        desktopAnchorPane.setVisible(false);
+        laptopAnchorPane.setVisible(false);
+        mobileAnchorPane.setVisible(false);
+        accessoryAnchorPane.setVisible(false);
+        userAnchorPane.setVisible(false);
+        checkoutAnchorPane.setVisible(false);
+        settingsAnchorPane.setVisible(true);
     }
 
     public void itemImageAddToSelectedOnClick(MouseEvent event) {
@@ -255,7 +269,7 @@ public class MainController extends Draggable implements Initializable {
             if (node instanceof Label) {
                 currentSelectedItemName = ((Label) node).getText();
                 currentSelectedItemParentId = node.getParent().getParent().getId();
-                messageLabel.setText("Current selected:" + currentSelectedItemName);
+                messageLabel.setText("Current selected: " + currentSelectedItemName);
             }
         }
     }
@@ -347,7 +361,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void checkOutOnAction(ActionEvent event){
-        checkoutSectionOnAction();
+        validationOnCheckout();
         List<Item> itemList = ShoppingCart.getCart();
         List<Item> totalSold = SalesPerson.getTotalSold();
 
@@ -368,5 +382,45 @@ public class MainController extends Draggable implements Initializable {
         userDate.setText(String.valueOf(SalesPerson.getYearJoined()));
     }
 
+    public void validationOnCheckout() {
+        List<Item> items = ShoppingCart.getCart();
+        for (int i = 0; i < items.size(); i++) {
+            AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
+            Label name = ((Label) anchorPane.getChildren().get(0));
+            Label qty = ((Label) anchorPane.getChildren().get(1));
 
+            String prodName = items.get(i).getName();
+            int numberOfItems = items.get(i).getQuantity();
+            if(Stock.getProductStockQuantity(prodName) > numberOfItems){
+                checkoutSectionOnAction();
+            }
+            else {
+                alertNotAvailable(prodName);
+            }
+        }
+    }
+
+    public void alertNotAvailable(String productName){
+        Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.YES, ButtonType.NO);
+        alert.setTitle("Error!");
+        alert.setHeaderText("Error occured in checkout: Product out of stock/not available!");
+        alert.setContentText(productName + " is out of stock/not available!\n Would you like to proceed to checkout?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if(result.get() == ButtonType.YES){
+            checkoutSectionOnAction();
+        }
+    }
+
+    public void Quit(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Quit Program");
+        alert.setHeaderText("You are about to quit the program");
+        alert.setContentText("Do you wish to quit?");
+
+        if(alert.showAndWait().get()== ButtonType.OK) {
+            stage = (Stage) borderpane.getScene().getWindow();
+            stage.close();
+        }
+    }
 }
