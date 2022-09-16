@@ -1,8 +1,7 @@
 package com.example.javafx_login.classes;
 
 import java.io.*;
-
-public class Stock {
+abstract public class Stock {
     //Variables
     private static int totalProducts;
 
@@ -10,7 +9,6 @@ public class Stock {
     public static int getTotalProducts() {
         return totalProducts;
     }
-
     static File file = new File("stock.txt");
 
     //Methods
@@ -32,16 +30,18 @@ public class Stock {
             BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt", true));
             writer.write(name + " | " + serialNum + " | " + quantity + " | " + price + "\n");
             writer.close();
+
         } catch (IOException e) {
             System.out.println("Unable to open file!");
             e.printStackTrace();
+
         } finally {
             totalProducts++;
         }
     }
 
     //display all products(regardless availability)
-    public static void getAllProducts() {
+    public static void getAllProducts(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
@@ -50,27 +50,30 @@ public class Stock {
                 System.out.println(line);
             }
             reader.close();
-        } catch (IOException e) {
+        }
+
+        catch (IOException e){
             System.out.println("Unable to read file!");
             e.printStackTrace();
         }
     }
 
     //check product availability
-    public static boolean isProductAvailable(String itemName) {
+    public static boolean isProductAvailable (String itemName){
         String[] selectedProductDetails = new String[4];
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
 
             while ((line = reader.readLine()) != null) {
-                if (line.contains(itemName)) {
+                if(line.contains(itemName)) {
                     selectedProductDetails = line.split(" \\| ", 0);
                 }
             }
             reader.close();
+        }
 
-        } catch (IOException e) {
+        catch (IOException e){
             System.out.println("Unable to read file!");
             e.printStackTrace();
         }
@@ -78,20 +81,44 @@ public class Stock {
         return !selectedProductDetails[2].equals("0");
     }
 
+    public static int getProductStockQuantity (String itemName){
+        String[] selectedProductDetails = new String[4];
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                if(line.contains(itemName)) {
+                    selectedProductDetails = line.split(" \\| ", 0);
+                }
+            }
+            reader.close();
+        }
+
+        catch (IOException e){
+            System.out.println("Unable to read file!");
+            e.printStackTrace();
+        }
+
+        Integer integer = Integer.valueOf(selectedProductDetails[2]);
+        return integer;
+    }
+
     //display the details of the selected product
-    public static void displayProductDetails(String itemName) {
+    public static void displayProductDetails (String itemName) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.contains(itemName))
+                if(line.contains(itemName))
                     System.out.println(line);
             }
             reader.close();
-        } catch (IOException e) {
+        }
+
+        catch (IOException e){
             System.out.println("Unable to read file!");
             e.printStackTrace();
         }
     }
-
 }
