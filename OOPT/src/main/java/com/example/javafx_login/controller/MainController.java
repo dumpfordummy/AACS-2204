@@ -36,9 +36,9 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
-    private AnchorPane rightAnchorPaneContent;
+    private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane;
     @FXML
-    private Label messageLabel, subtotalLabel, userName, userDate, userID, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
+    private Label messageLabel, subtotalLabel, userName, userDate, userID, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     private String currentSelectedItemName, currentSelectedItemParentId;
     @FXML
     private ChoiceBox<String> voucherCode, paymentMethod;
@@ -365,15 +365,82 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void checkOutOnAction(ActionEvent event){
-        validationOnCheckout();
+        if (subtotalLabel.getText().equals("")){
+            checkoutAlert.setText("Cart Is Empty");
+            return;
+        }
+        checkoutAlert.setText("");
+        checkoutSectionOnAction();
+        //validationOnCheckout();
         List<Item> itemList = ShoppingCart.getCart();
         List<Item> totalSold = SalesPerson.getTotalSold();
 
     }
-
     public void makePaymentOnAction(ActionEvent event){
-        Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()));
+        if (paymentMethod.getValue() == null){
+            paymentAlert.setText("Please Choose Payment Method!");
+            return;
+        }
 
+        if (paymentFromUser.getText() == ""){
+            paymentAlert.setText("Please Enter Payment Amount!");
+            return;
+        }
+        else if (isIncorrectPaymentAmountFormat(paymentFromUser.getText())){
+            paymentAlert.setText("Incorrect Payment Amount Format!");
+            return;
+        }
+        else if (Double.parseDouble(paymentFromUser.getText()) - Double.parseDouble(subtotalLabel.getText()) < 0){
+            paymentAlert.setText("Payment Amount Not Enough!");
+            return;
+        }
+        paymentAlert.setText("");
+        Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()));
+        if(paymentMethod.getValue().equals("Cash")){
+            cashPaymentAnchorPane.setVisible(true);
+            changeRM100Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM100Qty()));
+            changeRM50Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM50Qty()));
+            changeRM20Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM20Qty()));
+            changeRM10Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM10Qty()));
+            changeRM5Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM5Qty()));
+            changeRM1Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM1Qty()));
+            change50SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange50SenQty()));
+            change20SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange20SenQty()));
+            change10SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
+            change5SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
+        }
+        else if (paymentMethod.getValue().equals("Card")){
+            cashPaymentAnchorPane.setVisible(false);
+        }
+        else if (paymentMethod.getValue().equals("QR Code")){
+            cashPaymentAnchorPane.setVisible(false);
+        }
+    }
+
+    public boolean isIncorrectPaymentAmountFormat(String paymentAmount){
+        int countDecimalPoint = 0;
+        int countDecimalPlace = 0;
+        for(int i = 0; i < paymentAmount.length(); i++){
+            if (countDecimalPoint == 1){
+                countDecimalPlace++;
+            }
+            if (paymentAmount.charAt(i) == '.'){
+                countDecimalPoint++;
+            }
+            if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
+                return true;
+            }
+        }
+
+        if (countDecimalPoint != 0 && countDecimalPoint != 1){
+            return true;
+        }
+
+        if (countDecimalPoint == 1 && countDecimalPlace != 2){
+            return true;
+        }
+
+        return false;
     }
 
     public void initUser(){

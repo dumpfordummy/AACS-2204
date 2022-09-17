@@ -28,6 +28,19 @@ public class Purchase {
         else if (paymentMethod == "QR Code"){
             paymentList.add(new QRcode(voucherCode, paymentFromUser, subtotal));
         }
+        else
+            return;
+    }
 
+    public static Cash getCashPayment(){
+        return (Cash) paymentList.get(paymentList.size() - 1);
+    }
+
+    public static Card getCardPayment(){
+        return (Card) paymentList.get(paymentList.size() - 1);
+    }
+
+    public static QRcode getQRcodePayment(){
+        return (QRcode) paymentList.get(paymentList.size() - 1);
     }
 }

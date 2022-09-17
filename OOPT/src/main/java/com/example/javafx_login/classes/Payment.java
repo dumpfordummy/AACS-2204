@@ -10,4 +10,28 @@ public class Payment {
         this.paymentFromUser = paymentFromUser;
         this.subtotal = subtotal;
     }
+
+    public String getVoucherCode() {
+        return voucherCode;
+    }
+
+    public void setVoucherCode(String voucherCode) {
+        this.voucherCode = voucherCode;
+    }
+
+    public double getPaymentFromUser() {
+        return paymentFromUser;
+    }
+
+    public void setPaymentFromUser(double paymentFromUser) {
+        this.paymentFromUser = paymentFromUser;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
 }
