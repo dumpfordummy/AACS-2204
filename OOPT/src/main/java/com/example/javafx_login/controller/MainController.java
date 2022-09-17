@@ -45,8 +45,8 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private TextField paymentFromUser;
     private Stage stage;
-    private String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
-    private String[] paymentMethods = {"Cash", "Card", "QR Code"};
+    private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+    private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
