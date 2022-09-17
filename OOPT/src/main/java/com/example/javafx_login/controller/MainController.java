@@ -41,10 +41,12 @@ public class MainController extends Draggable implements Initializable {
     private Label messageLabel, subtotalLabel, userName, userDate, userID, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     private String currentSelectedItemName, currentSelectedItemParentId;
     @FXML
-    private TextField voucherCode, paymentFromUser;
+    private ChoiceBox<String> voucherCode, paymentMethod;
     @FXML
-    private CheckBox paymentMethodCash, paymentMethodCard, paymentMethodQR;
+    private TextField paymentFromUser;
     private Stage stage;
+    private String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+    private String[] paymentMethods = {"Cash", "Card", "QR Code"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -55,6 +57,8 @@ public class MainController extends Draggable implements Initializable {
         SettingsImageViewRenderer();
         userImageViewRenderer();
         initUser();
+        voucherCode.getItems().addAll(voucherCodeList);
+        paymentMethod.getItems().addAll(paymentMethods);
     }
 
     @Override
@@ -365,14 +369,10 @@ public class MainController extends Draggable implements Initializable {
         List<Item> itemList = ShoppingCart.getCart();
         List<Item> totalSold = SalesPerson.getTotalSold();
 
-
-
-        voucherCode.getText();
     }
 
     public void makePaymentOnAction(ActionEvent event){
-        voucherCode.getText();
-        paymentFromUser.getText();
+        Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()));
 
     }
 
