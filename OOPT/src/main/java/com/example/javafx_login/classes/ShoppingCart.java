@@ -1,20 +1,18 @@
 package com.example.javafx_login.classes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ShoppingCart {
-    private static List<Item> cart = new ArrayList<>();
+    private static ArrayList<Item> cart = new ArrayList<>();
 
-    public ShoppingCart(Item item) {
-        cart.add(item);
+    private ShoppingCart() {
     }
 
-    public static List<Item> getCart() {
+    public static ArrayList<Item> getCart() {
         return cart;
     }
 
-    public static void setCart(List<Item> cart) {
+    public static void setCart(ArrayList<Item> cart) {
         ShoppingCart.cart = cart;
     }
 
@@ -24,12 +22,5 @@ public class ShoppingCart {
 
     public static void popCart(int index) {
         cart.remove(index);
-    }
-    public List<Item> getItem() {
-        return cart;
-    }
-
-    public void setItem(Item item) {
-        cart.add(item);
     }
 }

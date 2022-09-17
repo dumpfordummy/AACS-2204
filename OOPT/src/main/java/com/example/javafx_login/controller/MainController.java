@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -284,7 +285,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void addToCartOnAction(ActionEvent event) {
-        List<Item> itemList = ShoppingCart.getCart();
+        ArrayList<Item> itemList = ShoppingCart.getCart();
         boolean isItemContainedInList = false;
 
         if (currentSelectedItemName == null) {
