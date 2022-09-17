@@ -229,7 +229,7 @@
                         <Label layoutX="364.0" layoutY="5.0" text="Staff Since: " />
                         <Label fx:id="userDate" layoutX="434.0" layoutY="5.0" prefHeight="18.0" prefWidth="60.0" />
                      </children></AnchorPane>
-                  <AnchorPane fx:id="contentAnchorPane" layoutY="-38.0" visible="false">
+                  <AnchorPane fx:id="contentAnchorPane" layoutY="-38.0">
                      <children>
                         <AnchorPane fx:id="desktopAnchorPane" layoutY="38.0" prefHeight="400.0" prefWidth="500.0">
                            <children>
@@ -482,7 +482,7 @@
                         <Button layoutX="250.0" layoutY="400.0" mnemonicParsing="false" onAction="#addToCartOnAction" text="Add To Cart" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="checkoutAnchorPane" prefHeight="400.0" prefWidth="500.0">
+                  <AnchorPane fx:id="checkoutAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                      <children>
                         <AnchorPane fx:id="cashPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false">
                            <children>
