@@ -45,7 +45,6 @@ public class MainController extends Draggable implements Initializable {
     private ChoiceBox<String> voucherCode, paymentMethod;
     @FXML
     private TextField paymentFromUser;
-    private Stage stage;
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
 
@@ -486,8 +485,8 @@ public class MainController extends Draggable implements Initializable {
         alert.setHeaderText("You are about to quit the program");
         alert.setContentText("Do you wish to quit?");
 
-        if(alert.showAndWait().get()== ButtonType.OK) {
-            stage = (Stage) borderpane.getScene().getWindow();
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            Stage stage = (Stage) borderpane.getScene().getWindow();
             stage.close();
         }
     }
