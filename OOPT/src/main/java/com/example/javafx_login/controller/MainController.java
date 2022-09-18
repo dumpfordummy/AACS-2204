@@ -62,6 +62,7 @@ public class MainController extends Draggable implements Initializable {
         SettingsImageViewRenderer();
         userImageViewRenderer();
         initUser();
+        cardTerminalImageViewRenderer();
         voucherCode.getItems().addAll(voucherCodeList);
         paymentMethod.getItems().addAll(paymentMethods);
     }
@@ -202,6 +203,12 @@ public class MainController extends Draggable implements Initializable {
         File settingsFile = new File("image/settings.png");
         Image settingsImage = new Image(settingsFile.toURI().toString());
         settingsImageView.setImage(settingsImage);
+    }
+
+    public void cardTerminalImageViewRenderer(){
+        File cardTerminalFile = new File("image/cardTerminal.png");
+        Image cardTerminalImage = new Image(cardTerminalFile.toURI().toString());
+        cardTerminalImageView.setImage(cardTerminalImage);
     }
 
     public void desktopSectionOnAction(MouseEvent event) {
@@ -469,7 +476,7 @@ public class MainController extends Draggable implements Initializable {
 
         }
         else if (paymentMethod.getValue().equals("QR Code")){
-            if (paymentMethod.getValue().equals("QR Code") && !isQRCodeScanned){
+            if (paymentMethod.getValue().equals("QR Code") && !Boolean.parseBoolean(LoginApi.getRequestIsQRScanned())){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
             }
@@ -508,16 +515,18 @@ public class MainController extends Draggable implements Initializable {
         else if (paymentMethod.getValue().equals("QR Code")){
             cashPaymentAnchorPane.setVisible(false);
         }
+        //Finish Payment
         voucherCode.setValue(null);
         paymentMethod.setValue(null);
         paymentFromUser.clear();
         voucherDetails.setText("");
         paymentAlert.setText("");
-        isQRCodeScanned = false;
+        LoginApi.setRequestIsQRScanned("false");
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
         }
+
         //PUA JIN JIAN
     }
 
