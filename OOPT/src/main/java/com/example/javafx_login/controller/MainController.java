@@ -39,19 +39,23 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
-    private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
+    private AnchorPane rightAnchorPaneContent;
     @FXML
-    private Label messageLabel, subtotalLabel, userName, userDate, userID, voucherDetails, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
+    private AnchorPane cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
+    @FXML
+    private Label voucherDetails, checkoutAlert, paymentAlert;
+    @FXML
+    private Label changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
+    @FXML
+    private Label messageLabel, subtotalLabel, userName, userDate, userID;
     @FXML
     private ComboBox<String> voucherCode, paymentMethod;
     @FXML
     private TextField paymentFromUser;
-    private Stage stage;
     private String currentSelectedItemName, currentSelectedItemParentId;
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final double[] voucherCodeDiscountList = {5, 10, 20};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
-    private boolean isQRCodeScanned;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -555,8 +559,6 @@ public class MainController extends Draggable implements Initializable {
 
         return true;
     }
-
-
 
     public double getDiscountAmount(){
         if (voucherCode.getValue() == null){
