@@ -40,15 +40,12 @@ public class MainController extends Draggable implements Initializable {
     private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane;
     @FXML
     private Label messageLabel, subtotalLabel, userName, userDate, userID, voucherDetails, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
-    private String currentSelectedItemName, currentSelectedItemParentId;
     @FXML
-    private ChoiceBox<String> paymentMethod;
-    @FXML
-    private ComboBox<String> voucherCode;
+    private ComboBox<String> voucherCode, paymentMethod;
     @FXML
     private TextField paymentFromUser;
-
     private Stage stage;
+    private String currentSelectedItemName, currentSelectedItemParentId;
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final double[] voucherCodeDiscountList = {5, 10, 20};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
@@ -397,7 +394,7 @@ public class MainController extends Draggable implements Initializable {
             return;
         }
 
-        if (paymentFromUser.getText() == ""){
+        if (paymentFromUser.getText().equals("")){
             paymentAlert.setText("Please Enter Payment Amount!");
             return;
         }
@@ -434,6 +431,7 @@ public class MainController extends Draggable implements Initializable {
             totalChange20Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange20SenQty() * 0.2));
             totalChange10Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() * 0.1));
             totalChange5Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() *0.05));
+            totalChange.setText(String.format("%.2f", (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()))));
         }
         else if (paymentMethod.getValue().equals("Card")){
             cashPaymentAnchorPane.setVisible(false);
@@ -450,6 +448,7 @@ public class MainController extends Draggable implements Initializable {
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
         }
+        //PUA JIN JIAN
     }
 
     public boolean isCorrectPaymentAmountFormat(String paymentAmount){
@@ -491,7 +490,7 @@ public class MainController extends Draggable implements Initializable {
 
     public double getDiscountAmount(){
         for (int i = 0; i < voucherCodeList.length; i++){
-            if(voucherCode.getValue() == voucherCodeList[i]){
+            if(voucherCode.getValue().equals(voucherCodeList[i])){
                 return voucherCodeDiscountList[i];
             }
         }
