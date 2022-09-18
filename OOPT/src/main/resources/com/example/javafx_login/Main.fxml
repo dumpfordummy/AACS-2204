@@ -484,6 +484,20 @@
                   </AnchorPane>
                   <AnchorPane fx:id="checkoutAnchorPane" prefHeight="400.0" prefWidth="500.0">
                      <children>
+                        <AnchorPane fx:id="paymentDetailsAnchorPane" prefHeight="150.0" prefWidth="500.0">
+                           <children>
+                              <Label layoutX="10.0" layoutY="10.0" text="Voucher Code           :" />
+                              <ComboBox fx:id="voucherCode" layoutX="130.0" layoutY="5.0" onAction="#voucherCodeOnAction" prefWidth="150.0" />
+                              <Label fx:id="voucherDetails" layoutX="290.0" layoutY="10.0" />
+                              <Label layoutX="10.0" layoutY="40.0" text="Payment Method     :" />
+                              <ComboBox fx:id="paymentMethod" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodOnAction" prefWidth="150.0" />
+                              <Label layoutX="10.0" layoutY="70.0" text="Payment From User :" />
+                              <TextField fx:id="paymentFromUser" layoutX="130.0" layoutY="65.0" />
+                              <Button layoutX="290.0" layoutY="65.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
+                              <Label fx:id="paymentMethodAlert" layoutX="123.0" layoutY="59.0" textFill="RED" />
+                              <Label fx:id="paymentAlert" layoutX="130.0" layoutY="95.0" textFill="RED" />
+                           </children>
+                        </AnchorPane>
                         <AnchorPane fx:id="cashPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false">
                            <children>
                               <Label layoutX="14.0" layoutY="6.0" text="Change :" />
@@ -541,24 +555,26 @@
                         </AnchorPane>
                         <AnchorPane fx:id="cardPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0">
                            <children>
-                              <ImageView fx:id="cardTermialImageView" fitHeight="269.0" fitWidth="160.0" layoutX="170.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fx:id="cardTerminalImageView" fitHeight="269.0" fitWidth="160.0" layoutX="170.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../../../../../../image/CardTerminal.png" />
                                  </image>
                               </ImageView>
+                              <TextField fx:id="insertCardTextField" alignment="CENTER" editable="false" layoutX="202.0" layoutY="21.0" prefHeight="63.0" prefWidth="82.0" text="Insert Card" />
+                              <ImageView fx:id="cardTerminal_2ImageView" fitHeight="346.0" fitWidth="164.0" layoutX="169.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../image/CardTerminal_2.png" />
+                                 </image>
+                              </ImageView>
+                              <TextField fx:id="enterPINTextField" layoutX="201.0" layoutY="21.0" prefHeight="65.0" prefWidth="82.0" promptText="Enter PIN Here">
+                                 <font>
+                                    <Font size="10.0" />
+                                 </font>
+                              </TextField>
+                              <Button layoutX="95.0" layoutY="249.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="QRCodePaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false" />
-                        <Label layoutX="14.0" layoutY="14.0" text="Voucher Code           :" />
-                        <ComboBox fx:id="voucherCode" layoutX="130.0" layoutY="10.0" onAction="#voucherCodeOnAction" prefWidth="150.0" />
-                        <Label fx:id="voucherDetails" layoutX="292.0" layoutY="14.0" />
-                        <Label layoutX="14.0" layoutY="42.0" text="Payment Method     :" />
-                        <ComboBox fx:id="paymentMethod" layoutX="130.0" layoutY="38.0" onAction="#paymentMethodOnAction" prefWidth="150.0" />
-                        <Label fx:id="paymentMethodAlert" layoutX="292.0" layoutY="92.0" textFill="RED" />
-                        <Label layoutX="15.0" layoutY="69.0" text="Payment From User :" />
-                        <TextField fx:id="paymentFromUser" layoutX="130.0" layoutY="65.0" />
-                        <Button layoutX="292.0" layoutY="64.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
-                        <Label fx:id="paymentAlert" layoutX="130.0" layoutY="92.0" textFill="RED" />
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="settingsAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
