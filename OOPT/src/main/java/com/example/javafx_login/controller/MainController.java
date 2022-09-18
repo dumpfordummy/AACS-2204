@@ -36,13 +36,13 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView settingsImageView, userIconImageView;
     @FXML
-    private ImageView cardTerminalImageView;
+    private ImageView cardTerminalImageView, cardTerminal_2ImageView;
     @FXML
     private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
-    private AnchorPane paymentDetailsAnchorPane, cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
+    private AnchorPane paymentDetailsAnchorPane, cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane, cardTerminalAnchorPane, cardTerminal_2AnchorPane;
     @FXML
     private Label checkoutAlert, voucherDetails, paymentMethodAlert, paymentAlert;
     @FXML
@@ -52,11 +52,12 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ComboBox<String> voucherCode, paymentMethod;
     @FXML
-    private TextField paymentFromUser, enterPINTextField;
+    private TextField paymentFromUser, cardNumTextField, cardPINTextField;
     private String currentSelectedItemName, currentSelectedItemParentId;
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final double[] voucherCodeDiscountList = {5, 10, 20};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
+    private boolean isCardInserted = false;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,6 +69,7 @@ public class MainController extends Draggable implements Initializable {
         userImageViewRenderer();
         initUser();
         cardTerminalImageViewRenderer();
+        cardTerminal_2ImageViewRenderer();
         voucherCode.getItems().addAll(voucherCodeList);
         paymentMethod.getItems().addAll(paymentMethods);
     }
@@ -214,6 +216,12 @@ public class MainController extends Draggable implements Initializable {
         File cardTerminalFile = new File("image/cardTerminal.png");
         Image cardTerminalImage = new Image(cardTerminalFile.toURI().toString());
         cardTerminalImageView.setImage(cardTerminalImage);
+    }
+
+    public void cardTerminal_2ImageViewRenderer(){
+        File cardTerminal_2File = new File("image/cardTerminal_2.png");
+        Image cardTerminal_2Image = new Image(cardTerminal_2File.toURI().toString());
+        cardTerminalImageView.setImage(cardTerminal_2Image);
     }
 
     public void desktopSectionOnAction(MouseEvent event) {
@@ -572,7 +580,16 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void insertCardOnAction(ActionEvent event){
-
+        if (!isCardInserted){
+            cardTerminal_2AnchorPane.setVisible(true);
+            cardPINTextField.setVisible(true);
+            isCardInserted = true;
+        }
+        else if (isCardInserted){
+            cardTerminal_2AnchorPane.setVisible(false);
+            cardPINTextField.setVisible(false);
+            isCardInserted = false;
+        }
     }
 
     public void initUser(){

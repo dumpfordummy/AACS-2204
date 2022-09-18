@@ -491,10 +491,10 @@
                               <Label fx:id="voucherDetails" layoutX="290.0" layoutY="10.0" />
                               <Label layoutX="10.0" layoutY="40.0" text="Payment Method     :" />
                               <ComboBox fx:id="paymentMethod" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodOnAction" prefWidth="150.0" />
-                              <Label fx:id="paymentMethodAlert" layoutX="290.0" layoutY="40.0" textFill="RED" />
                               <Label layoutX="10.0" layoutY="70.0" text="Payment From User :" />
                               <TextField fx:id="paymentFromUser" layoutX="130.0" layoutY="65.0" />
                               <Button layoutX="290.0" layoutY="65.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
+                              <Label fx:id="paymentMethodAlert" layoutX="123.0" layoutY="59.0" textFill="RED" />
                               <Label fx:id="paymentAlert" layoutX="130.0" layoutY="95.0" textFill="RED" />
                            </children>
                         </AnchorPane>
@@ -555,27 +555,35 @@
                         </AnchorPane>
                         <AnchorPane fx:id="cardPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0">
                            <children>
-                              <ImageView fx:id="cardTerminalImageView" fitHeight="269.0" fitWidth="160.0" layoutX="170.0" layoutY="-8.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../../../../../../image/CardTerminal.png" />
-                                 </image>
-                              </ImageView>
-                              <TextField fx:id="cardNumberTextField" alignment="CENTER" editable="false" layoutX="202.0" layoutY="21.0" prefHeight="63.0" prefWidth="82.0" promptText="Enter Card Number">
-                                 <font>
-                                    <Font size="8.0" />
-                                 </font>
-                              </TextField>
-                              <ImageView fx:id="cardTerminal_2ImageView" fitHeight="346.0" fitWidth="164.0" layoutX="169.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" visible="false">
-                                 <image>
-                                    <Image url="@../../../../../../image/CardTerminal_2.png" />
-                                 </image>
-                              </ImageView>
-                              <TextField fx:id="enterPINTextField" layoutX="201.0" layoutY="21.0" prefHeight="65.0" prefWidth="82.0" promptText="Enter PIN" visible="false">
-                                 <font>
-                                    <Font size="8.0" />
-                                 </font>
-                              </TextField>
-                              <Button layoutX="95.0" layoutY="249.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
+                              <Button layoutX="182.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
+                              <AnchorPane fx:id="cardTerminalAnchorPane" prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <ImageView fx:id="cardTerminalImageView" fitHeight="256.0" fitWidth="161.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../image/CardTerminal.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TextField fx:id="cardNumTextField" alignment="CENTER" editable="false" layoutX="38.0" layoutY="10.0" prefHeight="71.0" prefWidth="89.0" promptText="Enter Card Number">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane fx:id="cardTerminal_2AnchorPane" prefHeight="200.0" prefWidth="200.0" visible="false">
+                                 <children>
+                                    <ImageView fx:id="cardTerminal_2ImageView" fitHeight="300.0" fitWidth="180.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../../../../image/CardTerminal_2.png" />
+                                       </image>
+                                    </ImageView>
+                                    <TextField fx:id="cardPINTextField" layoutX="38.0" layoutY="10.0" prefHeight="70.0" prefWidth="90.0" promptText="Enter PIN">
+                                       <font>
+                                          <Font size="9.0" />
+                                       </font>
+                                    </TextField>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="QRCodePaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false" />
