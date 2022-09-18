@@ -1,13 +1,15 @@
 package com.example.javafx_login.api;
 
-import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class LoginApi {
     static String apiUrl = "https://ooptwebapi.azurewebsites.net/loginapis";
@@ -33,7 +35,30 @@ public class LoginApi {
                 .join();
     }
 
+    public static String getIsQRScanned() {
+        AtomicReference<String> result = new AtomicReference<>();
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ooptwebapi.azurewebsites.net/loginapis/getQrScanned")).build();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+                .thenApply(HttpResponse::body)
+                .thenAccept(result::set);
+        return result.get();
+    }
+
+    public static void setIsQRScanned(boolean isQRScanned) {
+        String url;
+        if(isQRScanned){
+            url = "https://ooptwebapi.azurewebsites.net/loginapis/setQrScanned/true";
+        }else {
+            url = "https://ooptwebapi.azurewebsites.net/loginapis/setQrScanned/false";
+        }
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(URI.create(url)).build();
+        client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
+    }
+
     public static void parse(String responseBody) {
+        System.out.println(responseBody);
         JSONArray logins = new JSONArray(responseBody);
         for(int i = 0; i < logins.length(); i++) {
             JSONObject login = logins.getJSONObject(i);
