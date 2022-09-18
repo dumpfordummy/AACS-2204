@@ -41,3 +41,15 @@
 2022/09/15 17:28:33 - 
 /C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/YEAR2/SEM1/JAVA/assignment/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml
 
+2022/09/18 12:47:24 - Error resolving onAction='#clearPaymentScreenOnAction', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:541
+
+2022/09/18 12:47:48 - Error resolving onAction='#clearPaymentScreenOnAction', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:541
+
+2022/09/18 12:48:30 - Error resolving onAction='#clearPaymentScreenOnAction', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:541
+
+2022/09/18 12:48:49 - Error resolving onAction='#clearPaymentScreenOnAction', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:541
+

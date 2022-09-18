@@ -23,13 +23,13 @@ public class Cash extends Payment{
     private double totalChange5Sen;
     private double totalChange;
 
-    public Cash(String voucherCode, double paymentFromUser, double subtotal) {
-        super(voucherCode, paymentFromUser, subtotal);
-        calculateChange(voucherCode, paymentFromUser, subtotal);
+    public Cash(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
+        super(voucherCode, paymentFromUser, subtotal, discountAmount);
+        calculateChange(paymentFromUser, subtotal, discountAmount);
     }
 
-    public void calculateChange(String voucherCode, double paymentFromUser, double subtotal){
-        totalChange = paymentFromUser - subtotal;
+    public void calculateChange(double paymentFromUser, double subtotal, double discountAmount){
+        totalChange = paymentFromUser + discountAmount - subtotal;
         if (totalChange/100 >= 1){
             do {
                 totalChange -= 100;

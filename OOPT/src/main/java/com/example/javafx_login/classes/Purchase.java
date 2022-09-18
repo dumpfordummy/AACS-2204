@@ -18,15 +18,15 @@ public class Purchase {
         Purchase.paymentList = paymentList;
     }
 
-    public static void makePayment(String voucherCode, String paymentMethod, double paymentFromUser, double subtotal) {
+    public static void makePayment(String voucherCode, String paymentMethod, double paymentFromUser, double subtotal, double discountAmount) {
         if (paymentMethod == "Cash"){
-            paymentList.add(new Cash(voucherCode, paymentFromUser, subtotal));
+            paymentList.add(new Cash(voucherCode, paymentFromUser, subtotal, discountAmount));
         }
         else if (paymentMethod == "Card"){
-            paymentList.add(new Card(voucherCode, paymentFromUser, subtotal));
+            paymentList.add(new Card(voucherCode, paymentFromUser, subtotal, discountAmount));
         }
         else if (paymentMethod == "QR Code"){
-            paymentList.add(new QRcode(voucherCode, paymentFromUser, subtotal));
+            paymentList.add(new QRcode(voucherCode, paymentFromUser, subtotal, discountAmount));
         }
         else
             return;

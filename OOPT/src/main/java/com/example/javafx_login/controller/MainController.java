@@ -39,14 +39,24 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane;
     @FXML
-    private Label messageLabel, subtotalLabel, userName, userDate, userID, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
+    private Label messageLabel, subtotalLabel, userName, userDate, userID, voucherDetails, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     private String currentSelectedItemName, currentSelectedItemParentId;
     @FXML
-    private ChoiceBox<String> voucherCode, paymentMethod;
+    private ChoiceBox<String> paymentMethod;
+    @FXML
+    private ComboBox<String> voucherCode;
     @FXML
     private TextField paymentFromUser;
+<<<<<<< Updated upstream
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
+=======
+    private Stage stage;
+    private String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+    private double[] voucherCodeDiscountList = {5, 10, 20};
+    private String[] paymentMethods = {"Cash", "Card", "QR Code"};
+    private boolean isDonePayment;
+>>>>>>> Stashed changes
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -208,6 +218,7 @@ public class MainController extends Draggable implements Initializable {
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void laptopSectionOnAction(MouseEvent event) {
@@ -219,6 +230,7 @@ public class MainController extends Draggable implements Initializable {
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void mobileSectionOnAction(MouseEvent event) {
@@ -230,6 +242,7 @@ public class MainController extends Draggable implements Initializable {
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void accessorySectionOnAction(MouseEvent event) {
@@ -241,6 +254,7 @@ public class MainController extends Draggable implements Initializable {
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void userSectionOnAction(MouseEvent event) {
@@ -248,6 +262,7 @@ public class MainController extends Draggable implements Initializable {
         contentAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void checkoutSectionOnAction() {
@@ -255,6 +270,7 @@ public class MainController extends Draggable implements Initializable {
         contentAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(true);
         settingsAnchorPane.setVisible(false);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void settingsSectionOnAction(MouseEvent event) {
@@ -266,6 +282,7 @@ public class MainController extends Draggable implements Initializable {
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(true);
+        cashPaymentAnchorPane.setVisible(false);
     }
 
     public void itemImageAddToSelectedOnClick(MouseEvent event) {
@@ -320,9 +337,11 @@ public class MainController extends Draggable implements Initializable {
 
     public void popCart(ActionEvent event) {
         if (ShoppingCart.getCart().size() == 0) {
-            messageLabel.setText("Your cart is empty!");
+            checkoutAlert.setText("Your Cart Is Empty");
             return;
         }
+        else
+            checkoutAlert.setText("");
         ShoppingCart.popCart(ShoppingCart.getCart().size() - 1);
         resetUICart();
         updateUICart();
@@ -365,18 +384,24 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void checkOutOnAction(ActionEvent event){
-        if (subtotalLabel.getText().equals("")){
+        List<Item> cart = ShoppingCart.getCart();
+        if (cart.size() == 0){
             checkoutAlert.setText("Cart Is Empty");
             return;
         }
-        checkoutAlert.setText("");
+        else
+            checkoutAlert.setText("");
         checkoutSectionOnAction();
         //validationOnCheckout();
-        List<Item> itemList = ShoppingCart.getCart();
         List<Item> totalSold = SalesPerson.getTotalSold();
 
     }
     public void makePaymentOnAction(ActionEvent event){
+        if (isDonePayment){
+            paymentAlert.setText("Payment Is Completed!");
+            return;
+        }
+
         if (paymentMethod.getValue() == null){
             paymentAlert.setText("Please Choose Payment Method!");
             return;
@@ -386,16 +411,17 @@ public class MainController extends Draggable implements Initializable {
             paymentAlert.setText("Please Enter Payment Amount!");
             return;
         }
-        else if (isIncorrectPaymentAmountFormat(paymentFromUser.getText())){
+        else if (!isCorrectPaymentAmountFormat(paymentFromUser.getText())){
             paymentAlert.setText("Incorrect Payment Amount Format!");
             return;
         }
-        else if (Double.parseDouble(paymentFromUser.getText()) - Double.parseDouble(subtotalLabel.getText()) < 0){
+        else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0){
             paymentAlert.setText("Payment Amount Not Enough!");
             return;
         }
-        paymentAlert.setText("");
-        Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()));
+        else
+            paymentAlert.setText("");
+        Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         if(paymentMethod.getValue().equals("Cash")){
             cashPaymentAnchorPane.setVisible(true);
             changeRM100Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM100Qty()));
@@ -408,6 +434,16 @@ public class MainController extends Draggable implements Initializable {
             change20SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange20SenQty()));
             change10SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
             change5SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
+            totalChangeRM100.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM100Qty() * 100));
+            totalChangeRM50.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM50Qty() * 50));
+            totalChangeRM20.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM20Qty() * 20));
+            totalChangeRM10.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM10Qty() * 10));
+            totalChangeRM5.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM5Qty() * 5));
+            totalChangeRM1.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM1Qty()));
+            totalChange50Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange50SenQty() * 0.5));
+            totalChange20Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange20SenQty() * 0.2));
+            totalChange10Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() * 0.1));
+            totalChange5Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() *0.05));
         }
         else if (paymentMethod.getValue().equals("Card")){
             cashPaymentAnchorPane.setVisible(false);
@@ -415,9 +451,18 @@ public class MainController extends Draggable implements Initializable {
         else if (paymentMethod.getValue().equals("QR Code")){
             cashPaymentAnchorPane.setVisible(false);
         }
+        voucherCode.setValue(null);
+        paymentMethod.setValue(null);
+        paymentFromUser.clear();
+        voucherDetails.setText("");
+        paymentAlert.setText("");
+        List<Item> cart = ShoppingCart.getCart();
+        for (int i = 0; i < cart.size(); i++){
+            popCart(event);
+        }
     }
 
-    public boolean isIncorrectPaymentAmountFormat(String paymentAmount){
+    public boolean isCorrectPaymentAmountFormat(String paymentAmount){
         int countDecimalPoint = 0;
         int countDecimalPlace = 0;
         for(int i = 0; i < paymentAmount.length(); i++){
@@ -428,19 +473,43 @@ public class MainController extends Draggable implements Initializable {
                 countDecimalPoint++;
             }
             if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
-                return true;
+                return false;
             }
         }
 
         if (countDecimalPoint != 0 && countDecimalPoint != 1){
-            return true;
+            return false;
         }
 
         if (countDecimalPoint == 1 && countDecimalPlace != 2){
-            return true;
+            return false;
         }
 
-        return false;
+        return true;
+    }
+
+    public void voucherCodeOnAction(ActionEvent event){
+        for (int i = 0; i < voucherCodeList.length; i++){
+            if(voucherCode.getValue() == voucherCodeList[i]){
+                voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscountList[i]));
+                return;
+            }
+            else
+                voucherDetails.setText("");
+        }
+    }
+
+    public void clearPaymentScreenOnAction(){
+
+    }
+
+    public double getDiscountAmount(){
+        for (int i = 0; i < voucherCodeList.length; i++){
+            if(voucherCode.getValue() == voucherCodeList[i]){
+                return voucherCodeDiscountList[i];
+            }
+        }
+        return 0;
     }
 
     public void initUser(){
