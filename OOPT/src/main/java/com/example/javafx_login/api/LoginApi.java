@@ -58,7 +58,6 @@ public class LoginApi {
     }
 
     public static void parse(String responseBody) {
-        System.out.println(responseBody);
         JSONArray logins = new JSONArray(responseBody);
         for(int i = 0; i < logins.length(); i++) {
             JSONObject login = logins.getJSONObject(i);

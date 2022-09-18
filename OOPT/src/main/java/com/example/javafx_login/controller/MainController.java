@@ -487,8 +487,6 @@ public class MainController extends Draggable implements Initializable {
             }
         }
 
-
-
         Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         if(paymentMethod.getValue().equals("Cash")){
             cashPaymentAnchorPane.setVisible(true);
@@ -571,6 +569,10 @@ public class MainController extends Draggable implements Initializable {
             }
         }
         return 0;
+    }
+
+    public void insertCardOnAction(ActionEvent event){
+
     }
 
     public void initUser(){

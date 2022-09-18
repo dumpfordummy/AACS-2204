@@ -1,13 +1,14 @@
 package com.example.javafx_login.controller;
 
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
 import java.io.IOException;
-import javafx.application.Application;
  // This is starter java class
 // test
 public class Main extends Application {
