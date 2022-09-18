@@ -386,8 +386,51 @@ public class MainController extends Draggable implements Initializable {
         checkoutSectionOnAction();
         //validationOnCheckout();
         List<Item> totalSold = SalesPerson.getTotalSold();
-
+        voucherCode.setValue(null);
+        paymentMethod.setValue(null);
+        paymentFromUser.setText(null);
+        voucherDetails.setText(null);
+        paymentAlert.setText(null);
     }
+
+    public void voucherCodeOnAction(ActionEvent event){
+        if(paymentMethod.getValue().equals("Cash")){
+            paymentFromUser.setEditable(true);
+            paymentFromUser.setText("");
+        }
+        else if(paymentMethod.getValue().equals("Card")){
+            paymentFromUser.setEditable(false);
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+        }
+        else if(paymentMethod.getValue().equals("QR Code")){
+            paymentFromUser.setEditable(false);
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+        }
+        for (int i = 0; i < voucherCodeList.length; i++){
+            if(voucherCode.getValue().equals(voucherCodeList[i])){
+                voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscountList[i]));
+                return;
+            }
+            else
+                voucherDetails.setText("");
+        }
+    }
+
+    public void paymentMethodOnAction(ActionEvent event){
+        if(paymentMethod.getValue().equals("Cash")){
+            paymentFromUser.setEditable(true);
+            paymentFromUser.setText("");
+        }
+        else if(paymentMethod.getValue().equals("Card")){
+            paymentFromUser.setEditable(false);
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+        }
+        else if(paymentMethod.getValue().equals("QR Code")){
+            paymentFromUser.setEditable(false);
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+        }
+    }
+
     public void makePaymentOnAction(ActionEvent event){
         if (paymentMethod.getValue() == null){
             paymentAlert.setText("Please Choose Payment Method!");
@@ -477,18 +520,12 @@ public class MainController extends Draggable implements Initializable {
         return true;
     }
 
-    public void voucherCodeOnAction(ActionEvent event){
-        for (int i = 0; i < voucherCodeList.length; i++){
-            if(voucherCode.getValue() == voucherCodeList[i]){
-                voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscountList[i]));
-                return;
-            }
-            else
-                voucherDetails.setText("");
-        }
-    }
+
 
     public double getDiscountAmount(){
+        if (voucherCode.getValue() == null){
+            return 0;
+        }
         for (int i = 0; i < voucherCodeList.length; i++){
             if(voucherCode.getValue().equals(voucherCodeList[i])){
                 return voucherCodeDiscountList[i];
