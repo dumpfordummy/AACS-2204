@@ -524,11 +524,7 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.clear();
         voucherDetails.setText("");
         paymentAlert.setText("");
-<<<<<<< Updated upstream
         LoginApi.setIsQRScanned(false);
-=======
-//        LoginApi.setRequestIsQRScanned("false");
->>>>>>> Stashed changes
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
