@@ -11,6 +11,7 @@ public class Cash extends Payment{
     private int change20SenQty;
     private int change10SenQty;
     private int change5SenQty;
+    private int change1SenQty;
     private double totalChangeRM100;
     private double totalChangeRM50;
     private double totalChangeRM20;
@@ -21,6 +22,7 @@ public class Cash extends Payment{
     private double totalChange20Sen;
     private double totalChange10Sen;
     private double totalChange5Sen;
+    private double totalChange1Sen;
     private double totalChange;
 
     public Cash(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
@@ -109,6 +111,14 @@ public class Cash extends Payment{
                 totalChange5Sen += 0.05;
             }while (totalChange/0.05 >= 1);
         }
+
+        if (totalChange/0.01 >= 1){
+            do {
+                totalChange -= 0.01;
+                change1SenQty++;
+                totalChange1Sen += 0.01;
+            }while (totalChange/0.01 >= 1);
+        }
     }
 
     public int getChangeRM100Qty() {
@@ -191,6 +201,14 @@ public class Cash extends Payment{
         this.change5SenQty = change5SenQty;
     }
 
+    public int getChange1SenQty() {
+        return change1SenQty;
+    }
+
+    public void setChange1SenQty(int change1SenQty) {
+        this.change1SenQty = change1SenQty;
+    }
+
     public double getTotalChangeRM100() {
         return totalChangeRM100;
     }
@@ -269,6 +287,13 @@ public class Cash extends Payment{
 
     public void setTotalChange5Sen(double totalChange5Sen) {
         this.totalChange5Sen = totalChange5Sen;
+    }
+    public double getTotalChange1Sen() {
+        return totalChange1Sen;
+    }
+
+    public void setTotalChange1Sen(double totalChange1Sen) {
+        this.totalChange1Sen = totalChange1Sen;
     }
 
     public double getTotalChange() {

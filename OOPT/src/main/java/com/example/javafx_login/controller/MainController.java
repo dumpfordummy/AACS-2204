@@ -46,7 +46,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label checkoutAlert, voucherDetails, paymentMethodAlert, paymentAlert;
     @FXML
-    private Label changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
+    private Label changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, change1SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange1Sen, totalChange;
     @FXML
     private Label messageLabel, subtotalLabel, userName, userDate, userID;
     @FXML
@@ -499,7 +499,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("Please Enter Payment Amount!");
                 return;
             }
-            else if (!isCorrectPaymentAmountFormat(paymentFromUser.getText())){
+            else if (isPaymentAmountFormatInvalid(paymentFromUser.getText())){
                 paymentAlert.setText("Digits With/Without 2 Decimal Places!");
                 return;
             }
@@ -554,23 +554,25 @@ public class MainController extends Draggable implements Initializable {
             change50SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange50SenQty()));
             change20SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange20SenQty()));
             change10SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
-            change5SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange10SenQty()));
-            totalChangeRM100.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM100Qty() * 100));
-            totalChangeRM50.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM50Qty() * 50));
-            totalChangeRM20.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM20Qty() * 20));
-            totalChangeRM10.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM10Qty() * 10));
-            totalChangeRM5.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM5Qty() * 5));
-            totalChangeRM1.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChangeRM1Qty()));
-            totalChange50Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange50SenQty() * 0.5));
-            totalChange20Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange20SenQty() * 0.2));
-            totalChange10Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() * 0.1));
-            totalChange5Sen.setText(String.format("%.2f", (double)Purchase.getCashPayment().getChange10SenQty() *0.05));
-            totalChange.setText(String.format("%.2f", (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()))));
-            paymentMethodComboBox.setValue(paymentMethods[0]);
+            change5SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange5SenQty()));
+            change1SenQty.setText(String.valueOf(Purchase.getCashPayment().getChange1SenQty()));
+            totalChangeRM100.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM100()));
+            totalChangeRM50.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM50()));
+            totalChangeRM20.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM20()));
+            totalChangeRM10.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM10()));
+            totalChangeRM5.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM5()));
+            totalChangeRM1.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChangeRM1()));
+            totalChange50Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange50Sen()));
+            totalChange20Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange20Sen()));
+            totalChange10Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange10Sen()));
+            totalChange5Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange5Sen()));
+            totalChange1Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange1Sen()));
+            totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange()));
+            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cashPaymentAnchorPane.setVisible(true);
         }
         else if (paymentMethodComboBox.getValue().equals(paymentMethods[2])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);
+            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cardNumTextField.setText("");
             insertCardButton.setText("Insert Card");
             cardPINPasswordField.setText("");
@@ -578,14 +580,14 @@ public class MainController extends Draggable implements Initializable {
             isCardInserted = false;
         }
         else if (paymentMethodComboBox.getValue().equals(paymentMethods[3])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);
+            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+            LoginApi.setIsQRScanned(false);
         }
         voucherCodeComboBox.setValue(voucherCodes[0]);
         voucherDetails.setText("");
         paymentMethodAlert.setText("");
         paymentFromUser.clear();
         paymentAlert.setText("");
-        LoginApi.setIsQRScanned(false);
         for (int i = 0; i < sizeOfCart; i++){
             popCart(null);
         }
@@ -593,7 +595,7 @@ public class MainController extends Draggable implements Initializable {
         //PUA JIN JIAN
     }
 
-    public boolean isCorrectPaymentAmountFormat(String paymentAmount){
+    public boolean isPaymentAmountFormatInvalid(String paymentAmount){
         int countDecimalPoint = 0;
         int countDecimalPlace = 0;
         for(int i = 0; i < paymentAmount.length(); i++){
@@ -604,19 +606,19 @@ public class MainController extends Draggable implements Initializable {
                 countDecimalPoint++;
             }
             if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
-                return false;
+                return true;
             }
         }
 
         if (countDecimalPoint != 0 && countDecimalPoint != 1){
-            return false;
+            return true;
         }
 
         if (countDecimalPoint == 1 && countDecimalPlace != 2){
-            return false;
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public boolean isCardNumFormatInvalid(String cardNum){
