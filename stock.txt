@@ -1,0 +1,25 @@
+Product Name | Serial Number | Stock Quantity | Price (RM)
+==========================================================
+Acer Aspire | ACRASPR | 5 | 3099.0
+Asus S500SA | AS500SA | 5 | 3299.0
+Dell Inspiron | DELLISP | 3 | 3399.0
+HP ProDesk | HPPRODSK | 3 | 3659.0
+Lenovo ThinkCentre | LNVTHKCTR | 3 | 3499.0
+Apple iMac | APLIMAC | 8 | 4559.0
+Acer Nitro 5 | ACRNITRO5 | 10 | 4399.0
+Acer Swift 3X | ACRSWF3X | 8 | 4099.0
+Asus ROG Strix G15 | ROGSTXG15 | 12 | 4699.0
+Asus TUF Dash F15 | TUFDSHF15 | 8 | 4399.0
+Lenovo Legion 5 | LNVLGN5 | 6 | 4499.0
+Lenovo IdeaPad 5 Pro | LNVIDP5 | 8 | 3499.0
+Oppo Find X3 Pro | OPFX3PRO | 15 | 1299.0
+Oppo Realme GT | OPRLMGT | 12 | 1399.0
+Vivo iQOO 8 Pro | VVIQ8PRO | 12 | 1399.0
+Vivo iQOO Neo 5 | VVIQNEO5 | 12 | 1499.0
+Xiaomi Mi 11 Pro | XMI11PRO | 10 | 999.0
+Xiaomi Poco F3 | XMIPCF3 | 10 | 799.0
+Apple iPad 2020 | APLIPAD20 | 12 | 3499.0
+Apple iPad Pro 2021 | APLIPADPRO21 | 10 | 3699.0
+Huawei MatePad 11 | HWMTP11 | 10 | 2999.0
+Lenovo Pad Pro | LNVPADPRO | 8 | 799.0
+Samsung Galaxy Tab S7 | SSGTABS7 | 3199.0
