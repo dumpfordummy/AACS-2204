@@ -62,3 +62,6 @@
 2022/09/18 14:09:01 - 
 /C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:547
 
+2022/09/18 16:07:49 - Error resolving onAction='#insertCardOnAction', either the event handler is not in the Namespace or there is an error in the script.
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:574
+

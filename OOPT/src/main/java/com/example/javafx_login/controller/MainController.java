@@ -42,9 +42,9 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
-    private AnchorPane cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
+    private AnchorPane paymentDetailsAnchorPane, cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
     @FXML
-    private Label voucherDetails, checkoutAlert, paymentAlert;
+    private Label checkoutAlert, voucherDetails, paymentMethodAlert, paymentAlert;
     @FXML
     private Label changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     @FXML
@@ -52,7 +52,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ComboBox<String> voucherCode, paymentMethod;
     @FXML
-    private TextField paymentFromUser;
+    private TextField paymentFromUser, enterPINTextField;
     private String currentSelectedItemName, currentSelectedItemParentId;
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final double[] voucherCodeDiscountList = {5, 10, 20};
@@ -524,7 +524,11 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.clear();
         voucherDetails.setText("");
         paymentAlert.setText("");
+<<<<<<< Updated upstream
         LoginApi.setIsQRScanned(false);
+=======
+//        LoginApi.setRequestIsQRScanned("false");
+>>>>>>> Stashed changes
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
