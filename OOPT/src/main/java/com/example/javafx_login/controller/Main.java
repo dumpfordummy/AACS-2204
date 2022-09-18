@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        loadStage(stage, "/com/example/javafx_login/Main.fxml", 520, 400);
+        loadStage(stage, "/com/example/javafx_login/Login.fxml", 520, 400);
     }
 
      public static void loadStage(String fxmlName, int width, int height) throws IOException {
