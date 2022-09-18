@@ -1,5 +1,6 @@
 package com.example.javafx_login.controller;
 
+import com.example.javafx_login.api.LoginApi;
 import com.example.javafx_login.classes.*;
 import com.example.javafx_login.classes.abstracts.Draggable;
 import javafx.event.ActionEvent;
@@ -480,7 +481,7 @@ public class MainController extends Draggable implements Initializable {
 
         }
         else if (paymentMethod.getValue().equals("QR Code")){
-            if (paymentMethod.getValue().equals("QR Code") && !Boolean.parseBoolean(LoginApi.getRequestIsQRScanned())){
+            if (paymentMethod.getValue().equals("QR Code") && !Boolean.parseBoolean(LoginApi.getIsQRScanned())){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
             }
@@ -525,7 +526,7 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.clear();
         voucherDetails.setText("");
         paymentAlert.setText("");
-        LoginApi.setRequestIsQRScanned("false");
+        LoginApi.setIsQRScanned(false);
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
