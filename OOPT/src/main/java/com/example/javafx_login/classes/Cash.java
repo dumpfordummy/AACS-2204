@@ -23,7 +23,7 @@ public class Cash extends Payment{
     private double totalChange10Sen;
     private double totalChange5Sen;
     private double totalChange1Sen;
-    private double totalChange;
+    private double totalChangeLeft;
 
     public Cash(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
         super(voucherCode, paymentFromUser, subtotal, discountAmount);
@@ -31,93 +31,72 @@ public class Cash extends Payment{
     }
 
     public void calculateChange(double paymentFromUser, double subtotal, double discountAmount){
-        totalChange = paymentFromUser + discountAmount - subtotal;
-        if (totalChange/100 >= 1){
-            do {
-                totalChange -= 100;
-                changeRM100Qty++;
-                totalChangeRM100 += 100;
-            }while (totalChange/100 >= 1);
+        totalChangeLeft = paymentFromUser + discountAmount - subtotal;
+        if (totalChangeLeft / 100 >= 1){
+            changeRM100Qty = (int) (totalChangeLeft / 100);
+            totalChangeRM100 = changeRM100Qty * 100;
+            totalChangeLeft -= totalChangeRM100;
         }
 
-        if (totalChange/50 >= 1){
-            do {
-                totalChange -= 50;
-                changeRM50Qty++;
-                totalChangeRM50 += 50;
-            }while (totalChange/50 >= 1);
+        if (totalChangeLeft / 50 >= 1){
+            changeRM50Qty = (int) (totalChangeLeft / 50);
+            totalChangeRM50 = changeRM50Qty * 50;
+            totalChangeLeft -= totalChangeRM50;
         }
 
-        if (totalChange/20 >= 1){
-            do {
-                totalChange -= 20;
-                changeRM20Qty++;
-                totalChangeRM20 += 200;
-            }while (totalChange/20 >= 1);
+        if (totalChangeLeft / 20 >= 1){
+            changeRM20Qty = (int) (totalChangeLeft / 20);
+            totalChangeRM20 = changeRM20Qty * 20;
+            totalChangeLeft -= totalChangeRM20;
         }
 
-        if (totalChange/10 >= 1){
-            do {
-                totalChange -= 10;
-                changeRM10Qty++;
-                totalChangeRM10 += 10;
-            }while (totalChange/10 >= 1);
+        if (totalChangeLeft / 10 >= 1){
+            changeRM10Qty = (int) (totalChangeLeft / 10);
+            totalChangeRM10 = changeRM10Qty * 10;
+            totalChangeLeft -= totalChangeRM10;
         }
 
-        if (totalChange/5 >= 1){
-            do {
-                totalChange -= 5;
-                changeRM5Qty++;
-                totalChangeRM5 += 5;
-            }while (totalChange/5 >= 1);
+        if (totalChangeLeft / 5 >= 1){
+            changeRM5Qty = (int) (totalChangeLeft / 5);
+            totalChangeRM5 = changeRM5Qty * 5;
+            totalChangeLeft -= totalChangeRM5;
         }
 
-        if (totalChange >= 1){
-            do {
-                totalChange -= 1;
-                changeRM1Qty++;
-                totalChangeRM1 += 1;
-            }while (totalChange >= 1);
+        if (totalChangeLeft >= 1){
+            changeRM1Qty = (int) totalChangeLeft;
+            totalChangeRM1 = changeRM1Qty;
+            totalChangeLeft -= totalChangeRM1;
         }
 
-        if (totalChange/0.5 >= 1){
-            do {
-                totalChange -= 0.5;
-                change50SenQty++;
-                totalChange50Sen += 0.5;
-            }while (totalChange/0.5 >= 1);
+        if (totalChangeLeft / 0.5 >= 1){
+            change50SenQty = (int) (totalChangeLeft / 0.5);
+            totalChange50Sen = change50SenQty * 0.5;
+            totalChangeLeft -= totalChange50Sen;
         }
 
-        if (totalChange/0.2 >= 1){
-            do {
-                totalChange -= 0.2;
-                change20SenQty++;
-                totalChange20Sen += 0.2;
-            }while (totalChange/0.2 >= 1);
+        if (totalChangeLeft / 0.2 >= 1){
+            change20SenQty = (int) (totalChangeLeft / 0.2);
+            totalChange20Sen = change20SenQty * 0.2;
+            totalChangeLeft -= totalChange20Sen;
         }
 
-        if (totalChange/0.1 >= 1){
-            do {
-                totalChange -= 0.1;
-                change10SenQty++;
-                totalChange10Sen += 0.1;
-            }while (totalChange/0.1 >= 1);
+        if (totalChangeLeft / 0.1 >= 1){
+            change10SenQty = (int) (totalChangeLeft / 0.1);
+            totalChange10Sen = change10SenQty * 0.1;
+            totalChangeLeft -= totalChange10Sen;
         }
 
-        if (totalChange/0.05 >= 1){
-            do {
-                totalChange -= 0.05;
-                change5SenQty++;
-                totalChange5Sen += 0.05;
-            }while (totalChange/0.05 >= 1);
+        if (totalChangeLeft / 0.05 >= 1){
+            change5SenQty = (int) (totalChangeLeft / 0.05);
+            totalChange5Sen = change5SenQty * 0.05;
+            totalChangeLeft -= totalChange5Sen;
         }
 
-        if (totalChange/0.01 >= 1){
-            do {
-                totalChange -= 0.01;
-                change1SenQty++;
-                totalChange1Sen += 0.01;
-            }while (totalChange/0.01 >= 1);
+        totalChangeLeft = Math.round(totalChangeLeft * 100)/100.00;
+        if (totalChangeLeft /0.01 >= 1){
+            change1SenQty = (int) (totalChangeLeft /0.01);
+            totalChange1Sen = change1SenQty * 0.01;
+            totalChangeLeft -= totalChange1Sen;
         }
     }
 
@@ -296,11 +275,11 @@ public class Cash extends Payment{
         this.totalChange1Sen = totalChange1Sen;
     }
 
-    public double getTotalChange() {
-        return totalChange;
+    public double getTotalChangeLeft() {
+        return totalChangeLeft;
     }
 
-    public void setTotalChange(double totalChange) {
-        this.totalChange = totalChange;
+    public void setTotalChangeLeft(double totalChangeLeft) {
+        this.totalChangeLeft = totalChangeLeft;
     }
 }

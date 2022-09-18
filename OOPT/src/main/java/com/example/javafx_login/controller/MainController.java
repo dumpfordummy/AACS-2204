@@ -356,7 +356,6 @@ public class MainController extends Draggable implements Initializable {
             }
         }
         updateUICart();
-        System.out.println(ShoppingCart.getCart().size());
     }
 
     public void popCart(ActionEvent event) {
@@ -567,7 +566,7 @@ public class MainController extends Draggable implements Initializable {
             totalChange10Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange10Sen()));
             totalChange5Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange5Sen()));
             totalChange1Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange1Sen()));
-            totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange()));
+            totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getPaymentFromUser() + Purchase.getCashPayment().getDiscountAmount() - Purchase.getCashPayment().getSubtotal()));
             paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cashPaymentAnchorPane.setVisible(true);
         }
