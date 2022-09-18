@@ -9,12 +9,13 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.ArrayList;
-import java.util.concurrent.atomic.AtomicReference;
+import java.util.Objects;
 
 public class LoginApi {
     static String apiUrl = "https://ooptwebapi.azurewebsites.net/loginapis";
     static ArrayList<String> username;
     static ArrayList<String> password;
+    static String result;
 
     static {
         username = new ArrayList<>();
@@ -31,25 +32,28 @@ public class LoginApi {
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create(apiUrl)).build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenAccept(LoginApi::parse)
+                .thenAccept(LoginApi::parseLogin)
                 .join();
     }
 
-    public static String getIsQRScanned() {
-        AtomicReference<String> result = new AtomicReference<>();
+    public static boolean getIsQRScanned() {
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://ooptwebapi.azurewebsites.net/loginapis/getQrScanned")).build();
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                 .thenApply(HttpResponse::body)
-                .thenAccept(result::set);
-        return result.get();
+                .thenAccept((String responseBody) -> {
+                    result = new JSONArray(responseBody).getJSONObject(0).getString("status");
+                })
+                .join();
+
+        return Objects.equals(result, "true");
     }
 
     public static void setIsQRScanned(boolean isQRScanned) {
         String url;
-        if(isQRScanned){
+        if (isQRScanned) {
             url = "https://ooptwebapi.azurewebsites.net/loginapis/setQrScanned/true";
-        }else {
+        } else {
             url = "https://ooptwebapi.azurewebsites.net/loginapis/setQrScanned/false";
         }
         HttpClient client = HttpClient.newHttpClient();
@@ -57,9 +61,9 @@ public class LoginApi {
         client.sendAsync(request, HttpResponse.BodyHandlers.ofString());
     }
 
-    public static void parse(String responseBody) {
+    public static void parseLogin(String responseBody) {
         JSONArray logins = new JSONArray(responseBody);
-        for(int i = 0; i < logins.length(); i++) {
+        for (int i = 0; i < logins.length(); i++) {
             JSONObject login = logins.getJSONObject(i);
             username.add(login.getString("username"));
             password.add(login.getString("password"));
@@ -75,6 +79,6 @@ public class LoginApi {
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(data))
                 .build();
-       return client.send(request, HttpResponse.BodyHandlers.discarding());
+        return client.send(request, HttpResponse.BodyHandlers.discarding());
     }
 }

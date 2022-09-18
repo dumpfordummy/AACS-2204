@@ -481,7 +481,7 @@ public class MainController extends Draggable implements Initializable {
 
         }
         else if (paymentMethod.getValue().equals("QR Code")){
-            if (paymentMethod.getValue().equals("QR Code") && !Boolean.parseBoolean(LoginApi.getIsQRScanned())){
+            if (paymentMethod.getValue().equals("QR Code") && LoginApi.getIsQRScanned()){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
             }

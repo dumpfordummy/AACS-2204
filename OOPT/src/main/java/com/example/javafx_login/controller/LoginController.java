@@ -2,7 +2,9 @@ package com.example.javafx_login.controller;
 
 import com.example.javafx_login.api.LoginApi;
 import com.example.javafx_login.classes.abstracts.Draggable;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -12,14 +14,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import javafx.fxml.Initializable;
 import java.util.ResourceBundle;
 
 
