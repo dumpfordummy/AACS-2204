@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderpane" onMouseDragged="#borderpaneOnDrag" onMousePressed="#borderpaneOnPress" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_login.controller.MainController">
+<BorderPane fx:id="borderpane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_login.controller.MainController">
    <top>
-      <AnchorPane prefHeight="80.0" prefWidth="600.0" styleClass="themeColor" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
+      <AnchorPane onMouseDragged="#borderpaneOnDrag" onMousePressed="#borderpaneOnPress" prefHeight="80.0" prefWidth="600.0" styleClass="themeColor" stylesheets="@../../../style.css" BorderPane.alignment="CENTER">
          <children>
             <AnchorPane minHeight="80.0" minWidth="100.0" onMouseClicked="#desktopSectionOnAction">
                <children>
