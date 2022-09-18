@@ -35,9 +35,11 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView settingsImageView, userIconImageView;
     @FXML
+    private ImageView cardTerminalImageView;
+    @FXML
     private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
-    private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane;
+    private AnchorPane rightAnchorPaneContent, cashPaymentAnchorPane, cardPaymentAnchorPane, QRCodePaymentAnchorPane;
     @FXML
     private Label messageLabel, subtotalLabel, userName, userDate, userID, voucherDetails, checkoutAlert, paymentAlert, changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange;
     @FXML
@@ -421,14 +423,23 @@ public class MainController extends Draggable implements Initializable {
         if(paymentMethod.getValue().equals("Cash")){
             paymentFromUser.setEditable(true);
             paymentFromUser.setText("");
+            cashPaymentAnchorPane.setVisible(true);
+            cardPaymentAnchorPane.setVisible(false);
+            QRCodePaymentAnchorPane.setVisible(false);
         }
         else if(paymentMethod.getValue().equals("Card")){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            cashPaymentAnchorPane.setVisible(false);
+            cardPaymentAnchorPane.setVisible(true);
+            QRCodePaymentAnchorPane.setVisible(false);
         }
         else if(paymentMethod.getValue().equals("QR Code")){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            cashPaymentAnchorPane.setVisible(false);
+            cardPaymentAnchorPane.setVisible(false);
+            QRCodePaymentAnchorPane.setVisible(true);
         }
     }
 
@@ -455,7 +466,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("");
         }
         else if (paymentMethod.getValue().equals("Card")){
-            
+
         }
         else if (paymentMethod.getValue().equals("QR Code")){
             if (paymentMethod.getValue().equals("QR Code") && !isQRCodeScanned){
