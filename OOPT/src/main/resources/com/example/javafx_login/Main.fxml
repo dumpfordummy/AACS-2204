@@ -487,15 +487,15 @@
                         <AnchorPane fx:id="paymentDetailsAnchorPane" prefHeight="150.0" prefWidth="500.0">
                            <children>
                               <Label layoutX="10.0" layoutY="10.0" text="Voucher Code           :" />
-                              <ComboBox fx:id="voucherCode" layoutX="130.0" layoutY="5.0" onAction="#voucherCodeOnAction" prefWidth="150.0" />
+                              <ComboBox fx:id="voucherCodeComboBox" layoutX="130.0" layoutY="5.0" onAction="#voucherCodeComboBoxOnAction" prefWidth="150.0" />
                               <Label fx:id="voucherDetails" layoutX="290.0" layoutY="10.0" />
                               <Label layoutX="10.0" layoutY="40.0" text="Payment Method     :" />
-                              <ComboBox fx:id="paymentMethod" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodOnAction" prefWidth="150.0" />
+                              <ComboBox fx:id="paymentMethodComboBox" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodComboBoxOnAction" prefWidth="150.0" />
                               <Label layoutX="10.0" layoutY="70.0" text="Payment From User :" />
                               <TextField fx:id="paymentFromUser" layoutX="130.0" layoutY="65.0" />
                               <Button layoutX="290.0" layoutY="65.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
                               <Label fx:id="paymentMethodAlert" layoutX="123.0" layoutY="59.0" textFill="RED" />
-                              <Label fx:id="paymentAlert" layoutX="130.0" layoutY="95.0" textFill="RED" />
+                              <Label fx:id="paymentAlert" layoutX="290.0" layoutY="95.0" textFill="RED" />
                            </children>
                         </AnchorPane>
                         <AnchorPane fx:id="cashPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false">
@@ -555,7 +555,7 @@
                         </AnchorPane>
                         <AnchorPane fx:id="cardPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0">
                            <children>
-                              <Button layoutX="182.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
+                              <Button fx:id="insertCardButton" layoutX="182.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
                               <AnchorPane fx:id="cardTerminalAnchorPane" prefHeight="200.0" prefWidth="200.0">
                                  <children>
                                     <ImageView fx:id="cardTerminalImageView" fitHeight="256.0" fitWidth="161.0" layoutX="10.0" pickOnBounds="true" preserveRatio="true">
@@ -563,7 +563,7 @@
                                           <Image url="@../../../../../../image/CardTerminal.png" />
                                        </image>
                                     </ImageView>
-                                    <TextField fx:id="cardNumTextField" alignment="CENTER" editable="false" layoutX="38.0" layoutY="10.0" prefHeight="71.0" prefWidth="89.0" promptText="Enter Card Number">
+                                    <TextField fx:id="cardNumTextField" alignment="CENTER" layoutX="38.0" layoutY="10.0" prefHeight="71.0" prefWidth="89.0" promptText="Enter Card Number">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
@@ -574,10 +574,10 @@
                                  <children>
                                     <ImageView fx:id="cardTerminal_2ImageView" fitHeight="300.0" fitWidth="180.0" layoutX="5.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../image/CardTerminal_2.png" />
+                                          <Image url="@../../../../../../image/CardTerminalInserted.png" />
                                        </image>
                                     </ImageView>
-                                    <TextField fx:id="cardPINTextField" layoutX="38.0" layoutY="10.0" prefHeight="70.0" prefWidth="90.0" promptText="Enter PIN">
+                                    <TextField fx:id="cardPINTextField" layoutX="38.0" layoutY="10.0" prefHeight="70.0" prefWidth="90.0" promptText="Enter PIN Number">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
