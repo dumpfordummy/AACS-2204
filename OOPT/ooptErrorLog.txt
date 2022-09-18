@@ -53,3 +53,6 @@
 2022/09/18 12:48:49 - Error resolving onAction='#clearPaymentScreenOnAction', either the event handler is not in the Namespace or there is an error in the script.
 /C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:541
 
+2022/09/18 13:07:10 - 
+/C:/Users/Asus/Desktop/OOPT%20Github/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml:543
+

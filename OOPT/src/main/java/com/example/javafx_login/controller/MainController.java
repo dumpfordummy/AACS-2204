@@ -47,16 +47,11 @@ public class MainController extends Draggable implements Initializable {
     private ComboBox<String> voucherCode;
     @FXML
     private TextField paymentFromUser;
-<<<<<<< Updated upstream
-    private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
-    private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
-=======
+
     private Stage stage;
-    private String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
-    private double[] voucherCodeDiscountList = {5, 10, 20};
-    private String[] paymentMethods = {"Cash", "Card", "QR Code"};
-    private boolean isDonePayment;
->>>>>>> Stashed changes
+    private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+    private final double[] voucherCodeDiscountList = {5, 10, 20};
+    private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -397,11 +392,6 @@ public class MainController extends Draggable implements Initializable {
 
     }
     public void makePaymentOnAction(ActionEvent event){
-        if (isDonePayment){
-            paymentAlert.setText("Payment Is Completed!");
-            return;
-        }
-
         if (paymentMethod.getValue() == null){
             paymentAlert.setText("Please Choose Payment Method!");
             return;
@@ -497,10 +487,6 @@ public class MainController extends Draggable implements Initializable {
             else
                 voucherDetails.setText("");
         }
-    }
-
-    public void clearPaymentScreenOnAction(){
-
     }
 
     public double getDiscountAmount(){
