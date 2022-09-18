@@ -49,6 +49,7 @@ public class MainController extends Draggable implements Initializable {
     private final String[] voucherCodeList = {"RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
     private final double[] voucherCodeDiscountList = {5, 10, 20};
     private final String[] paymentMethods = {"Cash", "Card", "QR Code"};
+    private boolean isQRCodeScanned;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -437,20 +438,34 @@ public class MainController extends Draggable implements Initializable {
             return;
         }
 
-        if (paymentFromUser.getText().equals("")){
-            paymentAlert.setText("Please Enter Payment Amount!");
-            return;
+        if (paymentMethod.getValue().equals("Cash")){
+            if (paymentFromUser.getText().equals("")){
+                paymentAlert.setText("Please Enter Payment Amount!");
+                return;
+            }
+            else if (!isCorrectPaymentAmountFormat(paymentFromUser.getText())){
+                paymentAlert.setText("Incorrect Payment Amount Format!");
+                return;
+            }
+            else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0){
+                paymentAlert.setText("Payment Amount Not Enough!");
+                return;
+            }
+            else
+                paymentAlert.setText("");
         }
-        else if (!isCorrectPaymentAmountFormat(paymentFromUser.getText())){
-            paymentAlert.setText("Incorrect Payment Amount Format!");
-            return;
+        else if (paymentMethod.getValue().equals("Card")){
+            
         }
-        else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0){
-            paymentAlert.setText("Payment Amount Not Enough!");
-            return;
+        else if (paymentMethod.getValue().equals("QR Code")){
+            if (paymentMethod.getValue().equals("QR Code") && !isQRCodeScanned){
+                paymentAlert.setText("Please Scan The QR Code!");
+                return;
+            }
         }
-        else
-            paymentAlert.setText("");
+
+
+
         Purchase.makePayment(voucherCode.getValue(), paymentMethod.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         if(paymentMethod.getValue().equals("Cash")){
             cashPaymentAnchorPane.setVisible(true);
@@ -487,6 +502,7 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.clear();
         voucherDetails.setText("");
         paymentAlert.setText("");
+        isQRCodeScanned = false;
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++){
             popCart(event);
