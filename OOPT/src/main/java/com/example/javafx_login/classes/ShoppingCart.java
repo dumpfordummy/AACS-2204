@@ -20,7 +20,7 @@ public class ShoppingCart {
         cart.add(items);
     }
 
-    public static void popCart(int index) {
+    public static void removeCartAtIndex(int index) {
         cart.remove(index);
     }
 }

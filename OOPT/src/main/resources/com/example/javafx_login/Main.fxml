@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -487,14 +488,14 @@
                         <AnchorPane fx:id="paymentDetailsAnchorPane" prefHeight="150.0" prefWidth="500.0">
                            <children>
                               <Label layoutX="10.0" layoutY="10.0" text="Voucher Code           :" />
-                              <ComboBox fx:id="voucherCodeComboBox" layoutX="130.0" layoutY="5.0" onAction="#voucherCodeComboBoxOnAction" prefWidth="150.0" />
+                              <ComboBox fx:id="voucherCodeComboBox" layoutX="130.0" layoutY="5.0" onAction="#voucherCodeComboBoxOnAction" prefWidth="150.0" promptText="(Please Choose)" />
                               <Label fx:id="voucherDetails" layoutX="290.0" layoutY="10.0" />
                               <Label layoutX="10.0" layoutY="40.0" text="Payment Method     :" />
-                              <ComboBox fx:id="paymentMethodComboBox" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodComboBoxOnAction" prefWidth="150.0" />
+                              <ComboBox fx:id="paymentMethodComboBox" layoutX="130.0" layoutY="35.0" onAction="#paymentMethodComboBoxOnAction" prefWidth="150.0" promptText="(Please Choose)" />
+                              <Label fx:id="paymentMethodAlert" layoutX="290.0" layoutY="38.0" textFill="RED" />
                               <Label layoutX="10.0" layoutY="70.0" text="Payment From User :" />
                               <TextField fx:id="paymentFromUser" layoutX="130.0" layoutY="65.0" />
                               <Button layoutX="290.0" layoutY="65.0" mnemonicParsing="false" onAction="#makePaymentOnAction" text="Make payment" />
-                              <Label fx:id="paymentMethodAlert" layoutX="123.0" layoutY="59.0" textFill="RED" />
                               <Label fx:id="paymentAlert" layoutX="290.0" layoutY="95.0" textFill="RED" />
                            </children>
                         </AnchorPane>
@@ -553,7 +554,7 @@
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="cardPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0">
+                        <AnchorPane fx:id="cardPaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false">
                            <children>
                               <Button fx:id="insertCardButton" layoutX="182.0" layoutY="231.0" mnemonicParsing="false" onAction="#insertCardOnAction" text="Insert Card" />
                               <AnchorPane fx:id="cardTerminalAnchorPane" prefHeight="200.0" prefWidth="200.0">
@@ -577,16 +578,23 @@
                                           <Image url="@../../../../../../image/CardTerminalInserted.png" />
                                        </image>
                                     </ImageView>
-                                    <TextField fx:id="cardPINTextField" layoutX="38.0" layoutY="10.0" prefHeight="70.0" prefWidth="90.0" promptText="Enter PIN Number">
+                                    <PasswordField fx:id="cardPINPasswordField" layoutX="38.0" layoutY="10.0" prefHeight="70.0" prefWidth="90.0" promptText="Enter PIN Number">
                                        <font>
                                           <Font size="9.0" />
                                        </font>
-                                    </TextField>
+                                    </PasswordField>
                                  </children>
                               </AnchorPane>
                            </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="QRCodePaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0" visible="false" />
+                        <AnchorPane fx:id="QRCodePaymentAnchorPane" layoutY="100.0" prefHeight="300.0" prefWidth="500.0">
+                           <children>
+                              <ImageView fx:id="QRCodeImageView" fitHeight="272.0" fitWidth="264.0" layoutX="118.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../../../image/qr.png" />
+                                 </image>
+                              </ImageView>
+                           </children></AnchorPane>
                      </children>
                   </AnchorPane>
                   <AnchorPane fx:id="settingsAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
