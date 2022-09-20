@@ -5,10 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerson {
-
-    private static List<Item> totalSold = new ArrayList<>();
+    //poly for staff type
     private static String loginUserName = "PuaJJ", loginPassword, userType="Bronze";
-    private static int ID=2108105, itemSold;
+    private static int ID=2108105, itemSold=0;
     private static double basicSalary, grossSale, commissionRate;
 
     public SalesPerson(String name, String loginPassword, String userType, int ID, double basicSalary, double grossSale, double commissionRate) {
@@ -22,15 +21,6 @@ public class SalesPerson {
     }
     public SalesPerson(){}
     //getter and setter start
-
-    public static List<Item> getTotalSold() {
-        return totalSold;
-    }
-
-    public static void setTotalSold(List<Item> totalSold) {
-        SalesPerson.totalSold = totalSold;
-    }
-
     public static String getLoginUserName() {
         return loginUserName;
     }

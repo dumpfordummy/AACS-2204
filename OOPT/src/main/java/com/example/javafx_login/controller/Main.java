@@ -1,5 +1,8 @@
 package com.example.javafx_login.controller;
 
+import com.example.javafx_login.classes.Item;
+import com.example.javafx_login.classes.SalesPerson;
+import com.example.javafx_login.classes.ShoppingCart;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,7 +12,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
- // This is starter java class
+import java.util.List;
+
+// This is starter java class
 // test
 public class Main extends Application {
     @Override

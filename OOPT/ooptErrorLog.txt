@@ -98,3 +98,13 @@
 2022/09/19 20:50:06 - 
 /C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/YEAR2/SEM1/JAVA/assignment/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml
 
+2022/09/20 10:29:48 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:04 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:04 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:05 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:12 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:28 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:30 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake

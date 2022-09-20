@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -50,9 +51,14 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label messageLabel, subtotalLabel, userName, userType, userID, grossSale, itemSold;
     @FXML
+    private Label recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5;
+    @FXML
+    private Label[] recentlySoldArrName;
+    @FXML
     private ComboBox<String> voucherCodeComboBox, paymentMethodComboBox;
     @FXML
     private TextField paymentFromUser, cardNumTextField;
+
     @FXML
     private PasswordField cardPINPasswordField;
     @FXML
@@ -72,7 +78,7 @@ public class MainController extends Draggable implements Initializable {
         SettingsImageViewRenderer();
         userImageViewRenderer();
         staffPicViewRenderer();
-        initUser();
+        updateUserUI();
         cardTerminalImageViewRenderer();
         QRCodeImageViewRenderer();
         voucherCodeComboBox.getItems().addAll(voucherCodes);
@@ -423,19 +429,17 @@ public class MainController extends Draggable implements Initializable {
             checkoutAlert.setText("");
         checkoutSectionOnAction();
         //validationOnCheckout();
-        updateItemSold();
+        updateTotalItemSold();
+        updateGrossSales();
+        initializeRecentlySoldArr();
+        updateRecentlySoldTable();
+        updateUserUI();
         voucherCodeComboBox.setValue(voucherCodes[0]);
         voucherDetails.setText("");
         paymentMethodComboBox.setValue(paymentMethods[0]);
         paymentMethodAlert.setText("");
         paymentFromUser.setText("");
         paymentAlert.setText("");
-    }
-    public void updateItemSold(){
-        List<Item> cart = ShoppingCart.getCart();
-        for(int i=0; i<cart.size(); i++){
-            SalesPerson.setItemSold(SalesPerson.getItemSold() + cart.get(i).getQuantity());
-        }
     }
     public void voucherCodeComboBoxOnAction(ActionEvent event){
         if (paymentMethodComboBox.getValue() == null){
@@ -697,15 +701,36 @@ public class MainController extends Draggable implements Initializable {
     }
 
     //PUA JIN JIAN
-    public void initUser(){
-        SalesPerson s1 = new SalesPerson();
+    public void updateUserUI(){
         userName.setText(SalesPerson.getLoginUserName());
         userID.setText(String.valueOf(SalesPerson.getID()));
         userType.setText(SalesPerson.getUserType());
-        grossSale.setText(String.valueOf(SalesPerson.getGrossSale()));
         itemSold.setText(String.valueOf(SalesPerson.getItemSold()));
+        grossSale.setText(String.valueOf(SalesPerson.getGrossSale()));
     }
 
+    public void updateTotalItemSold(){
+        List<Item> cart = ShoppingCart.getCart();
+        for(int i=0; i<cart.size(); i++){
+            SalesPerson.setItemSold(SalesPerson.getItemSold() + cart.get(i).getQuantity());
+        }
+    }
+
+    public void updateGrossSales(){
+        List<Item> cart = ShoppingCart.getCart();
+        for(int i=0; i<cart.size(); i++){
+            SalesPerson.setGrossSale(SalesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
+        }
+    }
+    public void initializeRecentlySoldArr(){
+        recentlySoldArrName = new Label[]{recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5};
+    }
+    public void updateRecentlySoldTable(){
+        List<Item> cart = ShoppingCart.getCart();
+        for(int i=0; i<cart.size(); i++){
+            recentlySoldArrName[i].setText(cart.get(i).getName());
+        }
+    }
     public void validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
