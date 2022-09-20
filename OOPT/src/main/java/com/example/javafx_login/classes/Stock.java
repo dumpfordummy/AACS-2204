@@ -40,6 +40,37 @@ abstract public class Stock {
         }
     }
 
+    public static void updateStock(String name, int quantity){
+        String[] selectedProductDetails;
+        try {
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter("temp.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.contains(name)) {
+                    selectedProductDetails = line.split(" \\| ", 0);
+                    writer1.write(name + " | " + selectedProductDetails[1] + " | " + quantity + " | " + selectedProductDetails[3] + "\n");
+                }
+                else {
+                    writer1.write(line);
+                    writer1.write("\n");
+                }
+            }
+            writer1.close();
+            reader.close();
+
+            File oldfile = new File("stock.txt");
+            oldfile.delete();
+            File newfile = new File("temp.txt");
+            newfile.renameTo(new File("stock.txt"));
+
+        } catch (IOException e){
+            System.out.println("Unable to update file!");
+            e.printStackTrace();
+        }
+
+    }
+
     //display all products(regardless availability)
     public static void getAllProducts(){
         try {
