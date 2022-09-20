@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -441,6 +440,7 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.setText("");
         paymentAlert.setText("");
     }
+
     public void voucherCodeComboBoxOnAction(ActionEvent event){
         if (paymentMethodComboBox.getValue() == null){
             return;
@@ -514,7 +514,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("Please Enter Payment Amount!");
                 return;
             }
-            else if (isPaymentAmountFormatInvalid(paymentFromUser.getText())){
+            else if (Cash.isPaymentAmountFormatInvalid(paymentFromUser.getText())){
                 paymentAlert.setText("Digits With/Without 2 Decimal Places!");
                 return;
             }
@@ -530,7 +530,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
             }
-            else if (isCardNumFormatInvalid(cardNumTextField.getText())){
+            else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
             }
@@ -542,7 +542,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("Please Enter PIN Number!");
                 return;
             }
-            else if (!isCorrectCardPINFormat(cardPINPasswordField.getText())){
+            else if (Card.isCardPINFormatInvalid(cardPINPasswordField.getText())){
                 paymentAlert.setText("6 Digits Card PIN!");
                 return;
             }
@@ -608,56 +608,6 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public boolean isPaymentAmountFormatInvalid(String paymentAmount){
-        int countDecimalPoint = 0;
-        int countDecimalPlace = 0;
-        for(int i = 0; i < paymentAmount.length(); i++){
-            if (countDecimalPoint == 1){
-                countDecimalPlace++;
-            }
-            if (paymentAmount.charAt(i) == '.'){
-                countDecimalPoint++;
-            }
-            if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
-                return true;
-            }
-        }
-
-        if (countDecimalPoint != 0 && countDecimalPoint != 1){
-            return true;
-        }
-
-        if (countDecimalPoint == 1 && countDecimalPlace != 2){
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean isCardNumFormatInvalid(String cardNum){
-        if (cardNum.length() != 8){
-            return true;
-        }
-        for(int i = 0; i < cardNum.length(); i++){
-            if (cardNum.charAt(i) != '0' && cardNum.charAt(i) != '1' && cardNum.charAt(i) != '2' && cardNum.charAt(i) != '3' && cardNum.charAt(i) != '4' && cardNum.charAt(i) != '5' && cardNum.charAt(i) != '6' && cardNum.charAt(i) != '7' && cardNum.charAt(i) != '8' && cardNum.charAt(i) != '9'){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isCorrectCardPINFormat(String cardPIN){
-        if (cardPIN.length() != 6){
-            return false;
-        }
-        for(int i = 0; i < cardPIN.length(); i++){
-            if (cardPIN.charAt(i) != '0' && cardPIN.charAt(i) != '1' && cardPIN.charAt(i) != '2' && cardPIN.charAt(i) != '3' && cardPIN.charAt(i) != '4' && cardPIN.charAt(i) != '5' && cardPIN.charAt(i) != '6' && cardPIN.charAt(i) != '7' && cardPIN.charAt(i) != '8' && cardPIN.charAt(i) != '9'){
-                return false;
-            }
-        }
-        return true;
-    }
-
     public double getDiscountAmount(){
         if (voucherCodeComboBox.getValue() == null){
             return 0;
@@ -676,7 +626,7 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
             }
-            else if (isCardNumFormatInvalid(cardNumTextField.getText())){
+            else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
             }
