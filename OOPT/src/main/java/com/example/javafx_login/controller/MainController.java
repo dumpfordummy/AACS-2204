@@ -63,9 +63,9 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Button insertCardButton;
     private String currentSelectedItemName, currentSelectedItemParentId;
-    private final String[] voucherCodes = {"(Please Choose)", "RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+
     private final double[] voucherCodeDiscounts = {0, 5, 10, 20};
-    private final String[] paymentMethods = {"(Please Choose)", "Cash", "Card", "QR Code"};
+
     private boolean isCardInserted = false;
 
     @Override
@@ -80,8 +80,8 @@ public class MainController extends Draggable implements Initializable {
         updateUserUI();
         cardTerminalImageViewRenderer();
         QRCodeImageViewRenderer();
-        voucherCodeComboBox.getItems().addAll(voucherCodes);
-        paymentMethodComboBox.getItems().addAll(paymentMethods);
+        voucherCodeComboBox.getItems().addAll(Purchase.getVoucherCodes());
+        paymentMethodComboBox.getItems().addAll(Purchase.getPaymentMethods());
     }
 
     @Override

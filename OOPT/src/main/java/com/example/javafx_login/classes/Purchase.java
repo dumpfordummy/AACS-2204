@@ -6,6 +6,25 @@ import java.util.Objects;
 
 public class Purchase {
     private static List<Payment> paymentList = new ArrayList<>();
+    private static String[] paymentMethods = {"(Please Choose)", "Cash", "Card", "QR Code"};
+
+    public static String[] getPaymentMethods() {
+        return paymentMethods;
+    }
+
+    public static void setPaymentMethods(String[] paymentMethods) {
+        Purchase.paymentMethods = paymentMethods;
+    }
+
+    private static String[] voucherCodes = {"(Please Choose)", "RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+
+    public static String[] getVoucherCodes() {
+        return voucherCodes;
+    }
+
+    public static void setVoucherCodes(String[] voucherCodes) {
+        Purchase.voucherCodes = voucherCodes;
+    }
 
     public Purchase() {
 
