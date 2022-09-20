@@ -433,9 +433,9 @@ public class MainController extends Draggable implements Initializable {
         initializeRecentlySoldArr();
         updateRecentlySoldTable();
         updateUserUI();
-        voucherCodeComboBox.setValue(voucherCodes[0]);
+        voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
-        paymentMethodComboBox.setValue(paymentMethods[0]);
+        paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
         paymentMethodAlert.setText("");
         paymentFromUser.setText("");
         paymentAlert.setText("");
@@ -446,21 +446,21 @@ public class MainController extends Draggable implements Initializable {
             return;
         }
 
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             paymentFromUser.setEditable(true);
             paymentFromUser.setText("");
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
         }
 
-        for (int i = 0; i < voucherCodes.length; i++){
-            if(voucherCodeComboBox.getValue().equals(voucherCodes[i])){
+        for (int i = 0; i < Purchase.getVoucherCodes().length; i++){
+            if(voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])){
                 voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscounts[i]));
                 return;
             }
@@ -470,28 +470,28 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void paymentMethodComboBoxOnAction(ActionEvent event){
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[0])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText("");
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(false);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             paymentFromUser.setEditable(true);
             paymentFromUser.setText("");
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(false);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(true);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
@@ -502,14 +502,14 @@ public class MainController extends Draggable implements Initializable {
 
     public void makePaymentOnAction(ActionEvent event){
         int sizeOfCart = ShoppingCart.getCart().size();
-        if (paymentMethodComboBox.getValue().equals(paymentMethods[0])){
+        if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])){
             paymentMethodAlert.setText("Please Choose Payment Method!");
             return;
         }
         else
             paymentMethodAlert.setText("");
 
-        if (paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             if (paymentFromUser.getText().equals("")){
                 paymentAlert.setText("Please Enter Payment Amount!");
                 return;
@@ -525,7 +525,7 @@ public class MainController extends Draggable implements Initializable {
             else
                 paymentAlert.setText("");
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             if (cardNumTextField.getText().equals("")){
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
@@ -549,7 +549,7 @@ public class MainController extends Draggable implements Initializable {
             else
                 paymentAlert.setText("");
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             if (!LoginApi.getIsQRScanned()){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
@@ -559,7 +559,7 @@ public class MainController extends Draggable implements Initializable {
         }
         Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         //Finish Payment
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             changeRM100Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM100Qty()));
             changeRM50Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM50Qty()));
             changeRM20Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM20Qty()));
@@ -583,22 +583,22 @@ public class MainController extends Draggable implements Initializable {
             totalChange5Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange5Sen()));
             totalChange1Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange1Sen()));
             totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getPaymentFromUser() + Purchase.getCashPayment().getDiscountAmount() - Purchase.getCashPayment().getSubtotal()));
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cashPaymentAnchorPane.setVisible(true);
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[2])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cardNumTextField.setText("");
             insertCardButton.setText("Insert Card");
             cardPINPasswordField.setText("");
             cardTerminal_2AnchorPane.setVisible(false);
             isCardInserted = false;
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[3])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             LoginApi.setIsQRScanned(false);
         }
-        voucherCodeComboBox.setValue(voucherCodes[0]);
+        voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
         paymentMethodAlert.setText("");
         paymentFromUser.clear();
@@ -612,8 +612,8 @@ public class MainController extends Draggable implements Initializable {
         if (voucherCodeComboBox.getValue() == null){
             return 0;
         }
-        for (int i = 0; i < voucherCodes.length; i++){
-            if(voucherCodeComboBox.getValue().equals(voucherCodes[i])){
+        for (int i = 0; i < Purchase.getVoucherCodes().length; i++){
+            if(voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])){
                 return voucherCodeDiscounts[i];
             }
         }
