@@ -34,7 +34,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView accessoryImageView, accessoryImageView_1, accessoryImageView_2, accessoryImageView_3, accessoryImageView_4, accessoryImageView_5;
     @FXML
-    private ImageView settingsImageView, userIconImageView;
+    private ImageView settingsImageView, userIconImageView, staffPicView;
     @FXML
     private ImageView cardTerminalImageView, cardTerminal_2ImageView, QRCodeImageView;
     @FXML
@@ -48,7 +48,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label changeRM100Qty, changeRM50Qty, changeRM20Qty, changeRM10Qty, changeRM5Qty, changeRM1Qty, change50SenQty, change20SenQty, change10SenQty, change5SenQty, change1SenQty, totalChangeRM100, totalChangeRM50, totalChangeRM20, totalChangeRM10, totalChangeRM5, totalChangeRM1, totalChange50Sen, totalChange20Sen, totalChange10Sen, totalChange5Sen, totalChange1Sen, totalChange;
     @FXML
-    private Label messageLabel, subtotalLabel, userName, userDate, userID;
+    private Label messageLabel, subtotalLabel, userName, userType, userID, grossSale, itemSold;
     @FXML
     private ComboBox<String> voucherCodeComboBox, paymentMethodComboBox;
     @FXML
@@ -71,6 +71,7 @@ public class MainController extends Draggable implements Initializable {
         AccessoryImageViewRenderer();
         SettingsImageViewRenderer();
         userImageViewRenderer();
+        staffPicViewRenderer();
         initUser();
         cardTerminalImageViewRenderer();
         QRCodeImageViewRenderer();
@@ -208,6 +209,12 @@ public class MainController extends Draggable implements Initializable {
         File userIconFile = new File("image/userIcon.png");
         Image userIconImage = new Image(userIconFile.toURI().toString());
         userIconImageView.setImage(userIconImage);
+    }
+
+    public void staffPicViewRenderer() {
+        File staffPicFile = new File("image/staffPic.jpeg");
+        Image staffPic = new Image(staffPicFile.toURI().toString());
+        staffPicView.setImage(staffPic);
     }
 
     public void SettingsImageViewRenderer() {
@@ -416,7 +423,7 @@ public class MainController extends Draggable implements Initializable {
             checkoutAlert.setText("");
         checkoutSectionOnAction();
         //validationOnCheckout();
-        List<Item> totalSold = SalesPerson.getTotalSold();
+        updateItemSold();
         voucherCodeComboBox.setValue(voucherCodes[0]);
         voucherDetails.setText("");
         paymentMethodComboBox.setValue(paymentMethods[0]);
@@ -424,7 +431,12 @@ public class MainController extends Draggable implements Initializable {
         paymentFromUser.setText("");
         paymentAlert.setText("");
     }
-
+    public void updateItemSold(){
+        List<Item> cart = ShoppingCart.getCart();
+        for(int i=0; i<cart.size(); i++){
+            SalesPerson.setItemSold(SalesPerson.getItemSold() + cart.get(i).getQuantity());
+        }
+    }
     public void voucherCodeComboBoxOnAction(ActionEvent event){
         if (paymentMethodComboBox.getValue() == null){
             return;
@@ -590,8 +602,6 @@ public class MainController extends Draggable implements Initializable {
         for (int i = 0; i < sizeOfCart; i++){
             popCart(null);
         }
-
-        //PUA JIN JIAN
     }
 
     public boolean isPaymentAmountFormatInvalid(String paymentAmount){
@@ -686,10 +696,14 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
+    //PUA JIN JIAN
     public void initUser(){
+        SalesPerson s1 = new SalesPerson();
         userName.setText(SalesPerson.getLoginUserName());
         userID.setText(String.valueOf(SalesPerson.getID()));
-        userDate.setText(String.valueOf(SalesPerson.getYearJoined()));
+        userType.setText(SalesPerson.getUserType());
+        grossSale.setText(String.valueOf(SalesPerson.getGrossSale()));
+        itemSold.setText(String.valueOf(SalesPerson.getItemSold()));
     }
 
     public void validationOnCheckout() {

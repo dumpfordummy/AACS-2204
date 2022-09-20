@@ -1,24 +1,26 @@
 package com.example.javafx_login.classes;
+import com.example.javafx_login.controller.MainController;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerson {
-    //use point collected to determine role
 
     private static List<Item> totalSold = new ArrayList<>();
-    private static String loginUserName = "PuaJJ", loginPassword;
-    private static int ID=2108105, yearJoined=2018;
+    private static String loginUserName = "PuaJJ", loginPassword, userType="Bronze";
+    private static int ID=2108105, itemSold;
     private static double basicSalary, grossSale, commissionRate;
 
-    public SalesPerson(String name, String loginPassword, int ID, int yearJoined,double basicSalary, double grossSale, double commissionRate) {
+    public SalesPerson(String name, String loginPassword, String userType, int ID, double basicSalary, double grossSale, double commissionRate) {
         this.loginUserName = name;
         this.loginPassword = loginPassword;
         this.ID = ID;
-        this.yearJoined=yearJoined;
+        this.userType=userType;
         this.basicSalary=basicSalary;
         this.grossSale=grossSale;
         this.commissionRate=commissionRate;
     }
+    public SalesPerson(){}
     //getter and setter start
 
     public static List<Item> getTotalSold() {
@@ -47,11 +49,11 @@ public class SalesPerson {
     public static void setID(int ID) {
         SalesPerson.ID = ID;
     }
-    public static int getYearJoined() {
-        return yearJoined;
+    public static String getUserType() {
+        return userType;
     }
-    public static void setYearJoined(int yearJoined) {
-        SalesPerson.yearJoined = yearJoined;
+    public static void setUserType(String userType) {
+        SalesPerson.userType = userType;
     }
     public static double getBasicSalary() {
         return basicSalary;
@@ -71,16 +73,15 @@ public class SalesPerson {
     public static void setCommissionRate(double commissionRate) {
         SalesPerson.commissionRate = commissionRate;
     }
-    //getter and setter end
 
-    public String toString(){
-        return "Staff Name: "+getLoginUserName()+
-                "Staff Since: "+getYearJoined()+
-                "Basic Salary: RM "+getBasicSalary()+
-                "Gross Sales: RM "+getGrossSale();
+    public static int getItemSold() {
+        return itemSold;
     }
 
-    public double calculateSalary(){
-        return(getBasicSalary()+getGrossSale()+getCommissionRate());
+    public static void setItemSold(int itemSold) {
+        SalesPerson.itemSold = itemSold;
     }
+
+//getter and setter end
+
 }
