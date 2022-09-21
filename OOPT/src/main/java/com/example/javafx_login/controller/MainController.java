@@ -433,6 +433,8 @@ public class MainController extends Draggable implements Initializable {
         }
         else
             checkoutAlert.setText("");
+        if(!validationOnCheckout())
+            return;
         updateTotalItemSold();
         updateGrossSales();
         initializeRecentlySoldArr();
@@ -747,7 +749,7 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public void validationOnCheckout() {
+    public boolean validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
             AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
@@ -756,25 +758,22 @@ public class MainController extends Draggable implements Initializable {
 
             String prodName = items.get(i).getName();
             int numberOfItems = items.get(i).getQuantity();
-            if(Stock.getProductStockQuantity(prodName) > numberOfItems){
+            if(Stock.getProductStockQuantity(prodName) >= numberOfItems){
                 checkoutSectionOnAction();
             }
             else {
                 alertNotAvailable(prodName);
+                return false;
             }
         }
+        return true;
     }
 
     public void alertNotAvailable(String productName){
-        Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.YES, ButtonType.NO);
+        Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.OK);
         alert.setTitle("Error!");
         alert.setHeaderText("Error occurred in checkout: Product out of stock/not available!");
-        alert.setContentText(productName + " is out of stock/not available!\nWould you like to proceed to checkout?");
         Optional<ButtonType> result = alert.showAndWait();
-
-        if(result.get() == ButtonType.YES){
-            checkoutSectionOnAction();
-        }
     }
 
     public void Quit(ActionEvent event) {

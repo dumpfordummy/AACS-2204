@@ -2,11 +2,13 @@ package com.example.javafx_login.classes;
 
 import java.io.*;
 
-abstract public class Stock {
+public abstract class Stock {
     //Variables
     private static int totalProducts;
 
-    static File file = new File("stock.txt");
+    private final static String txtPath = "txtFile/stock.txt";
+
+    static File file = new File("txtFile/stock.txt");
 
     //Getters
     public static int getTotalProducts() {
@@ -18,7 +20,7 @@ abstract public class Stock {
     public static void addStock(String name, int quantity, double price) {
         if (!file.exists()) {
             try {
-                BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt"));
+                BufferedWriter writer = new BufferedWriter(new FileWriter(txtPath));
                 writer.write("Product Name | Stock Quantity | Price (RM)\n");
                 writer.write("===========================================\n");
                 writer.close();
@@ -29,7 +31,7 @@ abstract public class Stock {
         }
 
         try {
-            BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt", true));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(txtPath, true));
             writer.write(name + " | " + quantity + " | " + price + "\n");
             writer.close();
 
@@ -45,8 +47,8 @@ abstract public class Stock {
     public static void updateStock(String name, int quantity){
         String[] selectedProductDetails;
         try {
-            BufferedWriter writer1 = new BufferedWriter(new FileWriter("temp.txt"));
-            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            BufferedWriter writer1 = new BufferedWriter(new FileWriter("txtFile/temp.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains(name)) {
@@ -61,10 +63,10 @@ abstract public class Stock {
             writer1.close();
             reader.close();
 
-            File oldfile = new File("stock.txt");
+            File oldfile = new File(txtPath);
             oldfile.delete();
-            File newfile = new File("temp.txt");
-            newfile.renameTo(new File("stock.txt"));
+            File newfile = new File("txtFile/temp.txt");
+            newfile.renameTo(new File(txtPath));
 
         } catch (IOException e){
             System.out.println("Unable to update file!");
@@ -76,7 +78,7 @@ abstract public class Stock {
     //display all products(regardless availability)
     public static void getAllProducts(){
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
             while ((line = reader.readLine()) != null) {
                 //while condition will reinitiate reader.readLine() to read next line
@@ -95,7 +97,7 @@ abstract public class Stock {
     public static boolean isProductAvailable (String itemName){
         String[] selectedProductDetails = new String[3];
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -117,7 +119,7 @@ abstract public class Stock {
     public static int getProductStockQuantity (String itemName){
         String[] selectedProductDetails = new String[3];
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
 
             while ((line = reader.readLine()) != null) {
@@ -140,7 +142,7 @@ abstract public class Stock {
     //display the details of the selected product
     public static void displayProductDetails (String name) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
+            BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
             while ((line = reader.readLine()) != null) {
                 if(line.contains(name))

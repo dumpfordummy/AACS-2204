@@ -13,8 +13,8 @@ import java.util.Objects;
 
 public class LoginApi {
     static String apiUrl = "https://ooptwebapi.azurewebsites.net/loginapis";
-    static ArrayList<String> username;
-    static ArrayList<String> password;
+    public static ArrayList<String> username;
+    public static ArrayList<String> password;
     static String result;
 
     static {

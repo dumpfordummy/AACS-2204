@@ -90,7 +90,7 @@ public class LoginController extends Draggable implements Initializable {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
-        try (FileWriter file = new FileWriter("ooptErrorLog.txt", true)) {
+        try (FileWriter file = new FileWriter("txtFile/ooptErrorLog.txt", true)) {
             file.append(dtf.format(now)).append(" - ").append(errorMessage).append("\n");
         }
     }
