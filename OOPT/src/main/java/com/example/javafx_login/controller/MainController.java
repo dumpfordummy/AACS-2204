@@ -734,7 +734,6 @@ public class MainController extends Draggable implements Initializable {
 
         }
     }
-    
     public void validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
