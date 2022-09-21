@@ -426,8 +426,7 @@ public class MainController extends Draggable implements Initializable {
         }
         else
             checkoutAlert.setText("");
-        checkoutSectionOnAction();
-        //validationOnCheckout();
+        validationOnCheckout();
         updateTotalItemSold();
         updateGrossSales();
         initializeRecentlySoldArr();
@@ -559,6 +558,13 @@ public class MainController extends Draggable implements Initializable {
         }
         Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         //Finish Payment
+        List<Item> items = ShoppingCart.getCart();
+        if (items.size() > 0){
+            for(int i = 0; i < items.size(); i++){
+                Stock.updateStock(items.get(i).getName(), (Stock.getProductStockQuantity(items.get(i).getName()) - items.get(i).getQuantity()));
+            }
+        }
+
         if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             changeRM100Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM100Qty()));
             changeRM50Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM50Qty()));
@@ -672,15 +678,18 @@ public class MainController extends Draggable implements Initializable {
             SalesPerson.setGrossSale(SalesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
     }
+
     public void initializeRecentlySoldArr(){
         recentlySoldArrName = new Label[]{recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5};
     }
+
     public void updateRecentlySoldTable(){
         List<Item> cart = ShoppingCart.getCart();
         for(int i=0; i<cart.size(); i++){
             recentlySoldArrName[i].setText(cart.get(i).getName());
         }
     }
+
     public void validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
@@ -702,8 +711,8 @@ public class MainController extends Draggable implements Initializable {
     public void alertNotAvailable(String productName){
         Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.YES, ButtonType.NO);
         alert.setTitle("Error!");
-        alert.setHeaderText("Error occured in checkout: Product out of stock/not available!");
-        alert.setContentText(productName + " is out of stock/not available!\n Would you like to proceed to checkout?");
+        alert.setHeaderText("Error occurred in checkout: Product out of stock/not available!");
+        alert.setContentText(productName + " is out of stock/not available!\nWould you like to proceed to checkout?");
         Optional<ButtonType> result = alert.showAndWait();
 
         if(result.get() == ButtonType.YES){

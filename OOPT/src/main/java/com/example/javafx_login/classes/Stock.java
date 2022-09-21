@@ -1,24 +1,26 @@
 package com.example.javafx_login.classes;
 
 import java.io.*;
+
 abstract public class Stock {
     //Variables
     private static int totalProducts;
+
+    static File file = new File("stock.txt");
 
     //Getters
     public static int getTotalProducts() {
         return totalProducts;
     }
-    static File file = new File("stock.txt");
 
     //Methods
     //appending/add file data
-    public static void addStock(String name, String serialNum, int quantity, double price) {
+    public static void addStock(String name, int quantity, double price) {
         if (!file.exists()) {
             try {
                 BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt"));
-                writer.write("Product Name | Serial Number | Stock Quantity | Price (RM)\n");
-                writer.write("==========================================================\n");
+                writer.write("Product Name | Stock Quantity | Price (RM)\n");
+                writer.write("===========================================\n");
                 writer.close();
             } catch (IOException e) {
                 System.out.println("Unable to create file!");
@@ -28,7 +30,7 @@ abstract public class Stock {
 
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("stock.txt", true));
-            writer.write(name + " | " + serialNum + " | " + quantity + " | " + price + "\n");
+            writer.write(name + " | " + quantity + " | " + price + "\n");
             writer.close();
 
         } catch (IOException e) {
@@ -49,7 +51,7 @@ abstract public class Stock {
             while ((line = reader.readLine()) != null) {
                 if (line.contains(name)) {
                     selectedProductDetails = line.split(" \\| ", 0);
-                    writer1.write(name + " | " + selectedProductDetails[1] + " | " + quantity + " | " + selectedProductDetails[3] + "\n");
+                    writer1.write(name + " | " + quantity + " | " + selectedProductDetails[2] + "\n");
                 }
                 else {
                     writer1.write(line);
@@ -91,7 +93,7 @@ abstract public class Stock {
 
     //check product availability
     public static boolean isProductAvailable (String itemName){
-        String[] selectedProductDetails = new String[4];
+        String[] selectedProductDetails = new String[3];
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
@@ -109,11 +111,11 @@ abstract public class Stock {
             e.printStackTrace();
         }
 
-        return !selectedProductDetails[2].equals("0");
+        return !selectedProductDetails[1].equals("0");
     }
 
     public static int getProductStockQuantity (String itemName){
-        String[] selectedProductDetails = new String[4];
+        String[] selectedProductDetails = new String[3];
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
@@ -131,17 +133,17 @@ abstract public class Stock {
             e.printStackTrace();
         }
 
-        Integer integer = Integer.valueOf(selectedProductDetails[2]);
+        Integer integer = Integer.valueOf(selectedProductDetails[1]);
         return integer;
     }
 
     //display the details of the selected product
-    public static void displayProductDetails (String itemName) {
+    public static void displayProductDetails (String name) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader("stock.txt"));
             String line;
             while ((line = reader.readLine()) != null) {
-                if(line.contains(itemName))
+                if(line.contains(name))
                     System.out.println(line);
             }
             reader.close();
