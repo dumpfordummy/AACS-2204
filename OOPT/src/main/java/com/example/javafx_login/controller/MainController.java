@@ -47,7 +47,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label messageLabel, subtotalLabel, userName, userType, userID, grossSale, itemSold;
     @FXML
-    private Label recentlySold1, recentlySold2, recentlySold3, recentlySold4, recentlySold5;
+    private Label recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5;
     @FXML
     private Label soldQuantity1, soldQuantity2, soldQuantity3, soldQuantity4, soldQuantity5;
     @FXML
@@ -64,6 +64,7 @@ public class MainController extends Draggable implements Initializable {
     private ComboBox<String> voucherCodeComboBox, paymentMethodComboBox;
     @FXML
     private TextField paymentFromUser, cardNumTextField;
+
     @FXML
     private PasswordField cardPINPasswordField;
     @FXML
@@ -234,7 +235,7 @@ public class MainController extends Draggable implements Initializable {
         settingsImageView.setImage(settingsImage);
     }
 
-    public void cardTerminalImageViewRenderer() {
+    public void cardTerminalImageViewRenderer(){
         File cardTerminalFile = new File("image/CardTerminal.png");
         Image cardTerminalImage = new Image(cardTerminalFile.toURI().toString());
         cardTerminalImageView.setImage(cardTerminalImage);
@@ -244,7 +245,7 @@ public class MainController extends Draggable implements Initializable {
         cardTerminal_2ImageView.setImage(cardTerminalImage_2);
     }
 
-    public void QRCodeImageViewRenderer() {
+    public void QRCodeImageViewRenderer(){
         File qrCodeFile = new File("image/qr.png");
         Image qrCodeImage = new Image(qrCodeFile.toURI().toString());
         QRCodeImageView.setImage(qrCodeImage);
@@ -380,7 +381,8 @@ public class MainController extends Draggable implements Initializable {
         if (ShoppingCart.getCart().size() == 0) {
             checkoutAlert.setText("Your Cart Is Empty");
             return;
-        } else
+        }
+        else
             checkoutAlert.setText("");
         ShoppingCart.removeCartAtIndex(ShoppingCart.getCart().size() - 1);
         resetUICart();
@@ -423,14 +425,14 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public void checkOutOnAction(ActionEvent event) {
+    public void checkOutOnAction(ActionEvent event){
         List<Item> cart = ShoppingCart.getCart();
-        if (cart.size() == 0) {
+        if (cart.size() == 0){
             checkoutAlert.setText("Cart Is Empty");
             return;
-        } else
+        }
+        else
             checkoutAlert.setText("");
-        validationOnCheckout();
         updateTotalItemSold();
         updateGrossSales();
         initializeRecentlySoldArr();
@@ -468,7 +470,8 @@ public class MainController extends Draggable implements Initializable {
             if(voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])){
                 voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscounts[i]));
                 return;
-            } else
+            }
+            else
                 voucherDetails.setText("");
         }
     }
@@ -504,12 +507,13 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public void makePaymentOnAction(ActionEvent event) {
+    public void makePaymentOnAction(ActionEvent event){
         int sizeOfCart = ShoppingCart.getCart().size();
         if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])){
             paymentMethodAlert.setText("Please Choose Payment Method!");
             return;
-        } else
+        }
+        else
             paymentMethodAlert.setText("");
 
         if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
@@ -520,10 +524,12 @@ public class MainController extends Draggable implements Initializable {
             else if (Cash.isPaymentAmountFormatInvalid(paymentFromUser.getText())){
                 paymentAlert.setText("Digits With/Without 2 Decimal Places!");
                 return;
-            } else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0) {
+            }
+            else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0){
                 paymentAlert.setText("Payment Amount Not Enough!");
                 return;
-            } else
+            }
+            else
                 paymentAlert.setText("");
         }
         else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
@@ -534,24 +540,28 @@ public class MainController extends Draggable implements Initializable {
             else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            } else if (!isCardInserted) {
+            }
+            else if (!isCardInserted){
                 paymentAlert.setText("Please Insert Card!");
                 return;
-            } else if (cardPINPasswordField.getText().equals("")) {
+            }
+            else if (cardPINPasswordField.getText().equals("")){
                 paymentAlert.setText("Please Enter PIN Number!");
                 return;
             }
             else if (Card.isCardPINFormatInvalid(cardPINPasswordField.getText())){
                 paymentAlert.setText("6 Digits Card PIN!");
                 return;
-            } else
+            }
+            else
                 paymentAlert.setText("");
         }
         else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             if (!LoginApi.getIsQRScanned()){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
-            } else
+            }
+            else
                 paymentAlert.setText("");
         }
         Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
@@ -607,7 +617,7 @@ public class MainController extends Draggable implements Initializable {
         paymentMethodAlert.setText("");
         paymentFromUser.clear();
         paymentAlert.setText("");
-        for (int i = 0; i < sizeOfCart; i++) {
+        for (int i = 0; i < sizeOfCart; i++){
             popCart(null);
         }
     }
@@ -624,23 +634,25 @@ public class MainController extends Draggable implements Initializable {
         return 0;
     }
 
-    public void insertCardOnAction(ActionEvent event) {
-        if (!isCardInserted) {
-            if (cardNumTextField.getText().equals("")) {
+    public void insertCardOnAction(ActionEvent event){
+        if (!isCardInserted){
+            if (cardNumTextField.getText().equals("")){
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
             }
             else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            } else {
+            }
+            else {
                 paymentAlert.setText("");
             }
             insertCardButton.setText("Remove Card");
             cardTerminal_2AnchorPane.setVisible(true);
             isCardInserted = true;
-        } else {
-            if (!cardPINPasswordField.getText().equals("")) {
+        }
+        else{
+            if (!cardPINPasswordField.getText().equals("")){
                 paymentAlert.setText("Please Empty Your PIN!");
                 return;
             }
@@ -734,6 +746,7 @@ public class MainController extends Draggable implements Initializable {
 
         }
     }
+
     public void validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
@@ -743,22 +756,23 @@ public class MainController extends Draggable implements Initializable {
 
             String prodName = items.get(i).getName();
             int numberOfItems = items.get(i).getQuantity();
-            if (Stock.getProductStockQuantity(prodName) > numberOfItems) {
+            if(Stock.getProductStockQuantity(prodName) > numberOfItems){
                 checkoutSectionOnAction();
-            } else {
+            }
+            else {
                 alertNotAvailable(prodName);
             }
         }
     }
 
-    public void alertNotAvailable(String productName) {
-        Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.YES, ButtonType.NO);
+    public void alertNotAvailable(String productName){
+        Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.YES, ButtonType.NO);
         alert.setTitle("Error!");
         alert.setHeaderText("Error occurred in checkout: Product out of stock/not available!");
         alert.setContentText(productName + " is out of stock/not available!\nWould you like to proceed to checkout?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.get() == ButtonType.YES) {
+        if(result.get() == ButtonType.YES){
             checkoutSectionOnAction();
         }
     }
@@ -769,7 +783,7 @@ public class MainController extends Draggable implements Initializable {
         alert.setHeaderText("You are about to quit the program");
         alert.setContentText("Do you wish to quit?");
 
-        if (alert.showAndWait().get() == ButtonType.OK) {
+        if(alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) borderpane.getScene().getWindow();
             stage.close();
         }
