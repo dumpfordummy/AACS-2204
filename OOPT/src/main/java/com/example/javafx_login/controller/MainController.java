@@ -13,15 +13,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class MainController extends Draggable implements Initializable {
     @FXML
@@ -51,22 +47,31 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private Label messageLabel, subtotalLabel, userName, userType, userID, grossSale, itemSold;
     @FXML
-    private Label recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5;
+    private Label recentlySold1, recentlySold2, recentlySold3, recentlySold4, recentlySold5;
     @FXML
-    private Label[] recentlySoldArrName;
+    private Label soldQuantity1, soldQuantity2, soldQuantity3, soldQuantity4, soldQuantity5;
+    @FXML
+    private Label soldPrice1, soldPrice2, soldPrice3, soldPrice4, soldPrice5;
+    @FXML
+    private Label[] recentlySoldArr,qtySoldArr, priceSoldArr;
+    @FXML
+    private Queue<String> recentlySoldNameQueue = new LinkedList<>();
+    @FXML
+    private Queue<Integer> qtySoldQueue = new LinkedList<>();
+    @FXML
+    private Queue<Double> priceSoldQueue = new LinkedList<>();
     @FXML
     private ComboBox<String> voucherCodeComboBox, paymentMethodComboBox;
     @FXML
     private TextField paymentFromUser, cardNumTextField;
-
     @FXML
     private PasswordField cardPINPasswordField;
     @FXML
     private Button insertCardButton;
     private String currentSelectedItemName, currentSelectedItemParentId;
-    private final String[] voucherCodes = {"(Please Choose)", "RM5VOUCHER", "RM10VOUCHER", "RM20VOUCHER"};
+
     private final double[] voucherCodeDiscounts = {0, 5, 10, 20};
-    private final String[] paymentMethods = {"(Please Choose)", "Cash", "Card", "QR Code"};
+
     private boolean isCardInserted = false;
 
     @Override
@@ -81,8 +86,8 @@ public class MainController extends Draggable implements Initializable {
         updateUserUI();
         cardTerminalImageViewRenderer();
         QRCodeImageViewRenderer();
-        voucherCodeComboBox.getItems().addAll(voucherCodes);
-        paymentMethodComboBox.getItems().addAll(paymentMethods);
+        voucherCodeComboBox.getItems().addAll(Purchase.getVoucherCodes());
+        paymentMethodComboBox.getItems().addAll(Purchase.getPaymentMethods());
     }
 
     @Override
@@ -229,7 +234,7 @@ public class MainController extends Draggable implements Initializable {
         settingsImageView.setImage(settingsImage);
     }
 
-    public void cardTerminalImageViewRenderer(){
+    public void cardTerminalImageViewRenderer() {
         File cardTerminalFile = new File("image/CardTerminal.png");
         Image cardTerminalImage = new Image(cardTerminalFile.toURI().toString());
         cardTerminalImageView.setImage(cardTerminalImage);
@@ -239,7 +244,7 @@ public class MainController extends Draggable implements Initializable {
         cardTerminal_2ImageView.setImage(cardTerminalImage_2);
     }
 
-    public void QRCodeImageViewRenderer(){
+    public void QRCodeImageViewRenderer() {
         File qrCodeFile = new File("image/qr.png");
         Image qrCodeImage = new Image(qrCodeFile.toURI().toString());
         QRCodeImageView.setImage(qrCodeImage);
@@ -375,8 +380,7 @@ public class MainController extends Draggable implements Initializable {
         if (ShoppingCart.getCart().size() == 0) {
             checkoutAlert.setText("Your Cart Is Empty");
             return;
-        }
-        else
+        } else
             checkoutAlert.setText("");
         ShoppingCart.removeCartAtIndex(ShoppingCart.getCart().size() - 1);
         resetUICart();
@@ -419,79 +423,79 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public void checkOutOnAction(ActionEvent event){
+    public void checkOutOnAction(ActionEvent event) {
         List<Item> cart = ShoppingCart.getCart();
-        if (cart.size() == 0){
+        if (cart.size() == 0) {
             checkoutAlert.setText("Cart Is Empty");
             return;
-        }
-        else
+        } else
             checkoutAlert.setText("");
-        checkoutSectionOnAction();
-        //validationOnCheckout();
+        validationOnCheckout();
         updateTotalItemSold();
         updateGrossSales();
         initializeRecentlySoldArr();
         updateRecentlySoldTable();
+        updateQtyRecentlySoldTable();
+        updateTotalPriceSoldTable();
         updateUserUI();
-        voucherCodeComboBox.setValue(voucherCodes[0]);
+        voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
-        paymentMethodComboBox.setValue(paymentMethods[0]);
+        paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
         paymentMethodAlert.setText("");
         paymentFromUser.setText("");
         paymentAlert.setText("");
     }
+
     public void voucherCodeComboBoxOnAction(ActionEvent event){
         if (paymentMethodComboBox.getValue() == null){
             return;
         }
 
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             paymentFromUser.setEditable(true);
             paymentFromUser.setText("");
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
         }
 
-        for (int i = 0; i < voucherCodes.length; i++){
-            if(voucherCodeComboBox.getValue().equals(voucherCodes[i])){
+        for (int i = 0; i < Purchase.getVoucherCodes().length; i++){
+            if(voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])){
                 voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscounts[i]));
                 return;
-            }
-            else
+            } else
                 voucherDetails.setText("");
         }
     }
 
     public void paymentMethodComboBoxOnAction(ActionEvent event){
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[0])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText("");
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(false);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             paymentFromUser.setEditable(true);
             paymentFromUser.setText("");
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(false);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(true);
             QRCodePaymentAnchorPane.setVisible(false);
         }
-        else if(paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             paymentFromUser.setEditable(false);
             paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
@@ -500,66 +504,66 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public void makePaymentOnAction(ActionEvent event){
+    public void makePaymentOnAction(ActionEvent event) {
         int sizeOfCart = ShoppingCart.getCart().size();
-        if (paymentMethodComboBox.getValue().equals(paymentMethods[0])){
+        if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])){
             paymentMethodAlert.setText("Please Choose Payment Method!");
             return;
-        }
-        else
+        } else
             paymentMethodAlert.setText("");
 
-        if (paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             if (paymentFromUser.getText().equals("")){
                 paymentAlert.setText("Please Enter Payment Amount!");
                 return;
             }
-            else if (isPaymentAmountFormatInvalid(paymentFromUser.getText())){
+            else if (Cash.isPaymentAmountFormatInvalid(paymentFromUser.getText())){
                 paymentAlert.setText("Digits With/Without 2 Decimal Places!");
                 return;
-            }
-            else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0){
+            } else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0) {
                 paymentAlert.setText("Payment Amount Not Enough!");
                 return;
-            }
-            else
+            } else
                 paymentAlert.setText("");
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[2])){
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
             if (cardNumTextField.getText().equals("")){
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
             }
-            else if (isCardNumFormatInvalid(cardNumTextField.getText())){
+            else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            }
-            else if (!isCardInserted){
+            } else if (!isCardInserted) {
                 paymentAlert.setText("Please Insert Card!");
                 return;
-            }
-            else if (cardPINPasswordField.getText().equals("")){
+            } else if (cardPINPasswordField.getText().equals("")) {
                 paymentAlert.setText("Please Enter PIN Number!");
                 return;
             }
-            else if (!isCorrectCardPINFormat(cardPINPasswordField.getText())){
+            else if (Card.isCardPINFormatInvalid(cardPINPasswordField.getText())){
                 paymentAlert.setText("6 Digits Card PIN!");
                 return;
-            }
-            else
+            } else
                 paymentAlert.setText("");
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[3])){
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
             if (!LoginApi.getIsQRScanned()){
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
-            }
-            else
+            } else
                 paymentAlert.setText("");
         }
         Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
         //Finish Payment
-        if(paymentMethodComboBox.getValue().equals(paymentMethods[1])){
+        List<Item> items = ShoppingCart.getCart();
+        if (items.size() > 0){
+            for(int i = 0; i < items.size(); i++){
+                Stock.updateStock(items.get(i).getName(), (Stock.getProductStockQuantity(items.get(i).getName()) - items.get(i).getQuantity()));
+            }
+        }
+
+        if(paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[1])){
             changeRM100Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM100Qty()));
             changeRM50Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM50Qty()));
             changeRM20Qty.setText(String.valueOf(Purchase.getCashPayment().getChangeRM20Qty()));
@@ -583,112 +587,60 @@ public class MainController extends Draggable implements Initializable {
             totalChange5Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange5Sen()));
             totalChange1Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange1Sen()));
             totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getPaymentFromUser() + Purchase.getCashPayment().getDiscountAmount() - Purchase.getCashPayment().getSubtotal()));
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cashPaymentAnchorPane.setVisible(true);
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[2])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])){
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             cardNumTextField.setText("");
             insertCardButton.setText("Insert Card");
             cardPINPasswordField.setText("");
             cardTerminal_2AnchorPane.setVisible(false);
             isCardInserted = false;
         }
-        else if (paymentMethodComboBox.getValue().equals(paymentMethods[3])){
-            paymentMethodComboBox.setValue(paymentMethods[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])){
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
             LoginApi.setIsQRScanned(false);
         }
-        voucherCodeComboBox.setValue(voucherCodes[0]);
+        voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
         paymentMethodAlert.setText("");
         paymentFromUser.clear();
         paymentAlert.setText("");
-        for (int i = 0; i < sizeOfCart; i++){
+        for (int i = 0; i < sizeOfCart; i++) {
             popCart(null);
         }
-    }
-
-    public boolean isPaymentAmountFormatInvalid(String paymentAmount){
-        int countDecimalPoint = 0;
-        int countDecimalPlace = 0;
-        for(int i = 0; i < paymentAmount.length(); i++){
-            if (countDecimalPoint == 1){
-                countDecimalPlace++;
-            }
-            if (paymentAmount.charAt(i) == '.'){
-                countDecimalPoint++;
-            }
-            if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
-                return true;
-            }
-        }
-
-        if (countDecimalPoint != 0 && countDecimalPoint != 1){
-            return true;
-        }
-
-        if (countDecimalPoint == 1 && countDecimalPlace != 2){
-            return true;
-        }
-
-        return false;
-    }
-
-    public boolean isCardNumFormatInvalid(String cardNum){
-        if (cardNum.length() != 8){
-            return true;
-        }
-        for(int i = 0; i < cardNum.length(); i++){
-            if (cardNum.charAt(i) != '0' && cardNum.charAt(i) != '1' && cardNum.charAt(i) != '2' && cardNum.charAt(i) != '3' && cardNum.charAt(i) != '4' && cardNum.charAt(i) != '5' && cardNum.charAt(i) != '6' && cardNum.charAt(i) != '7' && cardNum.charAt(i) != '8' && cardNum.charAt(i) != '9'){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public boolean isCorrectCardPINFormat(String cardPIN){
-        if (cardPIN.length() != 6){
-            return false;
-        }
-        for(int i = 0; i < cardPIN.length(); i++){
-            if (cardPIN.charAt(i) != '0' && cardPIN.charAt(i) != '1' && cardPIN.charAt(i) != '2' && cardPIN.charAt(i) != '3' && cardPIN.charAt(i) != '4' && cardPIN.charAt(i) != '5' && cardPIN.charAt(i) != '6' && cardPIN.charAt(i) != '7' && cardPIN.charAt(i) != '8' && cardPIN.charAt(i) != '9'){
-                return false;
-            }
-        }
-        return true;
     }
 
     public double getDiscountAmount(){
         if (voucherCodeComboBox.getValue() == null){
             return 0;
         }
-        for (int i = 0; i < voucherCodes.length; i++){
-            if(voucherCodeComboBox.getValue().equals(voucherCodes[i])){
+        for (int i = 0; i < Purchase.getVoucherCodes().length; i++){
+            if(voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])){
                 return voucherCodeDiscounts[i];
             }
         }
         return 0;
     }
 
-    public void insertCardOnAction(ActionEvent event){
-        if (!isCardInserted){
-            if (cardNumTextField.getText().equals("")){
+    public void insertCardOnAction(ActionEvent event) {
+        if (!isCardInserted) {
+            if (cardNumTextField.getText().equals("")) {
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
             }
-            else if (isCardNumFormatInvalid(cardNumTextField.getText())){
+            else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())){
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            }
-            else {
+            } else {
                 paymentAlert.setText("");
             }
             insertCardButton.setText("Remove Card");
             cardTerminal_2AnchorPane.setVisible(true);
             isCardInserted = true;
-        }
-        else{
-            if (!cardPINPasswordField.getText().equals("")){
+        } else {
+            if (!cardPINPasswordField.getText().equals("")) {
                 paymentAlert.setText("Please Empty Your PIN!");
                 return;
             }
@@ -701,7 +653,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     //PUA JIN JIAN
-    public void updateUserUI(){
+    public void updateUserUI() {
         userName.setText(SalesPerson.getLoginUserName());
         userID.setText(String.valueOf(SalesPerson.getID()));
         userType.setText(SalesPerson.getUserType());
@@ -709,28 +661,80 @@ public class MainController extends Draggable implements Initializable {
         grossSale.setText(String.valueOf(SalesPerson.getGrossSale()));
     }
 
-    public void updateTotalItemSold(){
+    public void updateTotalItemSold() {
         List<Item> cart = ShoppingCart.getCart();
-        for(int i=0; i<cart.size(); i++){
+        for (int i = 0; i < cart.size(); i++) {
             SalesPerson.setItemSold(SalesPerson.getItemSold() + cart.get(i).getQuantity());
         }
     }
 
-    public void updateGrossSales(){
+    public void updateGrossSales() {
         List<Item> cart = ShoppingCart.getCart();
-        for(int i=0; i<cart.size(); i++){
+        for (int i = 0; i < cart.size(); i++) {
             SalesPerson.setGrossSale(SalesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
     }
-    public void initializeRecentlySoldArr(){
-        recentlySoldArrName = new Label[]{recentlySold1,recentlySold2,recentlySold3,recentlySold4,recentlySold5};
+
+    public void initializeRecentlySoldArr() {
+        recentlySoldArr = new Label[]{recentlySold1, recentlySold2, recentlySold3, recentlySold4, recentlySold5};
+        qtySoldArr = new Label[]{soldQuantity1, soldQuantity2, soldQuantity3, soldQuantity4, soldQuantity5};
+        priceSoldArr = new Label[]{soldPrice1, soldPrice2, soldPrice3, soldPrice4, soldPrice5};
     }
+
     public void updateRecentlySoldTable(){
         List<Item> cart = ShoppingCart.getCart();
-        for(int i=0; i<cart.size(); i++){
-            recentlySoldArrName[i].setText(cart.get(i).getName());
+        int counter;
+        for (int i = 0; i < cart.size(); i++) {
+            if (recentlySoldNameQueue.size() == 5) {
+                recentlySoldNameQueue.remove();
+            }
+            recentlySoldNameQueue.add(cart.get(i).getName());
+            counter = recentlySoldNameQueue.size();
+            for (String str : new ArrayList<>(recentlySoldNameQueue)) {
+                recentlySoldArr[counter - 1].setText(str);
+                counter--;
+            }
         }
     }
+
+    public void updateQtyRecentlySoldTable(){
+        List<Item> cart = ShoppingCart.getCart();
+        int counter;
+        for (int i = 0; i < cart.size(); i++) {
+            if (qtySoldQueue.size() == 5) {
+                qtySoldQueue.remove();
+            }
+            qtySoldQueue.add(cart.get(i).getQuantity());
+            counter = qtySoldQueue.size();
+            for (Integer intLoop : new ArrayList<>(qtySoldQueue)) {
+                qtySoldArr[counter - 1].setText(String.valueOf(intLoop));
+                counter--;
+            }
+        }
+    }
+
+    public void updateTotalPriceSoldTable() {
+        List<Item> cart = ShoppingCart.getCart();
+        int counter;
+        for (int i = 0; i < cart.size(); i++) {
+            if (priceSoldQueue.size() == 5) {
+                priceSoldQueue.remove();
+            }
+            priceSoldQueue.add(cart.get(i).getPrice()*cart.get(i).getQuantity());
+            counter = priceSoldQueue.size();
+            for (Double doubleLoop : new ArrayList<>(priceSoldQueue)) {
+                priceSoldArr[counter - 1].setText(String.valueOf(doubleLoop));
+                counter--;
+            }
+        }
+    }
+
+    public void generatePaySlipOnAction(ActionEvent event){
+        class SilverStaff extends SalesPerson{
+
+        }
+    }
+    
     public void validationOnCheckout() {
         List<Item> items = ShoppingCart.getCart();
         for (int i = 0; i < items.size(); i++) {
@@ -740,23 +744,22 @@ public class MainController extends Draggable implements Initializable {
 
             String prodName = items.get(i).getName();
             int numberOfItems = items.get(i).getQuantity();
-            if(Stock.getProductStockQuantity(prodName) > numberOfItems){
+            if (Stock.getProductStockQuantity(prodName) > numberOfItems) {
                 checkoutSectionOnAction();
-            }
-            else {
+            } else {
                 alertNotAvailable(prodName);
             }
         }
     }
 
-    public void alertNotAvailable(String productName){
-        Alert alert = new Alert(Alert.AlertType.ERROR,"", ButtonType.YES, ButtonType.NO);
+    public void alertNotAvailable(String productName) {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "", ButtonType.YES, ButtonType.NO);
         alert.setTitle("Error!");
-        alert.setHeaderText("Error occured in checkout: Product out of stock/not available!");
-        alert.setContentText(productName + " is out of stock/not available!\n Would you like to proceed to checkout?");
+        alert.setHeaderText("Error occurred in checkout: Product out of stock/not available!");
+        alert.setContentText(productName + " is out of stock/not available!\nWould you like to proceed to checkout?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if(result.get() == ButtonType.YES){
+        if (result.get() == ButtonType.YES) {
             checkoutSectionOnAction();
         }
     }
@@ -767,7 +770,7 @@ public class MainController extends Draggable implements Initializable {
         alert.setHeaderText("You are about to quit the program");
         alert.setContentText("Do you wish to quit?");
 
-        if(alert.showAndWait().get() == ButtonType.OK) {
+        if (alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) borderpane.getScene().getWindow();
             stage.close();
         }

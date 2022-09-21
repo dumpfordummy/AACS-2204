@@ -282,4 +282,30 @@ public class Cash extends Payment{
     public void setTotalChangeLeft(double totalChangeLeft) {
         this.totalChangeLeft = totalChangeLeft;
     }
+
+    public static boolean isPaymentAmountFormatInvalid(String paymentAmount){
+        int countDecimalPoint = 0;
+        int countDecimalPlace = 0;
+        for(int i = 0; i < paymentAmount.length(); i++){
+            if (countDecimalPoint == 1){
+                countDecimalPlace++;
+            }
+            if (paymentAmount.charAt(i) == '.'){
+                countDecimalPoint++;
+            }
+            if (paymentAmount.charAt(i) != '0' && paymentAmount.charAt(i) != '1' && paymentAmount.charAt(i) != '2' && paymentAmount.charAt(i) != '3' && paymentAmount.charAt(i) != '4' && paymentAmount.charAt(i) != '5' && paymentAmount.charAt(i) != '6' && paymentAmount.charAt(i) != '7' && paymentAmount.charAt(i) != '8' && paymentAmount.charAt(i) != '9' && paymentAmount.charAt(i) != '.'){
+                return true;
+            }
+        }
+
+        if (countDecimalPoint != 0 && countDecimalPoint != 1){
+            return true;
+        }
+
+        if (countDecimalPoint == 1 && countDecimalPlace != 2){
+            return true;
+        }
+
+        return false;
+    }
 }

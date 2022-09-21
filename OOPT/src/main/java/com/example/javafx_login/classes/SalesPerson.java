@@ -5,8 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerson {
-    //poly for staff type
-    private static String loginUserName = "PuaJJ", loginPassword, userType="Bronze";
+    private static String loginUserName = "PuaJJ", loginPassword, userType="Silver";
     private static int ID=2108105, itemSold=0;
     private static double basicSalary, grossSale, commissionRate;
 
@@ -71,7 +70,5 @@ public class SalesPerson {
     public static void setItemSold(int itemSold) {
         SalesPerson.itemSold = itemSold;
     }
-
-//getter and setter end
-
+    //getter and setter end
 }
