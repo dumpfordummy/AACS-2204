@@ -8,9 +8,9 @@ public class SalesPerson {
     //poly for staff type
     private static String loginUserName = "PuaJJ", loginPassword, userType="Bronze";
     private static int ID=2108105, itemSold=0;
-    private static double basicSalary, grossSale, commissionRate;
+    private static double basicSalary, grossSale, commissionRate, bonus, totalPay;
 
-    public SalesPerson(String name, String loginPassword, String userType, int ID, double basicSalary, double grossSale, double commissionRate) {
+    public SalesPerson(String name, String loginPassword, String userType, int ID, double basicSalary, double grossSale, double commissionRate, double bonus) {
         this.loginUserName = name;
         this.loginPassword = loginPassword;
         this.ID = ID;
@@ -18,6 +18,7 @@ public class SalesPerson {
         this.basicSalary=basicSalary;
         this.grossSale=grossSale;
         this.commissionRate=commissionRate;
+        this.bonus=bonus;
     }
     public SalesPerson(){}
     //getter and setter start
@@ -72,6 +73,19 @@ public class SalesPerson {
         SalesPerson.itemSold = itemSold;
     }
 
-//getter and setter end
+    public static double getBonus() {
+        return bonus;
+    }
+    public static void setBonus(double bonus) {
+        SalesPerson.bonus = bonus;
+    }
 
+    public static double getTotalPay() {
+        return totalPay;
+    }
+
+    public static void setTotalPay(double totalPay) {
+        SalesPerson.totalPay = totalPay;
+    }
+    //getter and setter end
 }

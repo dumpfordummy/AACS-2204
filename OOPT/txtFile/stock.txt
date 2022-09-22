@@ -11,15 +11,15 @@ Acer Swift 3X | 8 | 1500.0
 Asus ROG Strix G15 | 12 | 1500.0
 Asus TUF Dash F15 | 8 | 1500.0
 Lenovo Legion 5 | 6 | 1500.0
-Lenovo IdeaPad 5 Pro | 8 | 1500.0
-Oppo Find X3 Pro | 15 | 1000.0
+Lenovo IdeaPad 5 Pro | 6 | 1500.0
+Oppo Find X3 Pro | 13 | 1000.0
 Oppo Realme GT | 12 | 1000.0
 Vivo iQOO 8 Pro | 12 | 1000.0
 Vivo iQOO Neo 5 | 12 | 1000.0
 Xiaomi Mi 11 Pro | 10 | 1000.0
 Xiaomi Poco F3 | 10 | 1000.0
 Apple iPad 2020 | 12 | 500.0
-Apple iPad Pro 2021 | 10 | 500.0
-Huawei MatePad 11 | 10 | 500.0
+Apple iPad Pro 2021 | 7 | 500.0
+Huawei MatePad 11 | 2 | 500.0
 Lenovo Pad Pro | 8 | 500.0
 Samsung Galaxy Tab S7 | 8 | 500.0

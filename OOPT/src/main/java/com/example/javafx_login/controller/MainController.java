@@ -744,9 +744,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void generatePaySlipOnAction(ActionEvent event){
-        class SilverStaff extends SalesPerson{
 
-        }
     }
 
     public boolean validationOnCheckout() {

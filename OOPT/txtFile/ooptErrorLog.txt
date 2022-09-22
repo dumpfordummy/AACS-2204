@@ -108,3 +108,11 @@
 2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
 2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
 2022/09/20 10:30:43 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/22 13:48:27 - javax.net.ssl.SSLHandshakeException: Remote host terminated the handshake
+2022/09/22 13:48:57 - java.net.ConnectException: Network is unreachable: no further information
+2022/09/22 13:49:23 - java.net.ConnectException
+2022/09/22 13:51:45 - java.net.ConnectException
+2022/09/22 13:52:06 - java.net.ConnectException
+2022/09/22 13:52:08 - java.net.ConnectException: Network is unreachable: no further information
+2022/09/22 13:52:08 - java.net.ConnectException: Network is unreachable: no further information
+2022/09/22 13:52:42 - java.net.ConnectException: Network is unreachable: no further information
