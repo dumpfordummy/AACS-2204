@@ -5,7 +5,7 @@ public class SilverStaff extends SalesPerson {
         super(name, loginPassword, ID, grossSale, getItemSold);
         setBasicSalary(1800);
         setCommissionRate(0.1);
-        setBonus(getItemSold() * 20);
+        setBonus(getItemSold() * 10);
         setTotalPay(getBasicSalary() + getBonus() + (getGrossSale() * getCommissionRate()));
     }
 

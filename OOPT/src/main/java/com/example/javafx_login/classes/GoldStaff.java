@@ -5,7 +5,7 @@ public class GoldStaff extends SalesPerson{
         super(name, loginPassword, ID, grossSale, getItemSold);
         setBasicSalary(2500);
         setCommissionRate(0.15);
-        setBonus(getItemSold() * 25);
+        setBonus(getItemSold() * 15);
         setTotalPay(getBasicSalary() + getBonus() + (getGrossSale() * getCommissionRate()));
     }
 

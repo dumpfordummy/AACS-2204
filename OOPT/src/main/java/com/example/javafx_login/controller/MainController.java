@@ -754,7 +754,7 @@ public class MainController extends Draggable implements Initializable {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Payslip");
         alert.setHeaderText("Payslip for "+salesPerson.getLoginUserName());
-        alert.setContentText("Total Pay: RM "+ salesPerson.getTotalPay());
+        alert.setContentText("Basic Salary: RM "+salesPerson.getBasicSalary() + "\nCommission Earned: RM "+salesPerson.getCommissionRate()* salesPerson.getGrossSale() + "\nBonus Earned: RM "+ salesPerson.getItemSold()*25 + "\nTotal Pay: RM "+salesPerson.getTotalPay());
         alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
 
 
