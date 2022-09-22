@@ -116,3 +116,14 @@
 2022/09/22 13:52:08 - java.net.ConnectException: Network is unreachable: no further information
 2022/09/22 13:52:08 - java.net.ConnectException: Network is unreachable: no further information
 2022/09/22 13:52:42 - java.net.ConnectException: Network is unreachable: no further information
+2022/09/22 16:58:37 - java.net.ConnectException
+2022/09/22 16:58:37 - java.net.ConnectException
+2022/09/22 17:39:57 - java.net.ConnectException
+2022/09/22 17:39:57 - java.net.ConnectException
+2022/09/22 17:40:24 - java.net.ConnectException
+2022/09/22 17:40:31 - java.net.ConnectException
+2022/09/22 17:51:36 - 
+/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/YEAR2/SEM1/JAVA/assignment/AACS-2204/OOPT/target/classes/com/example/javafx_login/Main.fxml
+
+2022/09/22 18:01:04 - java.net.ConnectException
+2022/09/22 18:01:28 - java.net.ConnectException

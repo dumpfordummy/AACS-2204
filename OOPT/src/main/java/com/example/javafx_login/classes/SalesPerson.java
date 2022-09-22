@@ -6,86 +6,77 @@ import java.util.List;
 
 public class SalesPerson {
     //poly for staff type
-    private static String loginUserName = "PuaJJ", loginPassword, userType="Bronze";
-    private static int ID=2108105, itemSold=0;
-    private static double basicSalary, grossSale, commissionRate, bonus, totalPay;
+    private String loginUserName = "PuaJJ", loginPassword;
+    private int ID=2108105, itemSold=0;
+    private double basicSalary, grossSale, commissionRate, bonus, totalPay;
 
-    public SalesPerson(String name, String loginPassword, String userType, int ID, double basicSalary, double grossSale, double commissionRate, double bonus) {
+    public SalesPerson(String name, String loginPassword, int ID, double grossSale, int itemSold) {
         this.loginUserName = name;
         this.loginPassword = loginPassword;
         this.ID = ID;
-        this.userType=userType;
-        this.basicSalary=basicSalary;
-        this.grossSale=grossSale;
-        this.commissionRate=commissionRate;
-        this.bonus=bonus;
+        this.grossSale = grossSale;
+        this.itemSold = itemSold;
     }
     public SalesPerson(){}
     //getter and setter start
-    public static String getLoginUserName() {
+    public String getLoginUserName() {
         return loginUserName;
     }
-    public static void setLoginUserName(String loginUserName) {
-        SalesPerson.loginUserName = loginUserName;
+    public void setLoginUserName(String loginUserName) {
+        this.loginUserName = loginUserName;
     }
-    public static String getLoginPassword() {
+    public String getLoginPassword() {
         return loginPassword;
     }
-    public static void setLoginPassword(String loginPassword) {
-        SalesPerson.loginPassword = loginPassword;
+    public void setLoginPassword(String loginPassword) {
+        this.loginPassword = loginPassword;
     }
-    public static int getID() {
+    public int getID() {
         return ID;
     }
-    public static void setID(int ID) {
-        SalesPerson.ID = ID;
+    public void setID(int ID) {
+        this.ID = ID;
     }
-    public static String getUserType() {
-        return userType;
-    }
-    public static void setUserType(String userType) {
-        SalesPerson.userType = userType;
-    }
-    public static double getBasicSalary() {
+    public double getBasicSalary() {
         return basicSalary;
     }
-    public static void setBasicSalary(double basicSalary) {
-        SalesPerson.basicSalary = basicSalary;
+    public void setBasicSalary(double basicSalary) {
+        this.basicSalary = basicSalary;
     }
-    public static double getGrossSale() {
+    public double getGrossSale() {
         return grossSale;
     }
-    public static void setGrossSale(double grossSale) {
-        SalesPerson.grossSale = grossSale;
+    public void setGrossSale(double grossSale) {
+        this.grossSale = grossSale;
     }
-    public static double getCommissionRate() {
+    public double getCommissionRate() {
         return commissionRate;
     }
-    public static void setCommissionRate(double commissionRate) {
-        SalesPerson.commissionRate = commissionRate;
+    public void setCommissionRate(double commissionRate) {
+        this.commissionRate = commissionRate;
     }
 
-    public static int getItemSold() {
+    public int getItemSold() {
         return itemSold;
     }
 
-    public static void setItemSold(int itemSold) {
-        SalesPerson.itemSold = itemSold;
+    public void setItemSold(int itemSold) {
+        this.itemSold = itemSold;
     }
 
-    public static double getBonus() {
+    public double getBonus() {
         return bonus;
     }
-    public static void setBonus(double bonus) {
-        SalesPerson.bonus = bonus;
+    public void setBonus(double bonus) {
+        this.bonus = bonus;
     }
 
-    public static double getTotalPay() {
+    public double getTotalPay() {
         return totalPay;
     }
 
-    public static void setTotalPay(double totalPay) {
-        SalesPerson.totalPay = totalPay;
+    public void setTotalPay(double totalPay) {
+        this.totalPay = totalPay;
     }
     //getter and setter end
 }

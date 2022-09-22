@@ -244,8 +244,8 @@
                         <Label fx:id="itemSold" layoutX="394.0" layoutY="39.0" prefHeight="18.0" prefWidth="79.0" />
                         <GridPane fx:id="recentlySoldTable" gridLinesVisible="true" layoutX="11.0" layoutY="120.0" prefHeight="214.0" prefWidth="478.0">
                           <columnConstraints>
-                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="148.80001068115234" minWidth="0.0" prefWidth="21.59998779296875" />
-                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="368.6" minWidth="10.0" prefWidth="298.40001220703124" />
+                            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="148.80001068115234" minWidth="0.0" prefWidth="25.39998779296875" />
+                              <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="368.6" minWidth="10.0" prefWidth="293.40001220703124" />
                             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.6000244140625" minWidth="0.0" prefWidth="43.19998779296873" />
                               <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="173.6000244140625" minWidth="10.0" prefWidth="116.80001220703122" />
                           </columnConstraints>
@@ -268,11 +268,11 @@
                               <Label fx:id="recentlySold3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                               <Label fx:id="recentlySold4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                               <Label fx:id="recentlySold5" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                              <Label fx:id="soldQuantity1" prefHeight="18.0" prefWidth="6.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                              <Label fx:id="soldQuantity2" prefHeight="18.0" prefWidth="6.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
-                              <Label fx:id="soldQuantity3" prefHeight="18.0" prefWidth="6.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                              <Label fx:id="soldQuantity4" prefHeight="18.0" prefWidth="6.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
-                              <Label fx:id="soldQuantity5" prefHeight="18.0" prefWidth="6.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                              <Label fx:id="soldQuantity1" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="5.0" prefHeight="18.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                              <Label fx:id="soldQuantity2" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                              <Label fx:id="soldQuantity3" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                              <Label fx:id="soldQuantity4" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <Label fx:id="soldQuantity5" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="30.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
                               <Label fx:id="soldPrice1" alignment="CENTER" contentDisplay="CENTER" prefHeight="18.0" prefWidth="77.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NO" />
                               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ITEM" GridPane.columnIndex="1" />
@@ -289,7 +289,7 @@
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <Button layoutX="232.0" layoutY="351.0" mnemonicParsing="false" onAction="#generatePaySlipOnAction" text="GENERATE PAY SLIP" />
+                        <Button fx:id="generatePaySlipButton" layoutX="232.0" layoutY="351.0" mnemonicParsing="false" onAction="#generatePaySlipOnAction" text="GENERATE PAY SLIP" />
                         <Button layoutX="365.0" layoutY="351.0" mnemonicParsing="false" text="CALCULATE POINT" />
                      </children>
                   </AnchorPane>

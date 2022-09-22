@@ -68,12 +68,18 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private PasswordField cardPINPasswordField;
     @FXML
-    private Button insertCardButton;
+    private Button insertCardButton, generatePaySlipButton;
     private String currentSelectedItemName, currentSelectedItemParentId;
 
     private final double[] voucherCodeDiscounts = {0, 5, 10, 20};
 
     private boolean isCardInserted = false;
+
+    private static SalesPerson salesPerson;
+
+    static {
+        salesPerson = new SilverStaff("Pua Jin Jian", "asdf", 1, 0, 0);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -668,25 +674,26 @@ public class MainController extends Draggable implements Initializable {
 
     //PUA JIN JIAN
     public void updateUserUI() {
-        userName.setText(SalesPerson.getLoginUserName());
-        userID.setText(String.valueOf(SalesPerson.getID()));
-        userType.setText(SalesPerson.getUserType());
-        itemSold.setText(String.valueOf(SalesPerson.getItemSold()));
-        grossSale.setText(String.valueOf(SalesPerson.getGrossSale()));
+        userName.setText(salesPerson.getLoginUserName());
+        userID.setText(String.valueOf(salesPerson.getID()));
+        userType.setText((salesPerson instanceof GoldStaff) ? "Gold" : "Silver");
+        itemSold.setText(String.valueOf(salesPerson.getItemSold()));
+        grossSale.setText(String.valueOf(salesPerson.getGrossSale()));
     }
 
     public void updateTotalItemSold() {
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++) {
-            SalesPerson.setItemSold(SalesPerson.getItemSold() + cart.get(i).getQuantity());
+            salesPerson.setItemSold(salesPerson.getItemSold() + cart.get(i).getQuantity());
         }
     }
 
     public void updateGrossSales() {
         List<Item> cart = ShoppingCart.getCart();
         for (int i = 0; i < cart.size(); i++) {
-            SalesPerson.setGrossSale(SalesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
+            salesPerson.setGrossSale(salesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
+        salesPerson = (salesPerson.getGrossSale() > 10000) ? new GoldStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold()): new SilverStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold());
     }
 
     public void initializeRecentlySoldArr() {
@@ -744,7 +751,16 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void generatePaySlipOnAction(ActionEvent event){
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Payslip");
+        alert.setHeaderText("Payslip for "+salesPerson.getLoginUserName());
+        alert.setContentText("Total Pay: RM "+ salesPerson.getTotalPay());
+        alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
 
+
+        if(alert.showAndWait().get() == ButtonType.OK) {
+            Stage stage = (Stage) borderpane.getScene().getWindow();
+        }
     }
 
     public boolean validationOnCheckout() {
