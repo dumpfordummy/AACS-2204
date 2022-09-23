@@ -20,7 +20,7 @@ public class LoginApi {
     public static ArrayList<String> password;
     static String result;
     static {
-        id = new ArrayList<Integer>();
+        id = new ArrayList<>();
         username = new ArrayList<>();
         password = new ArrayList<>();
     }
