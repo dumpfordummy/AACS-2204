@@ -1,11 +1,14 @@
 package com.example.javafx_login.classes;
 import com.example.javafx_login.controller.MainController;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SalesPerson {
-    //poly for staff type
+    DateTimeFormatter timeFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
     private String loginUserName = "PuaJJ", loginPassword;
     private int ID=2108105, itemSold=0;
     private double basicSalary, grossSale, commissionRate, bonus, totalPay;
@@ -79,4 +82,12 @@ public class SalesPerson {
         this.totalPay = totalPay;
     }
     //getter and setter end
+
+    public String paySlipString() {
+        return "Date and time: "+ timeFormat.format(now)+
+                "\n\nBasic Salary: RM " + getBasicSalary() +
+                "\nCommission Earned: RM " + getCommissionRate() * getGrossSale() +
+                "\nBonus Earned: RM " + getBonus()+
+                "\n\nTotal Pay: RM "+ getTotalPay();
+    }
 }
