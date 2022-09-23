@@ -1,5 +1,6 @@
 package com.example.javafx_login.api;
 
+import com.example.javafx_login.controller.MainController;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -13,18 +14,24 @@ import java.util.Objects;
 
 public class LoginApi {
     static String apiUrl = "https://ooptwebapi.azurewebsites.net/loginapis";
+
+    public static ArrayList<Integer> id;
     public static ArrayList<String> username;
     public static ArrayList<String> password;
     static String result;
-
     static {
+        id = new ArrayList<Integer>();
         username = new ArrayList<>();
         password = new ArrayList<>();
     }
 
     public static boolean IsLoginExist(String username, String password) {
         getRequest();
-        return LoginApi.username.contains(username) && LoginApi.password.contains(password);
+        if(LoginApi.username.contains(username) && LoginApi.password.contains(password)){
+            MainController.setSalesPersonLogins(id.get(LoginApi.username.indexOf(username)), username, password);
+            return true;
+        }
+        return false;
     }
 
     public static void getRequest() {
@@ -65,6 +72,7 @@ public class LoginApi {
         JSONArray logins = new JSONArray(responseBody);
         for (int i = 0; i < logins.length(); i++) {
             JSONObject login = logins.getJSONObject(i);
+            id.add(login.getInt("id"));
             username.add(login.getString("username"));
             password.add(login.getString("password"));
         }

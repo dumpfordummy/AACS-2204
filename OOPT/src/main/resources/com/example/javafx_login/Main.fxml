@@ -227,7 +227,7 @@
                   <AnchorPane fx:id="userAnchorPane" prefHeight="400.0" prefWidth="500.0">
                      <children>
                         <Label layoutX="95.0" layoutY="5.0" text="Name: " />
-                        <Label fx:id="userName" layoutX="133.0" layoutY="5.0" prefHeight="18.0" prefWidth="79.0" />
+                        <Label fx:id="userName" layoutX="133.0" layoutY="5.0" prefHeight="18.0" prefWidth="132.0" />
                         <Label layoutX="95.0" layoutY="30.0" text="ID: " />
                         <Label fx:id="userID" layoutX="114.0" layoutY="30.0" prefHeight="18.0" prefWidth="62.0" />
                         <Label layoutX="95.0" layoutY="56.0" text="Staff Type: " />

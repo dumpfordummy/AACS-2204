@@ -13,11 +13,12 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintStream;
 import java.net.URL;
 import java.util.*;
 
@@ -77,12 +78,18 @@ public class MainController extends Draggable implements Initializable {
 
     private boolean isCardInserted = false;
 
-    private static SalesPerson salesPerson;
+    static SalesPerson salesPerson;
 
     static {
         salesPerson = new SilverStaff("Pua Jin Jian", "asdf", 1, 0, 0, 15);
     }
 
+    public static void setSalesPersonLogins(int id, String username, String password) {
+      salesPerson.setID(id);
+      salesPerson.setLoginUserName(username);
+      salesPerson.setLoginPassword(password);
+    }
+    // OK
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DesktopImageViewRenderer();

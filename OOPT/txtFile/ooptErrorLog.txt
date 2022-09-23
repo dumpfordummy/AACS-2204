@@ -127,3 +127,5 @@
 
 2022/09/22 18:01:04 - java.net.ConnectException
 2022/09/22 18:01:28 - java.net.ConnectException
+2022/09/23 21:55:24 - org.json.JSONException: JSONObject["id"] is not a string.
+2022/09/23 21:56:18 - java.lang.NullPointerException: Cannot invoke "java.util.ArrayList.add(Object)" because "com.example.javafx_login.api.LoginApi.id" is null
