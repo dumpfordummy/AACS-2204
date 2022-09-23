@@ -78,7 +78,7 @@ public class MainController extends Draggable implements Initializable {
     private static SalesPerson salesPerson;
 
     static {
-        salesPerson = new SilverStaff("Pua Jin Jian", "asdf", 1, 0, 0);
+        salesPerson = new SilverStaff("Pua Jin Jian", "asdf", 1, 0, 0,15);
     }
 
     @Override
@@ -441,13 +441,7 @@ public class MainController extends Draggable implements Initializable {
             checkoutAlert.setText("");
         if(!validationOnCheckout())
             return;
-        updateTotalItemSold();
-        updateGrossSales();
-        initializeRecentlySoldArr();
-        updateRecentlySoldTable();
-        updateQtyRecentlySoldTable();
-        updateTotalPriceSoldTable();
-        updateUserUI();
+
         voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
         paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
@@ -573,6 +567,13 @@ public class MainController extends Draggable implements Initializable {
                 paymentAlert.setText("");
         }
         Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
+        updateTotalItemSold();
+        updateGrossSales();
+        initializeRecentlySoldArr();
+        updateRecentlySoldTable();
+        updateQtyRecentlySoldTable();
+        updateTotalPriceSoldTable();
+        updateUserUI();
         //Finish Payment
         List<Item> items = ShoppingCart.getCart();
         if (items.size() > 0){
@@ -693,7 +694,7 @@ public class MainController extends Draggable implements Initializable {
         for (int i = 0; i < cart.size(); i++) {
             salesPerson.setGrossSale(salesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
-        salesPerson = (salesPerson.getGrossSale() > 10000) ? new GoldStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold()): new SilverStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold());
+        salesPerson = (salesPerson.getGrossSale() > 10000) ? new GoldStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(),salesPerson.getBonus()): new SilverStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(), salesPerson.getBonus());
     }
 
     public void initializeRecentlySoldArr() {
@@ -754,9 +755,8 @@ public class MainController extends Draggable implements Initializable {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Payslip");
         alert.setHeaderText("Payslip for "+salesPerson.getLoginUserName());
-        alert.setContentText("Basic Salary: RM "+salesPerson.getBasicSalary() + "\nCommission Earned: RM "+salesPerson.getCommissionRate()* salesPerson.getGrossSale() + "\nBonus Earned: RM "+ salesPerson.getItemSold()*25 + "\nTotal Pay: RM "+salesPerson.getTotalPay());
+        alert.setContentText("Basic Salary: RM "+salesPerson.getBasicSalary() + "\nCommission Earned: RM "+salesPerson.getCommissionRate()* salesPerson.getGrossSale() + "\nBonus Earned: RM "+ salesPerson.getBonus() + "\n\nTotal Pay: RM "+salesPerson.getTotalPay());
         alert.getDialogPane().getButtonTypes().add(ButtonType.OK);
-
 
         if(alert.showAndWait().get() == ButtonType.OK) {
             Stage stage = (Stage) borderpane.getScene().getWindow();
