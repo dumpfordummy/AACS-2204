@@ -1,8 +1,27 @@
 package com.example.javafx_login.classes;
 
 public class Card extends Payment{
-    public Card(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
-        super(voucherCode, paymentFromUser, subtotal, discountAmount);
+    private String cardNum;
+    private static boolean isCardInserted = false;
+    public Card(String voucherCode, double discountAmount, double paymentFromUser, double subtotal, String cardNum) {
+        super(voucherCode, discountAmount, paymentFromUser, subtotal);
+        this.cardNum = cardNum;
+    }
+
+    public String getCardNum() {
+        return cardNum;
+    }
+
+    public void setCardNum(String cardNum) {
+        this.cardNum = cardNum;
+    }
+
+    public static boolean isIsCardInserted() {
+        return isCardInserted;
+    }
+
+    public static void setIsCardInserted(boolean isCardInserted) {
+        Card.isCardInserted = isCardInserted;
     }
 
     public static boolean isCardNumFormatInvalid(String cardNum){
@@ -28,4 +47,5 @@ public class Card extends Payment{
         }
         return false;
     }
+
 }

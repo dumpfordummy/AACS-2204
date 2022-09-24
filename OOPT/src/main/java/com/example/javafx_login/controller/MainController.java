@@ -1,6 +1,5 @@
 package com.example.javafx_login.controller;
 
-import com.example.javafx_login.api.LoginApi;
 import com.example.javafx_login.classes.*;
 import com.example.javafx_login.classes.abstracts.Draggable;
 import javafx.event.ActionEvent;
@@ -67,17 +66,11 @@ public class MainController extends Draggable implements Initializable {
     private ComboBox<String> voucherCodeComboBox, paymentMethodComboBox;
     @FXML
     private TextField paymentFromUser, cardNumTextField;
-
     @FXML
     private PasswordField cardPINPasswordField;
     @FXML
     private Button insertCardButton, generatePaySlipButton;
     private String currentSelectedItemName, currentSelectedItemParentId;
-
-    private final double[] voucherCodeDiscounts = {0, 5, 10, 20};
-
-    private boolean isCardInserted = false;
-
     static SalesPerson salesPerson;
 
     static {
@@ -89,7 +82,7 @@ public class MainController extends Draggable implements Initializable {
       salesPerson.setLoginUserName(username);
       salesPerson.setLoginPassword(password);
     }
-    // OK
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DesktopImageViewRenderer();
@@ -121,7 +114,7 @@ public class MainController extends Draggable implements Initializable {
         Image desktopImage = new Image(desktopFile.toURI().toString());
         desktopImageView.setImage(desktopImage);
 
-        File desktopFile_1 = new File("image/Acer_Aspire_XC_Seires.png");
+        File desktopFile_1 = new File("image/Acer_Aspire_XC_Series.png");
         Image desktopImage_1 = new Image(desktopFile_1.toURI().toString());
         desktopImageView_1.setImage(desktopImage_1);
 
@@ -167,7 +160,7 @@ public class MainController extends Draggable implements Initializable {
         Image laptopImage_4 = new Image(laptopFile_4.toURI().toString());
         laptopImageView_4.setImage(laptopImage_4);
 
-        File laptopFile_5 = new File("image/Lenove_Legion_5.png");
+        File laptopFile_5 = new File("image/Lenovo_Legion_5.png");
         Image laptopImage_5 = new Image(laptopFile_5.toURI().toString());
         laptopImageView_5.setImage(laptopImage_5);
 
@@ -261,9 +254,9 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void QRCodeImageViewRenderer() {
-        File qrCodeFile = new File("image/qr.png");
-        Image qrCodeImage = new Image(qrCodeFile.toURI().toString());
-        QRCodeImageView.setImage(qrCodeImage);
+        File QRCodeFile = new File("image/qr.png");
+        Image QRCodeImage = new Image(QRCodeFile.toURI().toString());
+        QRCodeImageView.setImage(QRCodeImage);
     }
 
     public void desktopSectionOnAction(MouseEvent event) {
@@ -467,15 +460,15 @@ public class MainController extends Draggable implements Initializable {
             paymentFromUser.setText("");
         } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])) {
             paymentFromUser.setEditable(false);
-            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - calculateDiscountAmount()));
         } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])) {
             paymentFromUser.setEditable(false);
-            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - calculateDiscountAmount()));
         }
 
         for (int i = 0; i < Purchase.getVoucherCodes().length; i++) {
             if (voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])) {
-                voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - voucherCodeDiscounts[i]));
+                voucherDetails.setText("New Subtotal = RM" + String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - Purchase.getVoucherCodeDiscounts()[i]));
                 return;
             } else
                 voucherDetails.setText("");
@@ -498,13 +491,13 @@ public class MainController extends Draggable implements Initializable {
             QRCodePaymentAnchorPane.setVisible(false);
         } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])) {
             paymentFromUser.setEditable(false);
-            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - calculateDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(true);
             QRCodePaymentAnchorPane.setVisible(false);
         } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])) {
             paymentFromUser.setEditable(false);
-            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - getDiscountAmount()));
+            paymentFromUser.setText(String.format("%.2f", Double.parseDouble(subtotalLabel.getText()) - calculateDiscountAmount()));
             cashPaymentAnchorPane.setVisible(false);
             cardPaymentAnchorPane.setVisible(false);
             QRCodePaymentAnchorPane.setVisible(true);
@@ -526,7 +519,7 @@ public class MainController extends Draggable implements Initializable {
             } else if (Cash.isPaymentAmountFormatInvalid(paymentFromUser.getText())) {
                 paymentAlert.setText("Digits With/Without 2 Decimal Places!");
                 return;
-            } else if (Double.parseDouble(paymentFromUser.getText()) + getDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0) {
+            } else if (Double.parseDouble(paymentFromUser.getText()) + calculateDiscountAmount() - Double.parseDouble(subtotalLabel.getText()) < 0) {
                 paymentAlert.setText("Payment Amount Not Enough!");
                 return;
             } else
@@ -538,7 +531,7 @@ public class MainController extends Draggable implements Initializable {
             } else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())) {
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            } else if (!isCardInserted) {
+            } else if (!Card.isIsCardInserted()) {
                 paymentAlert.setText("Please Insert Card!");
                 return;
             } else if (cardPINPasswordField.getText().equals("")) {
@@ -550,13 +543,13 @@ public class MainController extends Draggable implements Initializable {
             } else
                 paymentAlert.setText("");
         } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])) {
-            if (!LoginApi.getIsQRScanned()) {
+            if (!QRCode.getIsQrScanned()) {
                 paymentAlert.setText("Please Scan The QR Code!");
                 return;
             } else
                 paymentAlert.setText("");
         }
-        Purchase.makePayment(voucherCodeComboBox.getValue(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), getDiscountAmount());
+        Purchase.makePayment(voucherCodeComboBox.getValue(), calculateDiscountAmount(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), cardNumTextField.getText());
         updateTotalItemSold();
         updateGrossSales();
         initializeRecentlySoldArr();
@@ -596,18 +589,20 @@ public class MainController extends Draggable implements Initializable {
             totalChange5Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange().get("RM0.05")));
             totalChange1Sen.setText(String.format("%.2f", Purchase.getCashPayment().getTotalChange().get("RM0.01")));
             totalChange.setText(String.format("%.2f", Purchase.getCashPayment().getPaymentFromUser() + Purchase.getCashPayment().getDiscountAmount() - Purchase.getCashPayment().getSubtotal()));
-            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
-            cashPaymentAnchorPane.setVisible(true);
-        } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])) {
-            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
+            cashPaymentAnchorPane.setVisible(true);//Put here to avoid cashPaymentAnchorPane.setVisible(false) as paymentMethodComboBoxOnAction(event)
+        }
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[2])) {
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
             cardNumTextField.setText("");
             insertCardButton.setText("Insert Card");
             cardPINPasswordField.setText("");
             cardTerminal_2AnchorPane.setVisible(false);
-            isCardInserted = false;
-        } else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])) {
-            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);//Put here to avoid cashPaymentAnchorPane.setVisible(false);
-            LoginApi.setIsQRScanned(false);
+            Card.setIsCardInserted(false);
+        }
+        else if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[3])) {
+            paymentMethodComboBox.setValue(Purchase.getPaymentMethods()[0]);
+            QRCode.resetIsQrScanned();
         }
         voucherCodeComboBox.setValue(Purchase.getVoucherCodes()[0]);
         voucherDetails.setText("");
@@ -619,20 +614,20 @@ public class MainController extends Draggable implements Initializable {
         }
     }
 
-    public double getDiscountAmount() {
+    public double calculateDiscountAmount() {
         if (voucherCodeComboBox.getValue() == null) {
             return 0;
         }
         for (int i = 0; i < Purchase.getVoucherCodes().length; i++) {
             if (voucherCodeComboBox.getValue().equals(Purchase.getVoucherCodes()[i])) {
-                return voucherCodeDiscounts[i];
+                return Purchase.getVoucherCodeDiscounts()[i];
             }
         }
         return 0;
     }
 
     public void insertCardOnAction(ActionEvent event) {
-        if (!isCardInserted) {
+        if (!Card.isIsCardInserted()) {
             if (cardNumTextField.getText().equals("")) {
                 paymentAlert.setText("Please Enter Card Number!");
                 return;
@@ -644,7 +639,7 @@ public class MainController extends Draggable implements Initializable {
             }
             insertCardButton.setText("Remove Card");
             cardTerminal_2AnchorPane.setVisible(true);
-            isCardInserted = true;
+            Card.setIsCardInserted(false);
         } else {
             if (!cardPINPasswordField.getText().equals("")) {
                 paymentAlert.setText("Please Empty Your PIN!");
@@ -654,11 +649,10 @@ public class MainController extends Draggable implements Initializable {
             cardNumTextField.setText("");
             cardPINPasswordField.setText("");
             cardTerminal_2AnchorPane.setVisible(false);
-            isCardInserted = false;
+            Card.setIsCardInserted(false);
         }
     }
 
-    //PUA JIN JIAN
     public void updateUserUI() {
         userName.setText(salesPerson.getLoginUserName());
         userID.setText(String.valueOf(salesPerson.getID()));

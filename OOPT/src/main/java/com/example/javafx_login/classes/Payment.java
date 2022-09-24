@@ -2,15 +2,14 @@ package com.example.javafx_login.classes;
 
 public class Payment {
     private String voucherCode;
+    private double discountAmount;
     private double paymentFromUser;
     private double subtotal;
-    private double discountAmount;
-
-    public Payment(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
+    public Payment(String voucherCode, double discountAmount, double paymentFromUser, double subtotal) {
         this.voucherCode = voucherCode;
+        this.discountAmount = discountAmount;
         this.paymentFromUser = paymentFromUser;
         this.subtotal = subtotal;
-        this.discountAmount = discountAmount;
     }
 
     public String getVoucherCode() {
@@ -19,6 +18,14 @@ public class Payment {
 
     public void setVoucherCode(String voucherCode) {
         this.voucherCode = voucherCode;
+    }
+
+    public double getDiscountAmount() {
+        return discountAmount;
+    }
+
+    public void setDiscountAmount(double discountAmount) {
+        this.discountAmount = discountAmount;
     }
 
     public double getPaymentFromUser() {
@@ -35,13 +42,5 @@ public class Payment {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
-    }
-
-    public double getDiscountAmount() {
-        return discountAmount;
-    }
-
-    public void setDiscountAmount(double discountAmount) {
-        this.discountAmount = discountAmount;
     }
 }

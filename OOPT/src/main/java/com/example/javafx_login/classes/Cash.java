@@ -7,11 +7,6 @@ public class Cash extends Payment{
     private HashMap<String, Double> totalChange = new HashMap<>();
     private static double[] typeOfCash = new double[]{100, 50, 20, 10, 5, 1, 0.5, 0.2, 0.1, 0.05, 0.01};
 
-
-    public static double[] getTypeOfCash() {
-        return typeOfCash;
-    }
-
     public HashMap<String, Integer> getChangeQty() {
         return changeQty;
     }
@@ -28,16 +23,20 @@ public class Cash extends Payment{
         this.totalChange = totalChange;
     }
 
+    public static double[] getTypeOfCash() {
+        return typeOfCash;
+    }
+
     public static void setTypeOfCash(double[] typeOfCash) {
         Cash.typeOfCash = typeOfCash;
     }
 
-    public Cash(String voucherCode, double paymentFromUser, double subtotal, double discountAmount) {
-        super(voucherCode, paymentFromUser, subtotal, discountAmount);
-        calculateChange(paymentFromUser, subtotal, discountAmount);
+    public Cash(String voucherCode, double discountAmount, double paymentFromUser, double subtotal) {
+        super(voucherCode, discountAmount, paymentFromUser, subtotal);
+        calculateChange(discountAmount, paymentFromUser, subtotal);
     }
 
-    public void calculateChange(double paymentFromUser, double subtotal, double discountAmount){
+    public void calculateChange(double discountAmount, double paymentFromUser, double subtotal){
         double totalChangeLeft = paymentFromUser + discountAmount - subtotal;
 
         for (int i = 0; i < typeOfCash.length; i++){
@@ -74,4 +73,5 @@ public class Cash extends Payment{
 
         return false;
     }
+
 }
