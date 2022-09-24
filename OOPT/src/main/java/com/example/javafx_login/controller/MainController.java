@@ -31,7 +31,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView mobileImageView, mobileImageView_1, mobileImageView_2, mobileImageView_3, mobileImageView_4, mobileImageView_5, mobileImageView_6;
     @FXML
-    private ImageView accessoryImageView, accessoryImageView_1, accessoryImageView_2, accessoryImageView_3, accessoryImageView_4, accessoryImageView_5;
+    private ImageView tabletImageView, tabletImageView_1, tabletImageView_2, tabletImageView_3, tabletImageView_4, tabletImageView_5;
     @FXML
     private ImageView settingsImageView, userIconImageView, staffPicView;
     @FXML
@@ -200,29 +200,29 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void AccessoryImageViewRenderer() {
-        File accessoryFile = new File("image/accessory.png");
-        Image accessoryImage = new Image(accessoryFile.toURI().toString());
-        accessoryImageView.setImage(accessoryImage);
+        File tabletFile = new File("image/tablet.png");
+        Image tabletImage = new Image(tabletFile.toURI().toString());
+        tabletImageView.setImage(tabletImage);
 
-        File accessoryFile_1 = new File("image/Apple_iPad_2020.png");
-        Image accessoryImage_1 = new Image(accessoryFile_1.toURI().toString());
-        accessoryImageView_1.setImage(accessoryImage_1);
+        File tabletFile_1 = new File("image/Apple_iPad_2020.png");
+        Image tabletImage_1 = new Image(tabletFile_1.toURI().toString());
+        tabletImageView_1.setImage(tabletImage_1);
 
-        File accessoryFile_2 = new File("image/Apple_iPad_Pro_2021.png");
-        Image accessoryImage_2 = new Image(accessoryFile_2.toURI().toString());
-        accessoryImageView_2.setImage(accessoryImage_2);
+        File tabletFile_2 = new File("image/Apple_iPad_Pro_2021.png");
+        Image tabletImage_2 = new Image(tabletFile_2.toURI().toString());
+        tabletImageView_2.setImage(tabletImage_2);
 
-        File accessoryFile_3 = new File("image/Huawei_MatePad_11.png");
-        Image accessoryImage_3 = new Image(accessoryFile_3.toURI().toString());
-        accessoryImageView_3.setImage(accessoryImage_3);
+        File tabletFile_3 = new File("image/Huawei_MatePad_11.png");
+        Image tabletImage_3 = new Image(tabletFile_3.toURI().toString());
+        tabletImageView_3.setImage(tabletImage_3);
 
-        File accessoryFile_4 = new File("image/Lenovo_Pad_Pro.png");
-        Image accessoryImage_4 = new Image(accessoryFile_4.toURI().toString());
-        accessoryImageView_4.setImage(accessoryImage_4);
+        File tabletFile_4 = new File("image/Lenovo_Pad_Pro.png");
+        Image tabletImage_4 = new Image(tabletFile_4.toURI().toString());
+        tabletImageView_4.setImage(tabletImage_4);
 
-        File accessoryFile_5 = new File("image/Samsung_Galaxy_Tab_S7.png");
-        Image accessoryImage_5 = new Image(accessoryFile_5.toURI().toString());
-        accessoryImageView_5.setImage(accessoryImage_5);
+        File tabletFile_5 = new File("image/Samsung_Galaxy_Tab_S7.png");
+        Image tabletImage_5 = new Image(tabletFile_5.toURI().toString());
+        tabletImageView_5.setImage(tabletImage_5);
     }
 
     public void userImageViewRenderer() {

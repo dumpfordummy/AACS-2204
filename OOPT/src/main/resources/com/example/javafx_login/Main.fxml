@@ -490,7 +490,7 @@
                            <children>
                               <Pane layoutX="14.0" layoutY="14.0">
                                  <children>
-                                    <ImageView fx:id="accessoryImageView_1" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="tabletImageView_1" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../image/Apple_iPad_2020.png" />
                                        </image>
@@ -500,7 +500,7 @@
                               </Pane>
                               <Pane layoutX="182.0" layoutY="14.0">
                                  <children>
-                                    <ImageView fx:id="accessoryImageView_2" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="tabletImageView_2" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../image/Apple_iPad_Pro_2021.png" />
                                        </image>
@@ -510,7 +510,7 @@
                               </Pane>
                               <Pane layoutX="344.0" layoutY="14.0">
                                  <children>
-                                    <ImageView fx:id="accessoryImageView_3" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="tabletImageView_3" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../image/Huawei_MatePad_11.png" />
                                        </image>
@@ -520,7 +520,7 @@
                               </Pane>
                               <Pane layoutX="14.0" layoutY="200.0">
                                  <children>
-                                    <ImageView fx:id="accessoryImageView_4" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="tabletImageView_4" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../image/Lenovo_Pad_Pro.png" />
                                        </image>
@@ -530,7 +530,7 @@
                               </Pane>
                               <Pane layoutX="182.0" layoutY="200.0">
                                  <children>
-                                    <ImageView fx:id="accessoryImageView_5" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fx:id="tabletImageView_5" fitHeight="137.0" fitWidth="136.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../../../../../../image/Samsung_Galaxy_Tab_S7.png" />
                                        </image>
