@@ -1,9 +1,9 @@
 Product Name | Stock Quantity | Price (RM)
 ===========================================
-Acer Aspire | 0 | 2000.0
-Asus S500SA | 0 | 2000.0
-Dell Inspiron | 0 | 2000.0
-HP ProDesk | 0 | 2000.0
+Acer Aspire | 5 | 2000.0
+Asus S500SA | 5 | 2000.0
+Dell Inspiron | 8 | 2000.0
+HP ProDesk | 7 | 2000.0
 Lenovo ThinkCentre | 0 | 2000.0
 Apple iMac | 3 | 2000.0
 Acer Nitro 5 | 3 | 1500.0
@@ -19,7 +19,7 @@ Vivo iQOO Neo 5 | 12 | 1000.0
 Xiaomi Mi 11 Pro | 10 | 1000.0
 Xiaomi Poco F3 | 10 | 1000.0
 Apple iPad 2020 | 7 | 500.0
-Apple iPad Pro 2021 | 3 | 500.0
-Huawei MatePad 11 | 0 | 500.0
+Apple iPad Pro 2021 | 2 | 500.0
+Huawei MatePad 11 | 8 | 500.0
 Lenovo Pad Pro | 5 | 500.0
 Samsung Galaxy Tab S7 | 3 | 500.0
