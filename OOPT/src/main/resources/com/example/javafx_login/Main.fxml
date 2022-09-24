@@ -224,7 +224,7 @@
          <children>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #E9E9E9;">
                <children>
-                  <AnchorPane fx:id="userAnchorPane" prefHeight="400.0" prefWidth="500.0">
+                  <AnchorPane fx:id="userAnchorPane" prefHeight="400.0" prefWidth="500.0" visible="false">
                      <children>
                         <Label layoutX="95.0" layoutY="5.0" text="Name: " />
                         <Label fx:id="userName" layoutX="133.0" layoutY="5.0" prefHeight="18.0" prefWidth="132.0" />
@@ -292,7 +292,7 @@
                         <Button fx:id="generatePaySlipButton" layoutX="366.0" layoutY="350.0" mnemonicParsing="false" onAction="#generatePaySlipOnAction" text="GENERATE PAY SLIP" />
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="contentAnchorPane" layoutY="-38.0" visible="false">
+                  <AnchorPane fx:id="contentAnchorPane" layoutY="-38.0">
                      <children>
                         <AnchorPane fx:id="desktopAnchorPane" layoutY="38.0" prefHeight="400.0" prefWidth="500.0">
                            <children>
