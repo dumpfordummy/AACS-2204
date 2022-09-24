@@ -658,7 +658,7 @@ public class MainController extends Draggable implements Initializable {
             }
             insertCardButton.setText("Remove Card");
             cardTerminal_2AnchorPane.setVisible(true);
-            Card.setIsCardInserted(false);
+            Card.setIsCardInserted(true);
         } else {
             if (!cardPINPasswordField.getText().equals("")) {
                 paymentAlert.setText("Please Empty Your PIN!");
