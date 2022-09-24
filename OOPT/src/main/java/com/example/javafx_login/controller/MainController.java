@@ -376,10 +376,10 @@ public class MainController extends Draggable implements Initializable {
 
         if (!isItemContainedInList) {
             switch (currentSelectedItemParentId) {
-                case "desktopAnchorPane" -> ShoppingCart.addToItemList(new Desktop(currentSelectedItemName));
-                case "laptopAnchorPane" -> ShoppingCart.addToItemList(new Laptop(currentSelectedItemName));
-                case "mobileAnchorPane" -> ShoppingCart.addToItemList(new Mobile(currentSelectedItemName));
-                case "tabletAnchorPane" -> ShoppingCart.addToItemList(new Tablet(currentSelectedItemName));
+                case "desktopAnchorPane" -> ShoppingCart.addItemList(new Desktop(currentSelectedItemName));
+                case "laptopAnchorPane" -> ShoppingCart.addItemList(new Laptop(currentSelectedItemName));
+                case "mobileAnchorPane" -> ShoppingCart.addItemList(new Mobile(currentSelectedItemName));
+                case "tabletAnchorPane" -> ShoppingCart.addItemList(new Tablet(currentSelectedItemName));
             }
         }
         updateUICart();
