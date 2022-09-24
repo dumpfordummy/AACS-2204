@@ -673,7 +673,7 @@ public class MainController extends Draggable implements Initializable {
         for (int i = 0; i < cart.size(); i++) {
             salesPerson.setGrossSale(salesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
-        salesPerson = (salesPerson.getGrossSale() > 10000) ? new GoldStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(), salesPerson.getBonus()) : new SilverStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(), salesPerson.getBonus());
+        salesPerson = (salesPerson.getGrossSale() >= 10000) ? new GoldStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(), salesPerson.getBonus()) : new SilverStaff(salesPerson.getLoginUserName(), salesPerson.getLoginPassword(), salesPerson.getID(), salesPerson.getGrossSale(), salesPerson.getItemSold(), salesPerson.getBonus());
     }
 
     public void initializeRecentlySoldArr() {
