@@ -351,7 +351,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void addToCartOnAction(ActionEvent event) {
-        ArrayList<Item> itemList = ShoppingCart.getCart();
+        ArrayList<Item> itemList = ShoppingCart.getItemList();
         boolean isItemContainedInList = false;
 
         if (currentSelectedItemName == null) {
@@ -365,7 +365,7 @@ public class MainController extends Draggable implements Initializable {
             if (itemList.get(i).getName().equals(currentSelectedItemName)) {
                 isItemContainedInList = true;
                 itemList.get(i).addQuantity();
-                ShoppingCart.setCart(itemList);
+                ShoppingCart.setItemList(itemList);
                 break;
             }
         }
@@ -376,22 +376,22 @@ public class MainController extends Draggable implements Initializable {
 
         if (!isItemContainedInList) {
             switch (currentSelectedItemParentId) {
-                case "desktopAnchorPane" -> ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
-                case "laptopAnchorPane" -> ShoppingCart.addToCart(new Laptop(currentSelectedItemName));
-                case "mobileAnchorPane" -> ShoppingCart.addToCart(new Mobile(currentSelectedItemName));
-                case "tabletAnchorPane" -> ShoppingCart.addToCart(new Tablet(currentSelectedItemName));
+                case "desktopAnchorPane" -> ShoppingCart.addToItemList(new Desktop(currentSelectedItemName));
+                case "laptopAnchorPane" -> ShoppingCart.addToItemList(new Laptop(currentSelectedItemName));
+                case "mobileAnchorPane" -> ShoppingCart.addToItemList(new Mobile(currentSelectedItemName));
+                case "tabletAnchorPane" -> ShoppingCart.addToItemList(new Tablet(currentSelectedItemName));
             }
         }
         updateUICart();
     }
 
     public void popCart(ActionEvent event) {
-        if (ShoppingCart.getCart().size() == 0) {
+        if (ShoppingCart.getItemList().size() == 0) {
             checkoutAlert.setText("Your Cart Is Empty");
             return;
         } else
             checkoutAlert.setText("");
-        ShoppingCart.removeCartAtIndex(ShoppingCart.getCart().size() - 1);
+        ShoppingCart.removeItemAtIndex(ShoppingCart.getItemList().size() - 1);
         resetUICart();
         updateUICart();
     }
@@ -410,7 +410,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     private void updateUICart() {
-        List<Item> items = ShoppingCart.getCart();
+        List<Item> items = ShoppingCart.getItemList();
         double subtotal = 0;
 
         if (items.size() > 0) {
@@ -433,7 +433,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void checkOutOnAction(ActionEvent event) {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
 
         if (cart.size() == 0) {
             checkoutAlert.setText("Cart Is Empty");
@@ -516,7 +516,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void makePaymentOnAction(ActionEvent event) {
-        int sizeOfCart = ShoppingCart.getCart().size();
+        int sizeOfCart = ShoppingCart.getItemList().size();
 
         if (paymentMethodComboBox.getValue().equals(Purchase.getPaymentMethods()[0])) {
             paymentMethodAlert.setText("Please Choose Payment Method!");
@@ -567,7 +567,7 @@ public class MainController extends Draggable implements Initializable {
         }
 
         Purchase.makePayment(voucherCodeComboBox.getValue(), calculateDiscountAmount(), paymentMethodComboBox.getValue(), Double.parseDouble(paymentFromUser.getText()), Double.parseDouble(subtotalLabel.getText()), cardNumTextField.getText());
-        List<Item> items = ShoppingCart.getCart();
+        List<Item> items = ShoppingCart.getItemList();
 
         if (items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
@@ -681,14 +681,14 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void updateTotalItemSold() {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
         for (int i = 0; i < cart.size(); i++) {
             salesPerson.setItemSold(salesPerson.getItemSold() + cart.get(i).getQuantity());
         }
     }
 
     public void updateGrossSales() {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
         for (int i = 0; i < cart.size(); i++) {
             salesPerson.setGrossSale(salesPerson.getGrossSale() + (cart.get(i).getPrice() * cart.get(i).getQuantity()));
         }
@@ -702,7 +702,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void updateRecentlySoldTable() {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
         int counter;
         for (int i = 0; i < cart.size(); i++) {
             if (recentlySoldNameQueue.size() == 5) {
@@ -718,7 +718,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void updateQtyRecentlySoldTable() {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
         int counter;
         for (int i = 0; i < cart.size(); i++) {
             if (qtySoldQueue.size() == 5) {
@@ -734,7 +734,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void updateTotalPriceSoldTable() {
-        List<Item> cart = ShoppingCart.getCart();
+        List<Item> cart = ShoppingCart.getItemList();
         int counter;
         for (int i = 0; i < cart.size(); i++) {
             if (priceSoldQueue.size() == 5) {
@@ -784,7 +784,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public boolean validationOnCheckout() {
-        List<Item> items = ShoppingCart.getCart();
+        List<Item> items = ShoppingCart.getItemList();
         for (int i = 0; i < items.size(); i++) {
             AnchorPane anchorPane = (AnchorPane) rightAnchorPaneContent.getChildren().get(i);
             Label name = ((Label) anchorPane.getChildren().get(0));

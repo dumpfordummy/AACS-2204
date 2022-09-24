@@ -3,24 +3,24 @@ package com.example.javafx_login.classes;
 import java.util.ArrayList;
 
 public class ShoppingCart {
-    private static ArrayList<Item> cart = new ArrayList<>();
+    private static ArrayList<Item> itemList = new ArrayList<>();
 
     private ShoppingCart() {
     }
 
-    public static ArrayList<Item> getCart() {
-        return cart;
+    public static ArrayList<Item> getItemList() {
+        return itemList;
     }
 
-    public static void setCart(ArrayList<Item> cart) {
-        ShoppingCart.cart = cart;
+    public static void setItemList(ArrayList<Item> cart) {
+        ShoppingCart.itemList = cart;
     }
 
-    public static void addToCart(Item items) {
-        cart.add(items);
+    public static void addToItemList(Item items) {
+        itemList.add(items);
     }
 
-    public static void removeCartAtIndex(int index) {
-        cart.remove(index);
+    public static void removeItemAtIndex(int index) {
+        itemList.remove(index);
     }
 }

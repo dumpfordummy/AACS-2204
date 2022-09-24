@@ -1,20 +1,13 @@
 package com.example.javafx_login.controller;
 
-import com.example.javafx_login.classes.Item;
-import com.example.javafx_login.classes.SalesPerson;
-import com.example.javafx_login.classes.ShoppingCart;
-import com.example.javafx_login.classes.SilverStaff;
 import javafx.application.Application;
-import javafx.beans.property.SimpleListProperty;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
-import java.util.List;
 
 // This is starter java class
 // test
