@@ -379,7 +379,7 @@ public class MainController extends Draggable implements Initializable {
                 case "desktopAnchorPane" -> ShoppingCart.addToCart(new Desktop(currentSelectedItemName));
                 case "laptopAnchorPane" -> ShoppingCart.addToCart(new Laptop(currentSelectedItemName));
                 case "mobileAnchorPane" -> ShoppingCart.addToCart(new Mobile(currentSelectedItemName));
-                case "accessoryAnchorPane" -> ShoppingCart.addToCart(new Accessory(currentSelectedItemName));
+                case "tabletAnchorPane" -> ShoppingCart.addToCart(new Tablet(currentSelectedItemName));
             }
         }
         updateUICart();

@@ -1,7 +1,7 @@
 package com.example.javafx_login.classes;
 
-public class Accessory extends Item{
-    public Accessory(String name) {
+public class Tablet extends Item{
+    public Tablet(String name) {
         super(name);
     }
 
