@@ -59,7 +59,7 @@
                         <Image url="@../../../../../../image/tablet.png" />
                      </image>
                   </ImageView>
-                  <Label layoutX="24.0" layoutY="65.0" text="Accessory" textFill="WHITE" />
+                  <Label layoutX="32.0" layoutY="65.0" text="Tablet" textAlignment="CENTER" textFill="WHITE" />
                </children>
             </AnchorPane>
             <AnchorPane layoutX="669.0" layoutY="13.0" onMouseClicked="#settingsSectionOnAction">
