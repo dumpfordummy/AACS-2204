@@ -2,7 +2,7 @@ Product Name | Stock Quantity | Price (RM)
 ===========================================
 
 Acer Aspire | 9 | 2000.0
-Asus S500SA | 3 | 2000.0
+Asus S500SA | 2 | 2000.0
 Dell Inspiron | 8 | 2000.0
 HP ProDesk | 6 | 2000.0
 Lenovo ThinkCentre | 10 | 2000.0
@@ -11,7 +11,7 @@ Acer Nitro 5 | 6 | 1500.0
 Acer Swift 3X | 8 | 1500.0
 Asus ROG Strix G15 | 10 | 1500.0
 Asus TUF Dash F15 | 8 | 1500.0
-Lenovo Legion 5 | 9 | 1500.0
+Lenovo Legion 5 | 8 | 1500.0
 Lenovo IdeaPad 5 Pro | 5 | 1500.0
 Oppo Find X3 Pro | 12 | 1000.0
 Oppo Realme GT | 7 | 1000.0
