@@ -37,7 +37,7 @@ public class MainController extends Draggable implements Initializable {
     @FXML
     private ImageView cardTerminalImageView, cardTerminal_2ImageView, QRCodeImageView;
     @FXML
-    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, accessoryAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
+    private AnchorPane desktopAnchorPane, laptopAnchorPane, mobileAnchorPane, tabletAnchorPane, settingsAnchorPane, checkoutAnchorPane, userAnchorPane, contentAnchorPane;
     @FXML
     private AnchorPane rightAnchorPaneContent;
     @FXML
@@ -88,7 +88,7 @@ public class MainController extends Draggable implements Initializable {
         DesktopImageViewRenderer();
         LaptopImageViewRenderer();
         MobileImageViewRenderer();
-        AccessoryImageViewRenderer();
+        TabletImageViewRenderer();
         SettingsImageViewRenderer();
         userImageViewRenderer();
         staffPicViewRenderer();
@@ -199,7 +199,7 @@ public class MainController extends Draggable implements Initializable {
         mobileImageView_6.setImage(mobileImage_6);
     }
 
-    public void AccessoryImageViewRenderer() {
+    public void TabletImageViewRenderer() {
         File tabletFile = new File("image/tablet.png");
         Image tabletImage = new Image(tabletFile.toURI().toString());
         tabletImageView.setImage(tabletImage);
@@ -264,7 +264,7 @@ public class MainController extends Draggable implements Initializable {
         desktopAnchorPane.setVisible(true);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(false);
+        tabletAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
@@ -276,7 +276,7 @@ public class MainController extends Draggable implements Initializable {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(true);
         mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(false);
+        tabletAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
@@ -288,19 +288,19 @@ public class MainController extends Draggable implements Initializable {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(true);
-        accessoryAnchorPane.setVisible(false);
+        tabletAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
         cashPaymentAnchorPane.setVisible(false);
     }
 
-    public void accessorySectionOnAction(MouseEvent event) {
+    public void tabletSectionOnAction(MouseEvent event) {
         contentAnchorPane.setVisible(true);
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(true);
+        tabletAnchorPane.setVisible(true);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(false);
@@ -328,7 +328,7 @@ public class MainController extends Draggable implements Initializable {
         desktopAnchorPane.setVisible(false);
         laptopAnchorPane.setVisible(false);
         mobileAnchorPane.setVisible(false);
-        accessoryAnchorPane.setVisible(false);
+        tabletAnchorPane.setVisible(false);
         userAnchorPane.setVisible(false);
         checkoutAnchorPane.setVisible(false);
         settingsAnchorPane.setVisible(true);
