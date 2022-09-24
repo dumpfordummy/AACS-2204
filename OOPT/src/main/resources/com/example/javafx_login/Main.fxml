@@ -300,7 +300,7 @@
                                  <children>
                                     <ImageView fx:id="desktopImageView_1" fitHeight="150.0" fitWidth="200.0" onMouseClicked="#itemImageAddToSelectedOnClick" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../../../../../../image/Acer_Aspire_XC_Seires.png" />
+                                          <Image url="@../../../../../../image/Acer_Aspire_XC_Series.png" />
                                        </image>
                                     </ImageView>
                                     <Label layoutX="43.0" layoutY="155.0" text="Acer Aspire" />
@@ -404,7 +404,7 @@
                                  <children>
                                     <ImageView fx:id="laptopImageView_5" fitHeight="175.0" fitWidth="150.0" onMouseClicked="#itemImageAddToSelectedOnClick">
                                        <image>
-                                          <Image url="@../../../../../../image/Lenove_Legion_5.png" />
+                                          <Image url="@../../../../../../image/Lenovo_Legion_5.png" />
                                        </image>
                                     </ImageView>
                                     <Label layoutX="35.0" layoutY="180.0" text="Lenovo Legion 5" />

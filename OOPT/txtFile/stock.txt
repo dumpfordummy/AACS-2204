@@ -1,7 +1,7 @@
 Product Name | Stock Quantity | Price (RM)
 ===========================================
 
-Acer Aspire | 10 | 2000.0
+Acer Aspire | 9 | 2000.0
 Asus S500SA | 3 | 2000.0
 Dell Inspiron | 8 | 2000.0
 HP ProDesk | 6 | 2000.0
