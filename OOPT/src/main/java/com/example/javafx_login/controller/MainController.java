@@ -546,7 +546,7 @@ public class MainController extends Draggable implements Initializable {
             } else if (Card.isCardNumFormatInvalid(cardNumTextField.getText())) {
                 paymentAlert.setText("8 Digits Card Number!");
                 return;
-            } else if (!Card.isIsCardInserted()) {
+            } else if (!Card.getIsCardInserted()) {
                 paymentAlert.setText("Please Insert Card!");
                 return;
             } else if (cardPINPasswordField.getText().equals("")) {
@@ -646,7 +646,7 @@ public class MainController extends Draggable implements Initializable {
     }
 
     public void insertCardOnAction(ActionEvent event) {
-        if (!Card.isIsCardInserted()) {
+        if (!Card.getIsCardInserted()) {
             if (cardNumTextField.getText().equals("")) {
                 paymentAlert.setText("Please Enter Card Number!");
                 return;

@@ -16,7 +16,7 @@ public class Card extends Payment{
         this.cardNum = cardNum;
     }
 
-    public static boolean isIsCardInserted() {
+    public static boolean getIsCardInserted() {
         return isCardInserted;
     }
 
