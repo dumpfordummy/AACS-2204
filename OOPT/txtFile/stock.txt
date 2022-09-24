@@ -3,7 +3,7 @@ Product Name | Stock Quantity | Price (RM)
 
 Acer Aspire | 9 | 2000.0
 Asus S500SA | 2 | 2000.0
-Dell Inspiron | 8 | 2000.0
+Dell Inspiron | 7 | 2000.0
 HP ProDesk | 6 | 2000.0
 Lenovo ThinkCentre | 10 | 2000.0
 Apple iMac | 8 | 2000.0
@@ -21,6 +21,6 @@ Xiaomi Mi 11 Pro | 9 | 1000.0
 Xiaomi Poco F3 | 9 | 1000.0
 Apple iPad 2020 | 6 | 500.0
 Apple iPad Pro 2021 | 10 | 500.0
-Huawei MatePad 11 | 7 | 500.0
+Huawei MatePad 11 | 6 | 500.0
 Lenovo Pad Pro | 5 | 500.0
-Samsung Galaxy Tab S7 | 6 | 500.0
+Samsung Galaxy Tab S7 | 5 | 500.0
