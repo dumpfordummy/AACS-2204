@@ -6,20 +6,20 @@ Dell Inspiron | 8 | 2000.0
 HP ProDesk | 6 | 2000.0
 Lenovo ThinkCentre | 0 | 2000.0
 Apple iMac | 3 | 2000.0
-Acer Nitro 5 | 3 | 1500.0
+Acer Nitro 5 | 2 | 1500.0
 Acer Swift 3X | 8 | 1500.0
 Asus ROG Strix G15 | 11 | 1500.0
 Asus TUF Dash F15 | 8 | 1500.0
-Lenovo Legion 5 | 5 | 1500.0
-Lenovo IdeaPad 5 Pro | 6 | 1500.0
-Oppo Find X3 Pro | 13 | 1000.0
-Oppo Realme GT | 8 | 1000.0
-Vivo iQOO 8 Pro | 12 | 1000.0
+Lenovo Legion 5 | 3 | 1500.0
+Lenovo IdeaPad 5 Pro | 5 | 1500.0
+Oppo Find X3 Pro | 12 | 1000.0
+Oppo Realme GT | 7 | 1000.0
+Vivo iQOO 8 Pro | 11 | 1000.0
 Vivo iQOO Neo 5 | 12 | 1000.0
-Xiaomi Mi 11 Pro | 10 | 1000.0
-Xiaomi Poco F3 | 10 | 1000.0
-Apple iPad 2020 | 7 | 500.0
-Apple iPad Pro 2021 | 2 | 500.0
-Huawei MatePad 11 | 8 | 500.0
+Xiaomi Mi 11 Pro | 9 | 1000.0
+Xiaomi Poco F3 | 9 | 1000.0
+Apple iPad 2020 | 6 | 500.0
+Apple iPad Pro 2021 | 1 | 500.0
+Huawei MatePad 11 | 7 | 500.0
 Lenovo Pad Pro | 5 | 500.0
 Samsung Galaxy Tab S7 | 3 | 500.0
