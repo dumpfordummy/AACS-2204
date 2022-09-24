@@ -571,7 +571,7 @@ public class MainController extends Draggable implements Initializable {
 
         if (items.size() > 0) {
             for (int i = 0; i < items.size(); i++) {
-                Stock.updateStock(items.get(i).getName(), (Stock.getProductStockQuantity(items.get(i).getName()) - items.get(i).getQuantity()));
+                Stock.updateStock(items.get(i).getName(), (Stock.getItemStockQuantity(items.get(i).getName()) - items.get(i).getQuantity()));
             }
         }
 
@@ -792,7 +792,7 @@ public class MainController extends Draggable implements Initializable {
 
             String prodName = items.get(i).getName();
             int numberOfItems = items.get(i).getQuantity();
-            if (Stock.getProductStockQuantity(prodName) >= numberOfItems) {
+            if (Stock.getItemStockQuantity(prodName) >= numberOfItems) {
                 checkoutSectionOnAction();
             } else {
                 alertNotAvailable(prodName);

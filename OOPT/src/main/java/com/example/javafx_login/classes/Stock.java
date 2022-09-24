@@ -4,15 +4,15 @@ import java.io.*;
 
 public abstract class Stock {
     //Variables
-    private static int totalProducts;
+    private static int totalItems;
 
     private final static String txtPath = "txtFile/stock.txt";
 
-    static File file = new File("txtFile/stock.txt");
+    private static File file = new File("txtFile/stock.txt");
 
     //Getters
-    public static int getTotalProducts() {
-        return totalProducts;
+    public static int getTotalItems() {
+        return totalItems;
     }
 
     //Methods
@@ -40,20 +40,20 @@ public abstract class Stock {
             e.printStackTrace();
 
         } finally {
-            totalProducts++;
+            totalItems++;
         }
     }
 
     public static void updateStock(String name, int quantity){
-        String[] selectedProductDetails;
+        String[] selectedItemDetails;
         try {
             BufferedWriter writer1 = new BufferedWriter(new FileWriter("txtFile/temp.txt"));
             BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.contains(name)) {
-                    selectedProductDetails = line.split(" \\| ", 0);
-                    writer1.write(name + " | " + quantity + " | " + selectedProductDetails[2] + "\n");
+                    selectedItemDetails = line.split(" \\| ", 0);
+                    writer1.write(name + " | " + quantity + " | " + selectedItemDetails[2] + "\n");
                 }
                 else {
                     writer1.write(line);
@@ -76,7 +76,7 @@ public abstract class Stock {
     }
 
     //display all products(regardless availability)
-    public static void getAllProducts(){
+    public static void getAllItems(){
         try {
             BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
@@ -94,7 +94,7 @@ public abstract class Stock {
     }
 
     //check product availability
-    public static boolean isProductAvailable (String itemName){
+    public static boolean isItemAvailable(String itemName){
         String[] selectedProductDetails = new String[3];
         try {
             BufferedReader reader = new BufferedReader(new FileReader(txtPath));
@@ -116,15 +116,15 @@ public abstract class Stock {
         return !selectedProductDetails[1].equals("0");
     }
 
-    public static int getProductStockQuantity (String itemName){
-        String[] selectedProductDetails = new String[3];
+    public static int getItemStockQuantity(String itemName){
+        String[] selectedItemDetails = new String[3];
         try {
             BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
 
             while ((line = reader.readLine()) != null) {
                 if(line.contains(itemName)) {
-                    selectedProductDetails = line.split(" \\| ", 0);
+                    selectedItemDetails = line.split(" \\| ", 0);
                 }
             }
             reader.close();
@@ -135,12 +135,12 @@ public abstract class Stock {
             e.printStackTrace();
         }
 
-        Integer integer = Integer.valueOf(selectedProductDetails[1]);
+        Integer integer = Integer.valueOf(selectedItemDetails[1]);
         return integer;
     }
 
     //display the details of the selected product
-    public static void displayProductDetails (String name) {
+    public static void displayItemsDetails(String name) {
         try {
             BufferedReader reader = new BufferedReader(new FileReader(txtPath));
             String line;
