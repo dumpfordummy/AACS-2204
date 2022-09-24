@@ -39,13 +39,12 @@ public class Cash extends Payment{
     public void calculateChange(double discountAmount, double paymentFromUser, double subtotal){
         double totalChangeLeft = paymentFromUser + discountAmount - subtotal;
 
-        for (int i = 0; i < typeOfCash.length; i++){
-            changeQty.put("RM" + typeOfCash[i], (int) (totalChangeLeft / typeOfCash[i]));
-            totalChange.put("RM" + typeOfCash[i], changeQty.get("RM" + typeOfCash[i]) * typeOfCash[i]);
-            totalChangeLeft -= totalChange.get("RM" + typeOfCash[i]);
+        for (double cash : typeOfCash) {
+            changeQty.put("RM" + cash, (int) (totalChangeLeft / cash));
+            totalChange.put("RM" + cash, changeQty.get("RM" + cash) * cash);
+            totalChangeLeft -= totalChange.get("RM" + cash);
             totalChangeLeft = Math.round(totalChangeLeft * 100) / 100.0; //Prevent Floating Point Precision
         }
-
     }
 
     public static boolean isPaymentAmountFormatInvalid(String paymentAmount){
