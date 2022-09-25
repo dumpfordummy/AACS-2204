@@ -16,7 +16,7 @@ public class ShoppingCart {
         ShoppingCart.itemList = cart;
     }
 
-    public static void addToItemList(Item items) {
+    public static void addItemList(Item items) {
         itemList.add(items);
     }
 
