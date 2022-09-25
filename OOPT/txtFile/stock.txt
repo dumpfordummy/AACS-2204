@@ -8,7 +8,7 @@ HP ProDesk | 5 | 2000.0
 Lenovo ThinkCentre | 9 | 2000.0
 Apple iMac | 7 | 2000.0
 Acer Nitro 5 | 6 | 1500.0
-Acer Swift 3X | 8 | 1500.0
+Acer Swift 3X | 5 | 1500.0
 Asus ROG Strix G15 | 10 | 1500.0
 Asus TUF Dash F15 | 8 | 1500.0
 Lenovo Legion 5 | 8 | 1500.0
@@ -20,7 +20,7 @@ Vivo iQOO Neo 5 | 12 | 1000.0
 Xiaomi Mi 11 Pro | 9 | 1000.0
 Xiaomi Poco F3 | 9 | 1000.0
 Apple iPad 2020 | 6 | 500.0
-Apple iPad Pro 2021 | 9 | 500.0
-Huawei MatePad 11 | 4 | 500.0
-Lenovo Pad Pro | 5 | 500.0
-Samsung Galaxy Tab S7 | 5 | 500.0
+Apple iPad Pro 2021 | 4 | 500.0
+Huawei MatePad 11 | 2 | 500.0
+Lenovo Pad Pro | 2 | 500.0
+Samsung Galaxy Tab S7 | 0 | 500.0
